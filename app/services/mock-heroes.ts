@@ -1,4 +1,4 @@
-import { Hero } from "./constants/hero";
+import { Hero } from "../constants/hero";
 
 export const HEROES:Hero[] = [
   {id: 11, name: 'Mr. Nice'},
