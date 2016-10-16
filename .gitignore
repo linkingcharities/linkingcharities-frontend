@@ -63,9 +63,10 @@ npm-debug.log
 # TS
 typings
 system-config.js*
-app/**/*.js
-app/**/*.map
-node_modules
+src/app/**/*.js
+src/app/**/*.map
+src/*.js
+src/*.map
 jspm_packages
 bower_components
 aot/*
