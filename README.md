@@ -1,4 +1,4 @@
-# Linking charities frontend repo
+# Linking charities frontend
 **Master** - [![Build Status][travis-image]][travis-url]
 ## Quickstart
 ### Running something
