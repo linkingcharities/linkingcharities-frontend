@@ -4,8 +4,8 @@ export class Hero {
 }
 
 export class Charity {
-  charity_description: string;
-  charity_name: string;
-  charity_register_id: number;
-  id: number;
+  id:number;
+  register_id:number;
+  name:string;
+  description:string;
 }

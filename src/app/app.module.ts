@@ -18,6 +18,7 @@ import { AppComponent } from './app.component';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityService } from './services/charity.service';
+import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 
 @NgModule({
   imports: [
@@ -37,7 +38,8 @@ import { CharityService } from './services/charity.service';
     LoginComponent,
     NavigationComponent,
     HeroSearchComponent,
-    CharitiesComponent
+    CharitiesComponent,
+    CharityDetailComponent
   ],
   providers: [HeroService, CharityService],
   bootstrap: [AppComponent]

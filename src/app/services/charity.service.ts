@@ -22,10 +22,10 @@ export class CharityService {
       .catch(this.handleError);
   }
   
-  // getHero(id:number):Promise<Hero> {
-  //   return this.getHeroes()
-  //     .then(heroes => heroes.find(hero => hero.id === id));
-  // }
+  getCharity(id:number):Promise<Charity> {
+    return this.getCharities()
+      .then(charities => charities.find(charity => charity.id === id));
+  }
   
   // delete(id:number):Promise<void> {
   //   const url = `${this.heroesUrl}/${id}`;
