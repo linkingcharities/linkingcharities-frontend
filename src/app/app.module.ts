@@ -16,13 +16,15 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
 import { AppComponent } from './app.component';
 import { HeroSearchComponent } from './components/hero-search/hero-search.component';
+import { CharitiesComponent } from './components/charities/charities.component';
+import { CharityService } from './services/charity.service';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
-    InMemoryWebApiModule.forRoot(InMemoryDataService),
+    // InMemoryWebApiModule.forRoot(InMemoryDataService),
     AppRoutingModule
   ],
   declarations: [
@@ -34,9 +36,10 @@ import { HeroSearchComponent } from './components/hero-search/hero-search.compon
     HeroesComponent,
     LoginComponent,
     NavigationComponent,
-    HeroSearchComponent
+    HeroSearchComponent,
+    CharitiesComponent
   ],
-  providers: [HeroService],
+  providers: [HeroService, CharityService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
