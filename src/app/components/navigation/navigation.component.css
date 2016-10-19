@@ -47,8 +47,60 @@ h1 {
     color: white;
 }
 
-.navbarLink {
+.navbarHomelink {
     font-size: 37px;
     color: #BADA55;
     margin-left: -6px;
 }
+
+.navbarMain {
+    left: 227px;
+    width: 780px;
+    position: absolute;
+    top: 52px;
+    height: 26px;
+}
+
+.navbarLinks {
+    display: inline-block;
+    text-align: left;
+    overflow: visible;
+    height: 26px;
+}
+
+.navbarLinks a:hover {
+    color : #D5E6A0;
+}
+
+.navbarLink {
+    height: 26px;
+    box-sizing: border-box;
+    overflow: visible;
+    cursor: pointer;
+    font: normal normal normal 15px/1.4em helvetica-w01-bold,helvetica-w02-bold,helvetica-lt-w10-bold,sans-serif;
+    display: inline-block;
+    color: #2F2F2F;
+    transition: color 0.4s ease 0s;
+    text-align: center;
+    line-height: 26px;
+    background-color: rgba(207, 207, 207, 1);
+    border-radius: 10px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 5px;
+    right: 5px;
+}
+
+.navbarHome {
+    width: 87px;
+}
+
+.navbarCharitySearch {
+    width: 164px;
+}
+
+
+
+
