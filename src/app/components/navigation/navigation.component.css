@@ -1,0 +1,54 @@
+a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+h1 {
+    font: normal normal normal 21px/1.4em helvetica-w01-roman,helvetica-w02-roman,helvetica-lt-w10-roman,sans-serif;
+    line-height: normal;
+    letter-spacing: normal;
+    word-wrap: break-word;
+}
+
+.navbarInitial {
+    width: 980px;
+    position: absolute;
+    top: 0px;
+    height: 82px;
+    left: 0px;
+}
+
+/*.narbarWidthBackground {
+    width: 1598px;
+    left: -309px;  
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.navbarContent {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}*/
+
+.navbarLogo {
+    left: 36px;
+    width: 164px;
+    position: absolute;
+    top: 23px;
+}
+
+.navbarHome {
+    font-size: 37px;
+    color: white;
+}
+
+.navbarLink {
+    font-size: 37px;
+    color: #BADA55;
+    margin-left: -6px;
+}
