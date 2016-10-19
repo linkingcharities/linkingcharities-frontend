@@ -50,3 +50,14 @@ body {
     top: 0px;
     height: 880px;
 }
+
+#footer {
+    height: 66px;
+    width: 1438px;
+    background-color: rgba(47, 47, 47, 1);
+    box-sizing: border-box;
+    margin-top: -28px;
+    margin-left: -28px;
+    border-top: 0px solid rgba(124, 145, 57, 1);
+    border-bottom: 0px solid rgba(124, 145, 57, 1);
+}
