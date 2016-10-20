@@ -6,7 +6,6 @@ import { API_URL } from '../constants/config';
 
 @Injectable()
 export class CharityService {
-  
   private headers = new Headers({'Content-Type': 'application/json'});
   
   constructor(private http:Http) {
@@ -15,10 +14,7 @@ export class CharityService {
   getCharities():Promise<Charity[]> {
     return this.http.get(API_URL + '/charities')
       .toPromise()
-      .then(function (response) {
-        console.log(response.json() as Charity[]);
-        return response.json() as Charity[]
-      })
+      .then(response => response.json() as Charity[])
       .catch(this.handleError);
   }
   
@@ -35,13 +31,15 @@ export class CharityService {
   //     .catch(this.handleError);
   // }
   //
-  // create(name:string):Promise<Hero> {
-  //   return this.http
-  //     .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
-  //     .toPromise()
-  //     .then(res => res.json().data)
-  //     .catch(this.handleError);
-  // }
+  
+  create(data:string):Promise<Charity> {
+    return this.http
+      .post(API_URL + '/charities', data, {headers: this.headers})
+      .toPromise()
+      .then(res => res.json().data)
+      .catch(this.handleError);
+  }
+  
   //
   // update(hero:Hero):Promise<Hero> {
   //   const url = `${this.heroesUrl}/${hero.id}`;

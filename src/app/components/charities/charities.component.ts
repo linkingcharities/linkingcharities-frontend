@@ -22,8 +22,13 @@ export class CharitiesComponent implements OnInit {
       .then(charities => this.charities = charities);
   }
   
-  gotoDetail(charity:Charity):void {
+  goToDetail(charity:Charity):void {
     let link = ['/detail', charity.id];
     this.router.navigate(link);
+  }
+  
+  updateCharities():void {
+    this.charityService.getCharities()
+      .then(charities => this.charities = charities);
   }
 }
