@@ -11,7 +11,7 @@ import { CharityService } from '../../services/charity.service';
 
 
 export class CharitiesComponent implements OnInit {
-  charities:Charity[] = [];
+  charities:Charity[] = null;
   
   constructor(private router:Router,
               private charityService:CharityService) {
