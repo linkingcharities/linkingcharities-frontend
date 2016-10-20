@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'login',
@@ -7,4 +7,10 @@ import { Component } from "@angular/core";
 })
 
 export class LoginComponent {
+  username:String = null;
+  password:String = null;
+  
+  onSubmit():void {
+    console.log("form submitted", this.username, this.password);
+  }
 }
