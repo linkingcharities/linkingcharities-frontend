@@ -11,6 +11,7 @@ import { LoginComponent } from "./components/login/login.component";
 import { AboutPageComponent } from "./components/about-page/about-page.component";
 import { ProjectsPageComponent } from "./components/projects-page/projects-page.component";
 import { AppComponent } from "./app.component";
+import { CarouselComponent } from "./components/carousel/carousel.component";
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { AppComponent } from "./app.component";
     HeroDetailComponent,
     HeroesComponent,
     LoginComponent,
-    NavigationComponent
+    NavigationComponent,
+    CarouselComponent
   ],
   providers: [HeroService],
   bootstrap: [AppComponent]
