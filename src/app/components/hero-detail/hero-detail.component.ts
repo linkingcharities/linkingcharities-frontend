@@ -1,17 +1,16 @@
-import { Component, Input, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
-import { Location } from "@angular/common";
-import { Hero } from "../../constants/hero";
-import { HeroService } from "../../services/hero.service";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
+import { Hero } from '../../constants/data-types';
+import { HeroService } from '../../services/hero.service';
 
 @Component({
   selector: 'my-hero-detail',
   templateUrl: './hero-detail.component.html',
-  styleUrls: [ './hero-detail.component.css' ]
+  styleUrls: ['./hero-detail.component.css']
 })
 
 export class HeroDetailComponent implements OnInit {
-  @Input()
   hero:Hero;
   
   constructor(private heroService:HeroService,
@@ -25,6 +24,11 @@ export class HeroDetailComponent implements OnInit {
       this.heroService.getHero(id)
         .then(hero => this.hero = hero);
     });
+  }
+  
+  save():void {
+    this.heroService.update(this.hero)
+      .then(() => this.goBack());
   }
   
   goBack():void {
