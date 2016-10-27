@@ -4,7 +4,7 @@ import { Hero } from "../../constants/data-types";
 import { HeroService } from "../../services/hero.service";
 
 @Component({
-  selector: 'my-dashboard',
+  selector: 'home-page',
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })

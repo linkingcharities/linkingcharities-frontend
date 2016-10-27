@@ -1,13 +1,11 @@
 <div id="bg-layout">
-  <div id="bg">
-    <div id="bg-overlay">
-    </div>
-  </div>
-</div>
-<div id="site-root">
-    <div id="master-page">
-      <navigation></navigation>
-      <router-outlet></router-outlet>
+    <div id="bg">
+        <div id="bg-overlay">
+        </div>
     </div>
 </div>
-<div id="footer"></div>
+<navigation></navigation>
+<div class="container-fluid col-md-10 col-md-offset-1" id="main-body">
+    <router-outlet></router-outlet>
+</div>
+<!--<div id="footer"></div>-->

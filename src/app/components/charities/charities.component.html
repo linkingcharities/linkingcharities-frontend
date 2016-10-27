@@ -7,7 +7,8 @@
         <!--<h4>{{hero.name}}</h4>-->
         <!--</div>-->
         <!--</div>-->
-        <div *ngFor="let charity of charities" (click)="goToDetail(charity)">
+        <div *ngFor="let charity of charities" (click)="goToDetail(charity)"
+             class="charity-small">
             <h4>{{charity.name}} - {{charity.description}}</h4>
         </div>
 

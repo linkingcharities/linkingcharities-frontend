@@ -8,7 +8,7 @@ body {
 }
 
 #main-body {
-    margin-top: 25px;
+    margin-top: 5px;
     float: left;
 }
 
@@ -32,7 +32,7 @@ body {
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
-    background-image: url("https://static.wixstatic.com/media/d34910_68dbe43b53a34268bef2e72c13277251~mv2.jpg/v1/fill/w_1500,h_939,al_c,q_85/d34910_68dbe43b53a34268bef2e72c13277251~mv2.jpg");
+    /*background-image: url("https://static.wixstatic.com/media/d34910_68dbe43b53a34268bef2e72c13277251~mv2.jpg/v1/fill/w_1500,h_939,al_c,q_85/d34910_68dbe43b53a34268bef2e72c13277251~mv2.jpg");*/
 }
 
 #bg-overlay {
