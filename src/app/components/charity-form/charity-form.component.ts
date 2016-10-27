@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CharityService } from '../../services/charity.service';
+import { AuthService } from '../../services/auth.service';
+
 
 @Component({
   selector: 'charity-form',
@@ -11,10 +13,19 @@ export class CharityFormComponent {
   name:string = null;
   register_id:number = null;
   description:string = null;
+  isCharity:boolean = false;
   
   @Output() updateCharities = new EventEmitter();
   
-  constructor(private charityService:CharityService) {
+  constructor(private charityService:CharityService,
+              private authService:AuthService) {
+    authService.charity$.subscribe(
+      isCharity => this.isCharity = isCharity
+    );
+  }
+  
+  ngOnInit() {
+    this.authService.isCharity();
   }
   
   onSubmit():void {

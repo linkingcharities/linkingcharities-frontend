@@ -18,7 +18,9 @@ import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityService } from './services/charity.service';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { CharityFormComponent } from './components/charity-form/charity-form.component';
-import { CarouselComponent } from "./components/carousel/carousel.component";
+import { CarouselComponent } from './components/carousel/carousel.component';
+import { AuthService } from './services/auth.service';
+import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
 
 @NgModule({
   imports: [
@@ -26,7 +28,8 @@ import { CarouselComponent } from "./components/carousel/carousel.component";
     FormsModule,
     HttpModule,
     // InMemoryWebApiModule.forRoot(InMemoryDataService),
-    AppRoutingModule
+    AppRoutingModule,
+    ToasterModule
   ],
   declarations: [
     HomePageComponent,
@@ -43,7 +46,7 @@ import { CarouselComponent } from "./components/carousel/carousel.component";
     CharityFormComponent,
     CarouselComponent
   ],
-  providers: [HeroService, CharityService],
+  providers: [HeroService, CharityService, AuthService, ToasterService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

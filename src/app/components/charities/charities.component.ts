@@ -6,7 +6,8 @@ import { CharityService } from '../../services/charity.service';
 @Component({
   selector: 'charities',
   templateUrl: '/charities.component.html',
-  styleUrls: ['./charities.component.css']
+  styleUrls: ['./charities.component.css'],
+  providers: [CharityService]
 })
 
 
