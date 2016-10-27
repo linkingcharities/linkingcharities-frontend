@@ -49,6 +49,10 @@
                 <li routerLinkActive="active" *ngIf="!isLoggedIn">
                     <a routerLink="/login">Login</a>
                 </li>
+                <li routerLinkActive="active">
+                    <!-- <a routerLink="/login">Login</a> -->
+                    <facebook-login></facebook-login>
+                </li>
                 <li *ngIf="isLoggedIn">
                     <a (click)="logout()">Logout</a>
                 </li>
