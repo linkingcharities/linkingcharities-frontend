@@ -1,0 +1,140 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html { 
+/* Most compatible full page background styling */ 
+  background: url(images/bg_holdinghandssunset.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+    font-size: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#wrapper {
+    padding-top: 30px;
+    width: 960px;
+    margin: 0px auto;
+}
+
+h1#logo {
+    width: 200px;
+    height:100px;
+    background: url(images/charilinklogo.png) top left no-repeat;
+    background-size:100%;
+    text-indent: -9999px;
+    float: left;
+    margin-right: 40px;
+}
+
+#login {
+    color: #fff;
+    font-size: 13px;
+    float: right;
+}
+
+#login a:link,
+#login a:visited {
+    color: #fff;
+    text-decoration: none;
+    padding:6px;
+}
+
+#login a:hover {
+    color: #739600;
+}
+
+nav#headernav {
+    /*background-color: aquamarine;*/
+    font-size: 17px;
+    font-weight: bold;
+    display: inline-block;
+    padding-top: 30px;
+}
+
+nav#headernav ul li a:link,
+nav#headernav ul li a:visited {
+    color: #fff;
+    text-decoration: none;
+    padding:10px;
+    
+}
+
+nav#headernav ul li a:hover {
+    color: #739600;
+}
+
+nav ul li {
+    display: inline;
+}
+
+#carousel {
+    width: 960px;
+    height: 300px;
+    margin: 40px auto;
+    background-color: antiquewhite;
+}
+
+/* button styling */ 
+
+.btn {
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  background: #2F2F2F;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+}
+
+.btn:hover {
+  color: #739600;
+  background: #2F2F2F;
+  text-decoration: none;
+}
+
+/*button styling end */
+
+#buttons {
+height:400px;
+}
+
+#searchbutton, #learnbutton {
+    margin-left: 20px;
+}
+
+footer {
+    height: 50px;
+    background-color: #2F2F2F;
+}
+
+#footerwrapper {
+    padding: 10px 10px 10px 10px;
+    width: 960px;
+    margin: 0px auto;
+}
+
+#footerwrapper span {
+    color: #739600;
+    font-size: 14px;
+}
+
+nav#footernav{
+    float: right;
+}
+
+nav#footernav a{
+    padding-left:10px;
+}
+
+.clearfix:after {
+    content: "";
+    display:table;
+    clear:both;
+}
+
