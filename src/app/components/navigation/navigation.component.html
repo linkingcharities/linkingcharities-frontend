@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" routerLink="/home">Logo</a>
+            <a class="navbar-brand" routerLink="/home">Linking Charities</a>
         </div>
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -21,9 +21,6 @@
                 </li>
                 <li routerLinkActive="active">
                     <a routerLink="/projects">Projects</a>
-                </li>
-                <li routerLinkActive="active">
-                    <a routerLink="/heroes">Heroes</a>
                 </li>
                 <li routerLinkActive="active">
                     <a routerLink="/charities">Charities</a>
@@ -49,8 +46,11 @@
             <!--<button type="submit" class="btn btn-default">Submit</button>-->
             <!--</form>-->
             <ul class="nav navbar-nav navbar-right">
-                <li routerLinkActive="active">
+                <li routerLinkActive="active" *ngIf="!isLoggedIn">
                     <a routerLink="/login">Login</a>
+                </li>
+                <li *ngIf="isLoggedIn">
+                    <a (click)="logout()">Logout</a>
                 </li>
             </ul>
         </div>

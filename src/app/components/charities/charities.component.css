@@ -1,0 +1,9 @@
+.charity-small {
+    border:2px solid red;
+    width: 60%;
+    min-width: 300px;
+}
+
+#nav-buttons {
+    margin-bottom: 5px;
+}

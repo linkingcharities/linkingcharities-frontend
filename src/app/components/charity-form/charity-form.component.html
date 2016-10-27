@@ -1,4 +1,4 @@
-<div class="container-fluid col-md-8">
+<div *ngIf='isCharity' class="container-fluid col-md-8">
     <h2>Charity creation</h2>
     <form class="form-horizontal" (submit)="onSubmit()">
         <fieldset>

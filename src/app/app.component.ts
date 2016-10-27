@@ -1,4 +1,6 @@
 import { Component } from "@angular/core";
+import { myToasterConfig } from './constants/toaster-config';
+import { ToasterConfig } from 'angular2-toaster/angular2-toaster';
 
 @Component({
   selector: 'my-app',
@@ -7,5 +9,6 @@ import { Component } from "@angular/core";
 })
 
 export class AppComponent {
-  title = 'Tour of Heroes';
+  title = 'ChariLink';
+  toasterConfig:ToasterConfig = myToasterConfig;
 }
