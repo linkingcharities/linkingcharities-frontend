@@ -28,6 +28,10 @@ module.exports = webpackMerge(commonConfig, {
         keep_fnames: true
       }
     }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   sourceMap: false,
+    //   mangle: false
+    // }),
     new ExtractTextPlugin('[name].[hash].css'),
     new webpack.DefinePlugin({
       'process.env': {
