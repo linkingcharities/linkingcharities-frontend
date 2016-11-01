@@ -4,4 +4,21 @@
     Register ID - {{ charity.register_id }} <br/>
     Name - {{ charity.name }} <br/>
     Description - {{ charity.description }} <br/>
+    Paypal - {{ charity.paypal }} <br/>
+ 
+    <form action="https://www.paypal.com/cgi-bin/webscr" id="paypal" method="post" target="paypal">
+        <input type="hidden" name="cmd" value="_donations">
+        <input type="hidden" name="business" value="mingting12345@hotmail.com">
+        <input type="hidden" name="lc" value="GB">
+        <input name="amount" value="1.00">
+        <input type="hidden" name="currency_code" value="USD">
+        <input type="image" name="submit" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate">
+        <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
+        <button type="submit" form="paypal">Donate Now</button>
+    </form>
+
+    <a href="https://www.paypal.com/cgi-bin/webscr?&cmd=_xclick&business=donate_to_ming@hotmail.com&currency_code=USD&amount=1.00&item_name=testing" 
+target="_blank">
+        <img src="https://www.paypal.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="Donate now"></a>
+
 </div>

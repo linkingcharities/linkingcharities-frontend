@@ -16,4 +16,5 @@ export class Charity {
   register_id:number;
   name:string;
   description:string;
+  paypal:string;
 }
