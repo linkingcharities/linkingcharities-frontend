@@ -15,25 +15,30 @@ export class CharityDetailComponent implements OnInit {
   charity:Charity;
   amount:number = 1.00;
   
+  private subscription:any;
+  
   constructor(private charityService:CharityService,
               private route:ActivatedRoute,
-              private location:Location,
-              private http:Http) {
+              private http:Http,
+              private location:Location) {
+    this.subscription = this.charityService.charity$
+      .subscribe(charity => {
+        this.charity = charity
+      });
   }
   
   ngOnInit():void {
     this.route.params.forEach((params:Params) => {
       let id = +params['id'];
-      this.charityService.getCharity(id)
-        .then(charity => this.charity = charity);
+      this.charityService.getCharity(id);
     });
   }
   
   onSubmit():void {
     console.log("Submit form", this.amount);
     // Does the redirect
-    window.open('https://www.paypal.com/cgi-bin/webscr?&cmd=_xclick&business=' + charity.paypal +
-    '&currency_code=USD&amount=1.00&item_name=testing');
+    window.open('https://www.paypal.com/cgi-bin/webscr?&cmd=_xclick&business=' + this.charity.paypal +
+      '&currency_code=USD&amount=1.00&item_name=testing');
   }
   
   // save():void {
@@ -44,4 +49,9 @@ export class CharityDetailComponent implements OnInit {
   // goBack():void {
   //   this.location.back();
   // }
+  
+  ngOnDestroy() {
+    // Unsubscribe when the component is destroyed
+    this.subscription.unsubscribe();
+  }
 }

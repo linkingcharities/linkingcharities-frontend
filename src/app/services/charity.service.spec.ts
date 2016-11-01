@@ -61,7 +61,8 @@ describe('Charity service', () => {
       charityService = getTestBed().get(CharityService);
       expect(charityService).toBeDefined();
       
-      charityService.getCharities().then((charities:Charity[]) => {
+      charityService.getCharities();
+      charityService.charities$.subscribe((charities:Charity[]) => {
         expect(charities.length).toBeDefined();
         expect(charities.length).toEqual(1);
         expect(charities[0].id).toEqual(1);
@@ -81,7 +82,8 @@ describe('Charity service', () => {
             )));
         });
       
-      charityService.getCharities().then((charities:Charity[]) => {
+      charityService.getCharities();
+      charityService.charities$.subscribe((charities:Charity[]) => {
         expect(charities.length).toBeDefined();
         expect(charities.length).toEqual(1);
         expect(charities[0].id).toEqual(1);
@@ -99,7 +101,8 @@ describe('Charity service', () => {
             )));
         });
       
-      charityService.getCharity(1).then((charity:Charity) => {
+      charityService.getCharity(1);
+      charityService.charity$.subscribe((charity:Charity) => {
         expect(charity.id).toEqual(1);
       });
     })));
@@ -115,7 +118,8 @@ describe('Charity service', () => {
             )));
         });
       
-      charityService.getCharity(0).then((charity:Charity) => {
+      charityService.getCharity(0);
+      charityService.charity$.subscribe((charity:Charity) => {
         expect(charity).toBeUndefined();
       });
     })));
