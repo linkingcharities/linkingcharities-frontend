@@ -5,8 +5,21 @@ import { LoginComponent } from './login.component';
 import { AuthService } from '../../services/auth.service';
 
 class AuthServiceStub {
-  private loginSource = new Subject<boolean>();
+  public mockUsername = 'rs';
+  public mockPassword = 'roysonisthebest';
+  redirectUrl:string = 'test';
+
+  loginSource = new Subject<boolean>();
   login$ = this.loginSource.asObservable();
+  
+  login(username:String, password:String){
+  };
+}
+
+class RouterStub {
+  navigate(link:string[]) {
+    return link;
+  }
 }
 
 describe('Login Component', () => {
@@ -14,7 +27,7 @@ describe('Login Component', () => {
     TestBed.configureTestingModule({
       providers: [
         {provide: AuthService, useClass: AuthServiceStub},
-        {provide: Router},
+        {provide: Router, useClass: RouterStub},
         LoginComponent
       ]
     });
@@ -27,4 +40,29 @@ describe('Login Component', () => {
       expect(login.password).toEqual(null);
     }
   ));
+
+  it('should change state and redirect when login success', inject([LoginComponent, AuthService, Router],
+    (login:LoginComponent, auth:AuthServiceStub, router:RouterStub) => {
+      const spy = spyOn(router, 'navigate');
+      auth.login(auth.mockUsername, auth.mockPassword);
+      login.onSubmit();
+      if (login.isLoggedIn) {
+        auth.loginSource.next(true);
+        expect(login.isLoggedIn).toEqual(true);
+
+        const loginArgs = spy.calls.first().args[0];
+        if (auth.redirectUrl) {
+          expect(loginArgs).toEqual([auth.redirectUrl]);
+        }
+        else {
+          expect(loginArgs).toEqual(['home']);
+        }
+      } else {
+        auth.loginSource.next(false);
+        expect(login.isLoggedIn).toEqual(false);
+      }
+      
+    }
+  ));
+
 });
