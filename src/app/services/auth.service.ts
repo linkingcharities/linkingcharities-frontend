@@ -56,7 +56,6 @@ export class AuthService {
     this.loginSource.next(false);
     this.charitySource.next(false);
     this.toasterService.pop('success', '', 'Logout successful');
-    // this.router.navigate(['home']);
   }
   
   
