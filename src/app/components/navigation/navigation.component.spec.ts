@@ -7,6 +7,15 @@ import { AuthService } from '../../services/auth.service';
 class AuthServiceStub {
   loginSource = new Subject<boolean>();
   login$ = this.loginSource.asObservable();
+  
+  logout() {
+  };
+}
+
+class RouterStub {
+  navigate(link:string[]) {
+    return link;
+  }
 }
 
 describe('Navigation Component', () => {
@@ -14,7 +23,7 @@ describe('Navigation Component', () => {
     TestBed.configureTestingModule({
       providers: [
         {provide: AuthService, useClass: AuthServiceStub},
-        {provide: Router},
+        {provide: Router, useClass: RouterStub},
         NavigationComponent
       ]
     });
@@ -35,4 +44,14 @@ describe('Navigation Component', () => {
       expect(nav.isLoggedIn).toEqual(false);
     }
   ));
+  
+  it('should redirect to homepage when logout is called', inject(
+    [NavigationComponent, Router],
+    (nav:NavigationComponent, router:RouterStub) => {
+      const spy = spyOn(router, 'navigate');
+      nav.logout();
+      const navArgs = spy.calls.first().args[0];
+      expect(navArgs).toEqual(['/home']);
+    }
+  ))
 });
