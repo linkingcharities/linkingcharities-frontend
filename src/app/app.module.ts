@@ -13,7 +13,6 @@ import { LoginComponent } from './components/login/login.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
 import { AppComponent } from './app.component';
-import { HeroSearchComponent } from './components/hero-search/hero-search.component';
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityService } from './services/charity.service';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
@@ -22,6 +21,7 @@ import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
 import { FacebookLoginComponent } from "./components/facebook-login/facebook-login.component";
+import { CharitySearchComponent } from './components/charity-search/charity-search.component';
 
 @NgModule({
   imports: [
@@ -41,12 +41,12 @@ import { FacebookLoginComponent } from "./components/facebook-login/facebook-log
     HeroesComponent,
     LoginComponent,
     NavigationComponent,
-    HeroSearchComponent,
     CharitiesComponent,
     CharityDetailComponent,
     CharityFormComponent,
     CarouselComponent,
-    FacebookLoginComponent
+    FacebookLoginComponent,
+    CharitySearchComponent
   ],
   providers: [HeroService, CharityService, AuthService, ToasterService],
   bootstrap: [AppComponent]

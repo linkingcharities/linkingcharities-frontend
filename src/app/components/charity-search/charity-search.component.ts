@@ -2,21 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs/Subject';
-import { HeroSearchService } from '../../services/hero-search.service';
-import { Hero } from '../../constants/data-types';
+import { Charity } from '../../constants/data-types';
+import { CharityService } from '../../services/charity.service';
 
 @Component({
-  selector: 'hero-search',
-  templateUrl: 'hero-search.component.html',
-  styleUrls: ['hero-search.component.css'],
-  providers: [HeroSearchService]
+  selector: 'charity-search',
+  templateUrl: 'charity-search.component.html',
+  styleUrls: ['charity-search.component.css']
 })
 
-export class HeroSearchComponent implements OnInit {
-  heroes:Observable<Hero[]>;
+export class CharitySearchComponent implements OnInit {
+  charities:Observable<Charity[]>;
   private searchTerms = new Subject<string>();
   
-  constructor(private heroSearchService:HeroSearchService,
+  constructor(private charityService:CharityService,
               private router:Router) {
   }
   
@@ -26,23 +25,23 @@ export class HeroSearchComponent implements OnInit {
   }
   
   ngOnInit():void {
-    this.heroes = this.searchTerms
+    this.charities = this.searchTerms
       .debounceTime(300)        // wait for 300ms pause in events
       .distinctUntilChanged()   // ignore if next search term is same as previous
       .switchMap(term => term   // switch to new observable each time
         // return the http search observable
-        ? this.heroSearchService.search(term)
+        ? this.charityService.search(term)
         // or the observable of empty heroes if no search term
-        : Observable.of<Hero[]>([]))
+        : Observable.of<Charity[]>([]))
       .catch(error => {
         // TODO: real error handling
         console.log(error);
-        return Observable.of<Hero[]>([]);
+        return Observable.of<Charity[]>([]);
       });
   }
   
-  gotoDetail(hero:Hero):void {
-    let link = ['/detail', hero.id];
+  goToDetail(charity:Charity):void {
+    let link = ['/detail', charity.id];
     this.router.navigate(link);
   }
 }

@@ -3,7 +3,7 @@ import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Charity } from '../constants/data-types';
 import { API_URL } from '../constants/config';
-import { Subject } from 'rxjs/Rx';
+import { Subject, Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class CharityService {
@@ -43,6 +43,16 @@ export class CharityService {
         this.charitySource.next(charities.find(charity => charity.id === id));
       })
       .catch(this.handleError);
+  }
+  
+  search(term:string):Observable<Charity[]> {
+    // This will work for now but obviously a filtered route is preferred going forward
+    return this.http.get(API_URL + '/charities', this.getOptions())
+      .map((res:Response) => {
+          let charities = res.json() as Charity[];
+          return charities.filter(charity => charity.name.includes(term));
+        }
+      );
   }
   
   // delete(id:number):Promise<void> {
