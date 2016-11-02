@@ -6,7 +6,6 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
-import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 
 const routes:Routes = [
