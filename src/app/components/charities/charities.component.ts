@@ -6,10 +6,8 @@ import { CharityService } from '../../services/charity.service';
 @Component({
   selector: 'charities',
   templateUrl: '/charities.component.html',
-  styleUrls: ['./charities.component.css'],
-  providers: [CharityService]
+  styleUrls: ['./charities.component.css']
 })
-
 
 export class CharitiesComponent implements OnInit {
   private stepSize:number = 5;
@@ -19,15 +17,12 @@ export class CharitiesComponent implements OnInit {
   leftPos:number = 0;
   rightPos:number = this.stepSize;
   
+  private subscription:any;
+  
   constructor(private router:Router,
               private charityService:CharityService) {
-  }
-  
-  ngOnInit():void {
-    // this.charityService.getCharities()
-    //   .then(charities => this.charities = charities);
-    this.charityService.getCharities()
-      .then(charities => {
+    this.subscription = this.charityService.charities$
+      .subscribe(charities => {
         this.charities = charities;
         this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
         if (this.charities.length < this.rightPos) {
@@ -36,17 +31,13 @@ export class CharitiesComponent implements OnInit {
       });
   }
   
+  ngOnInit():void {
+    this.charityService.getCharities();
+  }
+  
   goToDetail(charity:Charity):void {
     let link = ['/detail', charity.id];
     this.router.navigate(link);
-  }
-  
-  updateCharities():void {
-    this.charityService.getCharities()
-      .then(charities => {
-        this.charities = charities;
-        // Update the displayed charities based on existing filter
-      });
   }
   
   moveRight():void {
@@ -63,5 +54,10 @@ export class CharitiesComponent implements OnInit {
       this.rightPos -= this.stepSize;
       this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
     }
+  }
+  
+  ngOnDestroy() {
+    // Unsubscribe when the component is destroyed
+    this.subscription.unsubscribe();
   }
 }

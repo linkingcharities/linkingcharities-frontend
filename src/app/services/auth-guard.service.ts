@@ -4,7 +4,12 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
+  isLoggedIn:boolean = false;
+  
   constructor(private authService:AuthService, private router:Router) {
+    authService.login$.subscribe(
+      isLoggedIn => this.isLoggedIn = isLoggedIn
+    );
   }
   
   canActivate(route:ActivatedRouteSnapshot, state:RouterStateSnapshot):boolean {
@@ -14,7 +19,8 @@ export class AuthGuard implements CanActivate {
   }
   
   checkLogin(url:string):boolean {
-    if (this.authService.isLoggedIn()) {
+    this.authService.isLoggedIn();
+    if (this.isLoggedIn) {
       return true;
     }
     

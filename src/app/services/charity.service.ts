@@ -1,26 +1,48 @@
 import { Injectable } from '@angular/core';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Charity } from '../constants/data-types';
 import { API_URL } from '../constants/config';
+import { Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class CharityService {
-  private headers = new Headers({'Content-Type': 'application/json'});
   
   constructor(private http:Http) {
   }
   
-  getCharities():Promise<Charity[]> {
-    return this.http.get(API_URL + '/charities')
+  private charitiesSource = new Subject<Charity[]>();
+  charities$ = this.charitiesSource.asObservable();
+  
+  private charitySource = new Subject<Charity>();
+  charity$ = this.charitySource.asObservable();
+  
+  private getOptions():RequestOptions {
+    let headers:Headers = new Headers();
+    headers.append('content-type', 'application/json; charset=utf-8');
+    let opts = new RequestOptions({headers: headers});
+    opts.headers = headers;
+    return opts;
+  }
+  
+  getCharities() {
+    this.http.get(API_URL + '/charities', this.getOptions())
       .toPromise()
-      .then(response => response.json() as Charity[])
+      .then((res:Response) => {
+        let charities = res.json() as Charity[];
+        this.charitiesSource.next(charities);
+      })
       .catch(this.handleError);
   }
   
-  getCharity(id:number):Promise<Charity> {
-    return this.getCharities()
-      .then(charities => charities.find(charity => charity.id === id));
+  getCharity(id:number) {
+    this.http.get(API_URL + '/charities', this.getOptions())
+      .toPromise()
+      .then((res:Response) => {
+        let charities = res.json() as Charity[];
+        this.charitySource.next(charities.find(charity => charity.id === id));
+      })
+      .catch(this.handleError);
   }
   
   // delete(id:number):Promise<void> {
@@ -34,7 +56,7 @@ export class CharityService {
   
   create(data:string):Promise<Charity> {
     return this.http
-      .post(API_URL + '/charities', data, {headers: this.headers})
+      .post(API_URL + '/charities', data, this.getOptions())
       .toPromise()
       .then(res => res.json().data)
       .catch(this.handleError);
@@ -52,8 +74,17 @@ export class CharityService {
   // }
   //
   // Error handliing
-  private handleError(error:any):Promise<any> {
-    console.error('An error occurred', error); // for demo purposes only
-    return Promise.reject(error.message || error);
+  private handleError(error:Response | any) {
+    // In a real world app, we might use a remote logging infrastructure
+    let errMsg:string;
+    if (error instanceof Response) {
+      errMsg = `${error.status}`;
+      // const body = error.json() || '';
+      // const err = body.error || JSON.stringify(body);
+      // errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+    } else {
+      errMsg = error.message ? error.message : error.toString();
+    }
+    console.error(errMsg);
   }
 }

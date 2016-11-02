@@ -15,8 +15,6 @@ export class CharityFormComponent {
   description:string = null;
   isCharity:boolean = false;
   
-  @Output() updateCharities = new EventEmitter();
-  
   constructor(private charityService:CharityService,
               private authService:AuthService) {
     authService.charity$.subscribe(
@@ -36,7 +34,7 @@ export class CharityFormComponent {
     });
     
     this.charityService.create(data).then(
-      () => this.updateCharities.emit()
+      () => this.charityService.getCharities()
     );
   }
 }
