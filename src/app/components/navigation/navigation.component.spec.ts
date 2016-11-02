@@ -12,7 +12,6 @@ class AuthServiceStub {
   };
 
   logoutViaFb() {
-
   };
 }
 
