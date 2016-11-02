@@ -4,18 +4,28 @@ import { MockBackend, MockConnection } from '@angular/http/testing';
 import { CharityService } from './charity.service';
 import { Charity } from '../constants/data-types';
 
-let testCharity1 = {
+let testCharity1:Charity = {
   id: 1,
   register_id: 1,
   name: 'Test charity',
-  description: 'Test description'
+  description: 'Test description',
+  paypal: 'asdf'
 };
 
-let testCharity2 = {
+let testCharity2:Charity = {
   id: 2,
   register_id: 2,
   name: 'Test charity 2',
-  description: 'Test description 2'
+  description: 'Test description 2',
+  paypal: 'asdf'
+};
+
+let testCharity3:Charity = {
+  id: 3,
+  register_id: 3,
+  name: 'JSDF',
+  description: 'ROFL',
+  paypal: 'asdf'
 };
 
 describe('Charity service', () => {
@@ -123,4 +133,35 @@ describe('Charity service', () => {
         expect(charity).toBeUndefined();
       });
     })));
+  
+  it('should search for and return charities',
+    async(inject([CharityService], (charityService:CharityService) => {
+      mockBackend.connections.subscribe(
+        (connection:MockConnection) => {
+          connection.mockRespond(new Response(
+            new ResponseOptions({
+                body: [testCharity1, testCharity2, testCharity3]
+              }
+            )));
+        });
+      
+      charityService.search('Test').subscribe((charities:Charity[]) => {
+        expect(charities.length).toBeDefined();
+        expect(charities.length).toEqual(2);
+        expect(charities[0]).toBe(testCharity1);
+        expect(charities[1]).toBe(testCharity2);
+      });
+      
+      charityService.search('JSDF').subscribe((charities:Charity[]) => {
+        expect(charities.length).toBeDefined();
+        expect(charities.length).toEqual(1);
+        expect(charities[0]).toBe(testCharity3);
+      });
+      
+      charityService.search('test').subscribe((charities:Charity[]) => {
+        expect(charities.length).toBeDefined();
+        expect(charities.length).toEqual(0);
+      });
+    })));
+  
 });
