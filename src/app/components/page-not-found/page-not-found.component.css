@@ -1,0 +1,29 @@
+#home-main {
+    left: 0px;
+    width: 980px;
+    position: absolute;
+    top: 0px;
+    height: 646px;
+    margin-top: 102px;
+}
+
+#home-large-text {
+    left: 25px;
+    width: 776px;
+    position: absolute;
+    top: 62px;
+}
+
+#home-large-text h3 {
+    display: block;
+    line-height: 1.6em;
+    margin: 0;
+    letter-spacing: normal;
+    font: normal normal normal 76px/1.4em anton,sans-serif;
+    color: #2F2F2F;
+    word-wrap: break-word;
+}
+
+#home-large-text h3 span {
+    background-color: white;
+}

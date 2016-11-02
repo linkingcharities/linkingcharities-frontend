@@ -7,9 +7,9 @@ import { ProjectsPageComponent } from './components/projects-page/projects-page.
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 const routes:Routes = [
-  {path: '', redirectTo: '/home', pathMatch: 'full'},
   {path: 'home', component: HomePageComponent},
   {path: 'login', component: LoginComponent},
   {path: 'about', component: AboutPageComponent},
@@ -19,7 +19,9 @@ const routes:Routes = [
     path: 'projects',
     component: ProjectsPageComponent,
     canActivate: [AuthGuard]
-  }
+  },
+  {path: '', component: HomePageComponent},
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
