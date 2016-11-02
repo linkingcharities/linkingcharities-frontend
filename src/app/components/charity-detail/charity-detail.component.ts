@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
 import { Charity } from '../../constants/data-types';
 import { CharityService } from '../../services/charity.service';
+import { Http } from '@angular/http';
 
 @Component({
   selector: 'charity-detail',
@@ -12,10 +13,12 @@ import { CharityService } from '../../services/charity.service';
 
 export class CharityDetailComponent implements OnInit {
   charity:Charity;
+  amount:number = 1.00;
   
   constructor(private charityService:CharityService,
               private route:ActivatedRoute,
-              private location:Location) {
+              private location:Location,
+              private http:Http) {
   }
   
   ngOnInit():void {
@@ -24,6 +27,13 @@ export class CharityDetailComponent implements OnInit {
       this.charityService.getCharity(id)
         .then(charity => this.charity = charity);
     });
+  }
+  
+  onSubmit():void {
+    console.log("Submit form", this.amount);
+    // Does the redirect
+    // window.open('https://www.paypal.com/cgi-bin/webscr?&cmd=_xclick&business={{ charity.paypal' +
+    //   ' }}&currency_code=USD&amount=1.00&item_name=testing');
   }
   
   // save():void {
