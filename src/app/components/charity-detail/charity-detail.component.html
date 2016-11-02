@@ -8,17 +8,11 @@
 
     <form action="https://www.paypal.com/cgi-bin/webscr"  method="post" (submit)="onSubmit()">
         <input type="hidden" name="cmd" value="_donations">
-        <input type="hidden" name="business" value="mingting12345@hotmail.com">
+        <input type="hidden" name="business" value="{{ charity.paypal }}">
         <input type="hidden" name="lc" value="GB">
         <input name="amount"  [(ngModel)]="amount">
         <input type="hidden" name="currency_code" value="USD">
         <input type="image" name="submit" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate">
         <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
-        <button type="submit" >Donate Now</button>
     </form>
-
-    <a href="https://www.paypal.com/cgi-bin/webscr?&cmd=_xclick&business={{ charity.paypal }}&currency_code=USD&amount=1.00&item_name=testing"
-target="_blank">
-        <img src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_cc_147x47.png" border="0" name="submit" alt="Donate now"></a>
-
 </div>
