@@ -21,6 +21,7 @@ import { CharityFormComponent } from './components/charity-form/charity-form.com
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
+import { FacebookLoginComponent } from "./components/facebook-login/facebook-login.component";
 
 @NgModule({
   imports: [
@@ -44,7 +45,8 @@ import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster
     CharitiesComponent,
     CharityDetailComponent,
     CharityFormComponent,
-    CarouselComponent
+    CarouselComponent,
+    FacebookLoginComponent
   ],
   providers: [HeroService, CharityService, AuthService, ToasterService],
   bootstrap: [AppComponent]

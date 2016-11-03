@@ -10,6 +10,9 @@ class AuthServiceStub {
   
   logout() {
   };
+
+  logoutViaFb() {
+  };
 }
 
 class RouterStub {

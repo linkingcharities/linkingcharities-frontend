@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class HomePageComponent {
+
   constructor(private router:Router) {
   }
 }
