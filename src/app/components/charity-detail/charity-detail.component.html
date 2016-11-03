@@ -6,13 +6,16 @@
     Description - {{ charity.description }} <br/>
     Paypal - {{ charity.paypal }} <br/>
 
-    <form action="https://www.paypal.com/cgi-bin/webscr"  method="post" (submit)="onSubmit()">
+    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" (submit)="onSubmit()">
         <input type="hidden" name="cmd" value="_donations">
         <input type="hidden" name="business" value="{{ charity.paypal }}">
         <input type="hidden" name="lc" value="GB">
-        <input name="amount"  [(ngModel)]="amount">
+        <input name="amount" [(ngModel)]="amount">
         <input type="hidden" name="currency_code" value="USD">
-        <input type="image" name="submit" src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate">
+        <input type="image" name="submit"
+               src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate">
         <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
     </form>
+
+    <button (click)="goBack()">Go back</button>
 </div>

@@ -17,9 +17,10 @@ import { CharityFormComponent } from './components/charity-form/charity-form.com
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
-import { FacebookLoginComponent } from "./components/facebook-login/facebook-login.component";
+import { FacebookLoginComponent } from './components/facebook-login/facebook-login.component';
 import { CharitySearchComponent } from './components/charity-search/charity-search.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AppStateService } from './services/app-state.service';
 
 @NgModule({
   imports: [
@@ -44,7 +45,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     CharitySearchComponent,
     PageNotFoundComponent
   ],
-  providers: [CharityService, AuthService, ToasterService],
+  providers: [CharityService, AuthService, ToasterService, AppStateService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
