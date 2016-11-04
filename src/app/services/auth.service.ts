@@ -6,6 +6,8 @@ import { User } from '../constants/data-types';
 import { Subject } from 'rxjs/Rx';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
+declare const FB:any;
+
 var users = [
   new User('mark', '12345', 'false'),
   new User('charity1', '12345', 'true')
@@ -48,6 +50,23 @@ export class AuthService {
   
   isCharity() {
     this.charitySource.next(localStorage.getItem("charity") === 'true');
+  }
+
+  loginViaFb(userID:string) {
+    localStorage.setItem("user", userID);
+    localStorage.setItem("fb", 'true');
+    this.isLoggedIn();
+  }
+
+  logoutViaFb(){
+    if (localStorage.getItem("fb") === 'true') {
+      FB.logout(function(response:any) {
+        localStorage.removeItem("fb");
+        // localStorage.removeItem("user");
+        // this.loginSource.next(false);
+        // this.toasterService.pop('success', '', 'Logout successful');
+      });
+      }
   }
   
   logout() {

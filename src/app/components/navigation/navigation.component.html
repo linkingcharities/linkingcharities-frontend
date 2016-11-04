@@ -49,7 +49,7 @@
                 <li routerLinkActive="active" *ngIf="!isLoggedIn">
                     <a routerLink="/login">Login</a>
                 </li>
-                <li routerLinkActive="active">
+                <li routerLinkActive="active" *ngIf="!isLoggedIn">
                     <!-- <a routerLink="/login">Login</a> -->
                     <facebook-login></facebook-login>
                 </li>
