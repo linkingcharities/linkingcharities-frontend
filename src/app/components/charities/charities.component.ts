@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Charity } from '../../constants/data-types';
 import { CharityService } from '../../services/charity.service';
+import { AppStateService } from '../../services/app-state.service';
 
 @Component({
   selector: 'charities',
@@ -10,17 +11,18 @@ import { CharityService } from '../../services/charity.service';
 })
 
 export class CharitiesComponent implements OnInit {
-  private stepSize:number = 5;
+  private stepSize:number = null;
   
   charities:Charity[] = null;
   displayCharities:Charity[] = null;
-  leftPos:number = 0;
-  rightPos:number = this.stepSize;
+  leftPos:number = null;
+  rightPos:number = null;
   
   private subscription:any;
   
   constructor(private router:Router,
-              private charityService:CharityService) {
+              private charityService:CharityService,
+              private appStateService:AppStateService) {
     this.subscription = this.charityService.charities$
       .subscribe(charities => {
         this.charities = charities;
@@ -33,6 +35,9 @@ export class CharitiesComponent implements OnInit {
   
   ngOnInit():void {
     this.charityService.getCharities();
+    this.leftPos = this.appStateService.leftPos;
+    this.rightPos = this.appStateService.rightPos;
+    this.stepSize = this.appStateService.stepSize;
   }
   
   goToDetail(charity:Charity):void {
@@ -59,5 +64,31 @@ export class CharitiesComponent implements OnInit {
   ngOnDestroy() {
     // Unsubscribe when the component is destroyed
     this.subscription.unsubscribe();
+    this.appStateService.leftPos = this.leftPos;
+    this.appStateService.rightPos = this.rightPos;
   }
+  
+  // add(name:string):void {
+  //   name = name.trim();
+  //   if (!name) {
+  //     return;
+  //   }
+  //   this.heroService.create(name)
+  //     .then(hero => {
+  //       this.heroes.push(hero);
+  //       this.selectedHero = null;
+  //     });
+  // }
+  //
+  // delete(hero:Hero):void {
+  //   this.heroService
+  //     .delete(hero.id)
+  //     .then(() => {
+  //       this.heroes = this.heroes.filter(h => h !== hero);
+  //       if (this.selectedHero === hero) {
+  //         this.selectedHero = null;
+  //       }
+  //     });
+  // }
+  
 }

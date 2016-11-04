@@ -46,9 +46,10 @@ export class CharityDetailComponent implements OnInit {
   //     .then(() => this.goBack());
   // }
   //
-  // goBack():void {
-  //   this.location.back();
-  // }
+  
+  goBack():void {
+    this.location.back();
+  }
   
   ngOnDestroy() {
     // Unsubscribe when the component is destroyed
