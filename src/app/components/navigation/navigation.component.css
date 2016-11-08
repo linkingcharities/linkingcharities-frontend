@@ -10,6 +10,35 @@ h1 {
     word-wrap: break-word;
 }
 
+header {
+    border-bottom: solid purple;
+}
+
+.logo {
+    height: 93px;
+    border-style: solid;
+}
+
+.main-menu-area {
+    height: 93px;
+    display: block;
+    border-style: solid;
+}
+
+.main-menu-pos {
+    position: relative;
+    top: 25%;
+}
+
+.login-register {
+    float: right;
+}
+
+/* Mobile menu styling */
+
+.mobile-menu-area {
+    display: none;
+}
 
 
 
