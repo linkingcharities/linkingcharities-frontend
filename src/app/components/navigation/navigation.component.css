@@ -14,9 +14,14 @@ header {
     border-bottom: solid purple;
 }
 
-.logo {
+.menu-logo-area {
     height: 93px;
+    display: block;
     border-style: solid;
+}
+
+.menu-logo-pos {
+    text-align: center;
 }
 
 .main-menu-area {
@@ -35,10 +40,36 @@ header {
 }
 
 /* Mobile menu styling */
-
 .mobile-menu-area {
-    display: none;
+    height: 50px;
+    display: block;
+    border-style: solid;
+    background-color: #00AFF0;
 }
+
+.mobile-menu-bar-text {
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    margin-top: 4px;
+}
+
+.mobile-menu-bar-button {
+    float: right;
+}
+
+.material-icons {
+    font-size: 50px;
+    color: #000000;
+}
+
+@media screen and (min-width: 991px) {
+    .mobile-menu-area {
+        display: none;
+    }
+}
+
+
 
 
 
