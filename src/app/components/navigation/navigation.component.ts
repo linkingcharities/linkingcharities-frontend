@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -10,12 +10,17 @@ import { Router } from '@angular/router';
 
 export class NavigationComponent implements OnInit {
   isLoggedIn:boolean = false;
+  menuOpen:boolean = false;
   
   constructor(private router:Router,
               private authService:AuthService) {
     authService.login$.subscribe(
       isLoggedIn => this.isLoggedIn = isLoggedIn
     );
+  }
+  
+  toggleMenu():void {
+    this.menuOpen = !this.menuOpen;
   }
   
   ngOnInit():void {

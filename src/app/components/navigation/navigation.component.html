@@ -1,53 +1,49 @@
 <header>
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-12">
-                <div class="menu-logo-area">
-                    <div class="menu-logo-pos">
-                        <span>
-                        <img src="logo.png" width="80px" height="80px">
-                            Charilink
-                        </span>
-                    </div>
+            <div class="col-md-3 col-sm-12 menu-logo-area">
+                <div class="menu-logo-pos">
+                    <span>
+                    <img src="logo.png" width="80px" height="80px">
+                        Charilink
+                    </span>
                 </div>
             </div>
-            <div class="col-md-9 hidden-sm hidden-xs">
-                <div class="main-menu-area">
-                    <div class="main-menu-pos">
-                        <div class="main-menu">
-                            <nav>
-                                <ul class="nav navbar-nav">
-                                    <li routerLinkActive="active">
-                                        <a routerLink="/home">Home</a>
-                                    </li>
-                                    <li routerLinkActive="active">
-                                        <a routerLink="/about">About</a>
-                                    </li>
-                                    <li routerLinkActive="active">
-                                        <a routerLink="/projects">Projects</a>
-                                    </li>
-                                    <li routerLinkActive="active">
-                                        <a routerLink="/charities">Charities</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="login-register">
-                            <nav>
-                                <ul class="nav navbar-nav">
-                                    <li routerLinkActive="active" *ngIf="!isLoggedIn">
-                                        <a routerLink="/login">Login</a>
-                                    </li>
-                                    <!--<li routerLinkActive="active" *ngIf="!isLoggedIn">-->
-                                    <!--&lt;!&ndash; <a routerLink="/login">Login</a> &ndash;&gt;-->
-                                    <!--<facebook-login></facebook-login>-->
-                                    <!--</li>-->
-                                    <li *ngIf="isLoggedIn">
-                                        <a (click)="logout()">Logout</a>
-                                    </li>
-                                </ul>
-                            </nav>
-                        </div>
+            <div class="col-md-9 main-menu-area">
+                <div class="main-menu-pos">
+                    <div class="main-menu">
+                        <nav>
+                            <ul class="nav navbar-nav">
+                                <li routerLinkActive="active">
+                                    <a routerLink="/home">Home</a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a routerLink="/about">About</a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a routerLink="/projects">Projects</a>
+                                </li>
+                                <li routerLinkActive="active">
+                                    <a routerLink="/charities">Charities</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="login-register">
+                        <nav>
+                            <ul class="nav navbar-nav">
+                                <li routerLinkActive="active" *ngIf="!isLoggedIn">
+                                    <a routerLink="/login">Login</a>
+                                </li>
+                                <!--<li routerLinkActive="active" *ngIf="!isLoggedIn">-->
+                                <!--&lt;!&ndash; <a routerLink="/login">Login</a> &ndash;&gt;-->
+                                <!--<facebook-login></facebook-login>-->
+                                <!--</li>-->
+                                <li *ngIf="isLoggedIn">
+                                    <a (click)="logout()">Logout</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -63,54 +59,33 @@
                     </div>
                 </div>
                 <div class="col-xs-6">
-                    <div class="mobile-menu-bar-button">
+                    <button type="button" class="navbar-toggle collapsed mobile-menu-bar-button" data-toggle="collapse"
+                            data-target="#navbar-collapse-1">
                         <i class="material-icons">menu</i>
-                    </div>
+                    </button>
+
+                </div>
+            </div>
+            <div class="collapse navbar-collapse mobile-menu" id="navbar-collapse-1">
+                <div class="mean-container">
+                    <nav class="mean-nav">
+                        <ul>
+                            <li>
+                                <a routerLink="/home">Home</a>
+                            </li>
+                            <li>
+                                <a routerLink="/about">About</a>
+                            </li>
+                            <li>
+                                <a routerLink="/projects">Projects</a>
+                            </li>
+                            <li>
+                                <a routerLink="/charities">Charities</a>
+                            </li>
+                        </ul>
+                    </nav>
                 </div>
             </div>
         </div>
     </div>
-    <!--<nav class="navbar navbar-default">-->
-    <!--<div class="container-fluid">-->
-    <!--<div class="navbar-header">-->
-    <!--<button type="button" class="navbar-toggle collapsed" data-toggle="collapse"-->
-    <!--data-target="#bs-example-navbar-collapse-1">-->
-    <!--<span class="sr-only">Toggle navigation</span>-->
-    <!--<span class="icon-bar"></span>-->
-    <!--<span class="icon-bar"></span>-->
-    <!--<span class="icon-bar"></span>-->
-    <!--</button>-->
-    <!--<a class="navbar-brand" routerLink="/home">Linking Charities</a>-->
-    <!--</div>-->
-
-    <!--<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">-->
-    <!--<ul class="nav navbar-nav">-->
-    <!--<li routerLinkActive="active">-->
-    <!--<a routerLink="/home">Home</a>-->
-    <!--</li>-->
-    <!--<li routerLinkActive="active">-->
-    <!--<a routerLink="/about">About</a>-->
-    <!--</li>-->
-    <!--<li routerLinkActive="active">-->
-    <!--<a routerLink="/projects">Projects</a>-->
-    <!--</li>-->
-    <!--<li routerLinkActive="active">-->
-    <!--<a routerLink="/charities">Charities</a>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--<ul class="nav navbar-nav navbar-right">-->
-    <!--<li routerLinkActive="active" *ngIf="!isLoggedIn">-->
-    <!--<a routerLink="/login">Login</a>-->
-    <!--</li>-->
-    <!--<li routerLinkActive="active" *ngIf="!isLoggedIn">-->
-    <!--&lt;!&ndash; <a routerLink="/login">Login</a> &ndash;&gt;-->
-    <!--<facebook-login></facebook-login>-->
-    <!--</li>-->
-    <!--<li *ngIf="isLoggedIn">-->
-    <!--<a (click)="logout()">Logout</a>-->
-    <!--</li>-->
-    <!--</ul>-->
-    <!--</div>-->
-    <!--</div>-->
-    <!--</nav>-->
 </header>
