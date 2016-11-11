@@ -13,6 +13,8 @@ h2, h3 {
 
 body {
     margin: 2em;
+    background-image: url('http://mymy.org.uk/wp-content/uploads/2016/01/6.-How-to-Choose-Right-Charity-Foundation.jpg');
+    background-size: cover;
 }
 
 body, input[text], button {
