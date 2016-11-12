@@ -1,5 +1,5 @@
 .charity-small {
-    border:2px solid red;
+    border: 2px solid red;
     width: 60%;
     min-width: 300px;
 }
@@ -8,6 +8,26 @@
     margin-bottom: 5px;
 }
 
+/* Banner */
 .banner-area {
     background: url('banner.jpg') repeat scroll center center;
+    /*background: url('https://devitems.com/html/chalilac-preview/chalilac-charity/img/banner/6.jpg') repeat scroll center center;*/
+    padding: 128px 0;
+    transition: all 0.3s ease 0s
+}
+
+.banner-text > h3 {
+    color: #FFFFFF;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .banner-text > h3 {
+        font-size: 25px;
+    }
+
+    .banner-area {
+        padding: 80px 0;
+    }
 }

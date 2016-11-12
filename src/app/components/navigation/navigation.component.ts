@@ -25,11 +25,6 @@ export class NavigationComponent implements OnInit {
   
   ngOnInit():void {
     this.authService.isLoggedIn();
-    
-    // $(".nav li").click(function () {
-    //   $(".nav li").removeClass('active');
-    //   console.log("RUN");
-    // });
   }
   
   logout():void {
