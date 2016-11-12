@@ -11,21 +11,25 @@ h1 {
 }
 
 header {
-    border-bottom: solid purple;
 }
 
 .menu-logo-area {
     height: 93px;
-    border-style: solid;
 }
 
 .menu-logo-pos {
     text-align: center;
 }
 
+.menu-logo-text {
+    font-size: 20px;
+    color: #666666;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 .main-menu-area {
     height: 93px;
-    border-style: solid;
 }
 
 .main-menu-pos {
@@ -35,6 +39,35 @@ header {
 
 .login-register {
     float: right;
+}
+
+.navbar-nav li {
+    margin: 0 10px 0 10px;
+}
+
+.navbar-nav a {
+    font-size: 16px;
+    color: #666666;
+    font-weight: bold;
+    background-color: #FFFFFF;
+}
+
+.navbar-nav a:hover {
+    background-color: #FFFFFF;
+    color: #00AFF0;
+}
+
+.navbar-nav a:active {
+    background-color: #FFFFFF;
+}
+
+.main-menu-button {
+    text-transform: uppercase;
+}
+
+.login-button {
+    border: 1px solid #666666;
+    text-transform: capitalize;
 }
 
 /* Mobile menu styling */

@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -25,6 +25,11 @@ export class NavigationComponent implements OnInit {
   
   ngOnInit():void {
     this.authService.isLoggedIn();
+    
+    // $(".nav li").click(function () {
+    //   $(".nav li").removeClass('active');
+    //   console.log("RUN");
+    // });
   }
   
   logout():void {

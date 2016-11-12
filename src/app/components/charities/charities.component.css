@@ -7,3 +7,7 @@
 #nav-buttons {
     margin-bottom: 5px;
 }
+
+.banner-area {
+    background: url('banner.jpg') repeat scroll center center;
+}

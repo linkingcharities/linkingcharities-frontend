@@ -5,7 +5,9 @@
                 <div class="menu-logo-pos">
                     <span>
                     <img src="logo.png" width="80px" height="80px">
-                        Charilink
+                    <span class="menu-logo-text">
+                        ChariLink
+                    </span>
                     </span>
                 </div>
             </div>
@@ -14,16 +16,16 @@
                     <div class="main-menu">
                         <nav>
                             <ul class="nav navbar-nav">
-                                <li routerLinkActive="active">
+                                <li class="main-menu-button">
                                     <a routerLink="/home">Home</a>
                                 </li>
-                                <li routerLinkActive="active">
+                                <li class="main-menu-button">
                                     <a routerLink="/about">About</a>
                                 </li>
-                                <li routerLinkActive="active">
+                                <li class="main-menu-button">
                                     <a routerLink="/projects">Projects</a>
                                 </li>
-                                <li routerLinkActive="active">
+                                <li class="main-menu-button">
                                     <a routerLink="/charities">Charities</a>
                                 </li>
                             </ul>
@@ -32,7 +34,7 @@
                     <div class="login-register">
                         <nav>
                             <ul class="nav navbar-nav">
-                                <li routerLinkActive="active" *ngIf="!isLoggedIn">
+                                <li *ngIf="!isLoggedIn" class="login-button">
                                     <a routerLink="/login">Login</a>
                                 </li>
                                 <!--<li routerLinkActive="active" *ngIf="!isLoggedIn">-->
