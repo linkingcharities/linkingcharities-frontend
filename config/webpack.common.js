@@ -49,7 +49,7 @@ module.exports = {
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw'
+        loaders: ['to-string-loader', 'css-loader']
       },
       {
         test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,

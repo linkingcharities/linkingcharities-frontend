@@ -11,7 +11,6 @@
 /* Banner */
 .banner-area {
     background: url('banner.jpg') repeat scroll center center;
-    /*background: url('https://devitems.com/html/chalilac-preview/chalilac-charity/img/banner/6.jpg') repeat scroll center center;*/
     padding: 128px 0;
     transition: all 0.3s ease 0s
 }
