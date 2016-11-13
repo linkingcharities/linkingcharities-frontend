@@ -21,7 +21,7 @@ export class LoginComponent {
   }
   
   onSubmit():void {
-    this.authService.login(this.username, this.password);
+    this.authService.userLogin(this.username, this.password);
     if (this.isLoggedIn) {
       
       // Get the redirect URL from our auth service
