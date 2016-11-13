@@ -21,3 +21,4 @@ h2, h3 {
     font-family: Open Sans;
 }
 
+html { overflow-y: scroll; }

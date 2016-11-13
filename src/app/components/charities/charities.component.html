@@ -14,7 +14,6 @@
 
         <div class="row">
             <charity-grid *ngFor="let charity of displayCharities"
-                          (click)="goToDetail(charity)"
                           [charity]="charity">
             </charity-grid>
         </div>
