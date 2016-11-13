@@ -34,13 +34,15 @@
                     <div class="login-register">
                         <nav>
                             <ul class="nav navbar-nav">
+                                <li routerLinkActive="active" *ngIf="!isLoggedIn">
+                                    <a routerLink="/signup">Sign up</a>
+                                </li>
                                 <li *ngIf="!isLoggedIn" class="login-button">
                                     <a routerLink="/login">Login</a>
                                 </li>
-                                <!--<li routerLinkActive="active" *ngIf="!isLoggedIn">-->
-                                <!--&lt;!&ndash; <a routerLink="/login">Login</a> &ndash;&gt;-->
-                                <!--<facebook-login></facebook-login>-->
-                                <!--</li>-->
+                                <li routerLinkActive="active" *ngIf="!isLoggedIn">
+                                    <facebook-login></facebook-login>
+                                </li>
                                 <li *ngIf="isLoggedIn">
                                     <a (click)="logout()">Logout</a>
                                 </li>
