@@ -9,6 +9,7 @@ import 'reflect-metadata';
 import 'rxjs';
 import 'jquery';
 import 'bootstrap';
+
 // RxJS
 
 // Other vendors for example jQuery, Lodash or Bootstrap
