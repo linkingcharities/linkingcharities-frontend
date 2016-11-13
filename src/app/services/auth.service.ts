@@ -77,7 +77,6 @@ export class AuthService {
     localStorage.setItem("user", userID);
     localStorage.setItem("fb", 'true');
     this.isLoggedIn();
-    this.toasterService.pop('success', '', 'Login successful');
   }
   
   logoutViaFb() {
@@ -112,6 +111,8 @@ export class AuthService {
       // connect here with your server for facebook login by passing access token given by facebook
       
       this.setLoginAttributesFb(resp.authResponse.userID);
+      this.toasterService.pop('success', '', 'Login successful');
+
       if (this.isLoggedIn) {
         
         // Get the redirect URL from our auth service
