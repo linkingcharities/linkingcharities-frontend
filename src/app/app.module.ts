@@ -22,6 +22,7 @@ import { FacebookLoginComponent } from './components/facebook-login/facebook-log
 import { CharitySearchComponent } from './components/charity-search/charity-search.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppStateService } from './services/app-state.service';
+import { CharityGridComponent } from './components/charity-grid/charity-grid.component';
 
 @NgModule({
   imports: [
@@ -40,6 +41,7 @@ import { AppStateService } from './services/app-state.service';
     SignupComponent,
     NavigationComponent,
     CharitiesComponent,
+    CharityGridComponent,
     CharityDetailComponent,
     CharityFormComponent,
     CarouselComponent,
