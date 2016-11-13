@@ -8,11 +8,11 @@ import '@angular/router';
 import 'reflect-metadata';
 import 'rxjs';
 import 'jquery';
+import 'tether';
 import 'bootstrap';
 import '../node_modules/angular2-toaster/lib/toaster.css';
 import './meanmenu.min.css';
 import './styles.css';
-
 // RxJS
 
 // Other vendors for example jQuery, Lodash or Bootstrap

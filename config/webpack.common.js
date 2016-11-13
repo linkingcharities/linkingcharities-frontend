@@ -68,10 +68,11 @@ module.exports = {
     }),
 
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jquery: "jquery",
-      jQuery: "jquery",
-      "windows.jQuery": "jquery"
+      $: 'jquery',
+      jquery: 'jquery',
+      jQuery: 'jquery',
+      'windows.jQuery': 'jquery',
+      'window.Tether': 'tether'
     })
   ]
 };
