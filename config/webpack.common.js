@@ -71,8 +71,7 @@ module.exports = {
       $: 'jquery',
       jquery: 'jquery',
       jQuery: 'jquery',
-      'windows.jQuery': 'jquery',
-      'window.Tether': 'tether'
+      'windows.jQuery': 'jquery'
     })
   ]
 };

@@ -8,7 +8,6 @@ import '@angular/router';
 import 'reflect-metadata';
 import 'rxjs';
 import 'jquery';
-import 'tether';
 import 'bootstrap';
 import '../node_modules/angular2-toaster/lib/toaster.css';
 import './meanmenu.min.css';
