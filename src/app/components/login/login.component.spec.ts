@@ -12,7 +12,7 @@ class AuthServiceStub {
   loginSource = new Subject<boolean>();
   login$ = this.loginSource.asObservable();
   
-  login(username:String, password:String){
+  userLogin(username:String, password:String){
   };
 }
 
@@ -44,7 +44,7 @@ describe('Login Component', () => {
   it('should change state and redirect when login success', inject([LoginComponent, AuthService, Router],
     (login:LoginComponent, auth:AuthServiceStub, router:RouterStub) => {
       const spy = spyOn(router, 'navigate');
-      auth.login(auth.mockUsername, auth.mockPassword);
+      auth.userLogin(auth.mockUsername, auth.mockPassword);
       login.onSubmit();
       if (login.isLoggedIn) {
         auth.loginSource.next(true);
