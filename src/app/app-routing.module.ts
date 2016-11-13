@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
 import { CharitiesComponent } from './components/charities/charities.component';
@@ -12,6 +13,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 const routes:Routes = [
   {path: 'home', component: HomePageComponent},
   {path: 'login', component: LoginComponent},
+  {path: 'signup', component: SignupComponent},
   {path: 'about', component: AboutPageComponent},
   {path: 'detail/:id', component: CharityDetailComponent},
   {path: 'charities', component: CharitiesComponent},

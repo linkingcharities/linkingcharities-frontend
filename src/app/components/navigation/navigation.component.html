@@ -47,6 +47,9 @@
             <!--</form>-->
             <ul class="nav navbar-nav navbar-right">
                 <li routerLinkActive="active" *ngIf="!isLoggedIn">
+                    <a routerLink="/signup">Sign up</a>
+                </li>
+                <li routerLinkActive="active" *ngIf="!isLoggedIn">
                     <a routerLink="/login">Login</a>
                 </li>
                 <li routerLinkActive="active" *ngIf="!isLoggedIn">

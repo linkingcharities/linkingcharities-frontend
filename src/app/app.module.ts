@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
+import { SignupComponent } from './components/signup/signup.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { AppStateService } from './services/app-state.service';
     ProjectsPageComponent,
     AppComponent,
     LoginComponent,
+    SignupComponent,
     NavigationComponent,
     CharitiesComponent,
     CharityDetailComponent,

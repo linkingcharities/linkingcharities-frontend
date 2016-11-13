@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Headers, Http } from '@angular/http';
+import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { User } from '../constants/data-types';
 import { Subject } from 'rxjs/Rx';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
-
+import { API_URL } from '../constants/config';
 declare const FB:any;
 
 var users = [
@@ -48,7 +48,31 @@ export class AuthService {
   isLoggedIn() {
     this.loginSource.next(localStorage.getItem("user") !== null);
   }
-  
+
+  userLogin(username:String, password:String) {
+    this.http.post(API_URL + '/login'
+        , { username: username, password: password })
+      .toPromise()
+      .then((res:Response) => {
+        localStorage.setItem("user", username.toString());
+        localStorage.setItem("token", res.json());
+        this.toasterService.pop('success', '', 'Login successful');
+        this.isLoggedIn();
+      }).catch();
+  }
+
+  registerUser(username:String, password:String) {
+    this.http.post(API_URL + '/donor/register',
+                  {account: {username: username, password: password }})
+      .toPromise()
+      .then((res:Response) => {
+        //user is logged in after successful signup
+        localStorage.setItem("user", username.toString());
+        this.toasterService.pop('success', '', 'Signup successful');
+        this.isLoggedIn();
+      }).catch();
+  }
+
   isCharity() {
     this.charitySource.next(localStorage.getItem("charity") === 'true');
   }

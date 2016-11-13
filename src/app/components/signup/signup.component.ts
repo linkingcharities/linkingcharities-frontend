@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'signup',
+  templateUrl: './signup.component.html',
+  styleUrls: ['./signup.component.css']
 })
 
-export class LoginComponent {
+export class SignupComponent {
   username:String = null;
   password:String = null;
   isLoggedIn = false;
@@ -21,7 +21,7 @@ export class LoginComponent {
   }
   
   onSubmit():void {
-    this.authService.userLogin(this.username, this.password);
+    this.authService.registerUser(this.username, this.password);
     if (this.isLoggedIn) {
       
       // Get the redirect URL from our auth service
