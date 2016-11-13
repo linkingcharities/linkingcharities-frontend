@@ -37,6 +37,7 @@ export class AuthService {
     if (authenticatedUser && authenticatedUser.password === password) {
       localStorage.setItem("user", authenticatedUser.email);
       localStorage.setItem("charity", authenticatedUser.charity);
+      
       this.toasterService.pop('success', '', 'Login successful');
     } else {
       this.toasterService.pop('error', '', 'Login failed');
@@ -51,23 +52,6 @@ export class AuthService {
   isCharity() {
     this.charitySource.next(localStorage.getItem("charity") === 'true');
   }
-
-  loginViaFb(userID:string) {
-    localStorage.setItem("user", userID);
-    localStorage.setItem("fb", 'true');
-    this.isLoggedIn();
-  }
-
-  logoutViaFb(){
-    if (localStorage.getItem("fb") === 'true') {
-      FB.logout(function(response:any) {
-        localStorage.removeItem("fb");
-        // localStorage.removeItem("user");
-        // this.loginSource.next(false);
-        // this.toasterService.pop('success', '', 'Logout successful');
-      });
-      }
-  }
   
   logout() {
     localStorage.removeItem("user");
@@ -75,6 +59,78 @@ export class AuthService {
     this.loginSource.next(false);
     this.charitySource.next(false);
     this.toasterService.pop('success', '', 'Logout successful');
+  }
+  
+  /* FB Auth Service */
+  
+  initFb() {
+    FB.init({
+      appId: '132163687254327',
+      cookie: true,  // enable cookies to allow the server to access
+                     // the session
+      xfbml: true,  // parse social plugins on this page
+      version: 'v2.8'
+    });
+  }
+  
+  setLoginAttributesFb(userID:string) {
+    localStorage.setItem("user", userID);
+    localStorage.setItem("fb", 'true');
+    this.isLoggedIn();
+    this.toasterService.pop('success', '', 'Login successful');
+  }
+  
+  logoutViaFb() {
+    //call getLoginStatus to ensure that fb API is fully ready after Init
+    FB.getLoginStatus(function (response:any) {
+      if (localStorage.getItem("fb") === 'true') {
+        FB.logout(function (response:any) {
+          localStorage.removeItem("fb");
+          // localStorage.removeItem("user");
+          // this.loginSource.next(false);
+          // this.toasterService.pop('success', '', 'Logout successful');
+        });
+      }
+    });
+  }
+  
+  loginViaFb() {
+    FB.getLoginStatus((resp:any) => {
+      if (resp.status != 'connected') {
+        FB.login((response:any) => {
+          this.statusChangeFb(response);
+        });
+      }
+      else {
+        this.statusChangeFb(resp);
+      }
+    });
+  }
+  
+  statusChangeFb(resp:any) {
+    if (resp.status === 'connected') {
+      // connect here with your server for facebook login by passing access token given by facebook
+      
+      this.setLoginAttributesFb(resp.authResponse.userID);
+      if (this.isLoggedIn) {
+        
+        // Get the redirect URL from our auth service
+        // If no redirect has been set, use the default
+        let redirect = this.redirectUrl ? this.redirectUrl : 'home';
+        
+        // Redirect the user
+        this.router.navigate([redirect]);
+        
+      }
+    } else if (resp.status === 'not_authorized') {
+      // The person is logged into Facebook, but not your app.
+      console.log("The person is not authorized to login.");
+      
+    } else {
+      // The person is not logged into Facebook, so we're not sure if
+      // they are logged into this app or not.
+      console.log("The person is not logged into Facebook.");
+    }
   }
   
   
