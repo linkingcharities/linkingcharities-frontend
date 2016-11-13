@@ -1,0 +1,21 @@
+l-icons {
+    font-size: 150px;
+    color: #7f7f7f;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+    .material-icons {
+        font-size:240px;
+    }
+}
+
+.form-control {
+    font-family: "Open Sans";
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+#spacer {
+    margin-left: 20px;
+}

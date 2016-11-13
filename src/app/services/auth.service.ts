@@ -54,9 +54,20 @@ export class AuthService {
       .toPromise()
       .then((res:Response) => {
         localStorage.setItem("user", username.toString());
-        console.log(res);
         localStorage.setItem("token", res.json());
         this.toasterService.pop('success', '', 'Login successful');
+        this.isLoggedIn();
+      }).catch();
+  }
+
+  registerUser(username:String, password:String) {
+    this.http.post(API_URL + '/donor/register',
+                  {account: {username: username, password: password }})
+      .toPromise()
+      .then((res:Response) => {
+        //user is logged in after successful signup
+        localStorage.setItem("user", username.toString());
+        this.toasterService.pop('success', '', 'Signup successful');
         this.isLoggedIn();
       }).catch();
   }
