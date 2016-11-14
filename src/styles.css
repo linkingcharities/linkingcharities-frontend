@@ -11,19 +11,14 @@ h2, h3 {
     font-weight: lighter;
 }
 
-body {
-    margin: 2em;
-    background-image: url('http://mymy.org.uk/wp-content/uploads/2016/01/6.-How-to-Choose-Right-Charity-Foundation.jpg');
-    background-size: cover;
-}
+/*body {*/
+/*margin: 2em;*/
+/*background-image: url('http://mymy.org.uk/wp-content/uploads/2016/01/6.-How-to-Choose-Right-Charity-Foundation.jpg');*/
+/*background-size: cover;*/
+/*}*/
 
-body, input[text], button {
-    color: #888;
-    font-family: "Open Sans";
-}
-
-/* . . . */
-/* everywhere else */
 * {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Open Sans;
 }
+
+html { overflow-y: scroll; }

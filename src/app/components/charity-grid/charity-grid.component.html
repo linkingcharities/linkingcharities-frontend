@@ -1,0 +1,46 @@
+<div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="container-fluid charity-grid overlay-hover">
+        <div class="charity-grid-title" (click)="goToDetail(charity)">
+            {{ charity.name }}
+        </div>
+        <div class="charity-grid-type">
+            {{ charityType }}
+        </div>
+        <div class="charity-grid-target">
+            {{ charityTarget }}
+        </div>
+        <div class="charity-grid-description">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+                dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                ex ea commodo consequat.
+            </p>
+        </div>
+
+        <div class="grid-expenditure">
+            <div class="col-xs-4 info-box">
+                <div class="info-box-cause">
+                    82
+                </div>
+                <div class="info-box-cause more-info">
+                    charity
+                </div>
+            </div>
+            <div class="col-xs-4 info-box">
+                <div class="info-box-fundraise">
+                    8
+                </div>
+                <div class="info-box-fundraise more-info">
+                    fundraise
+                </div>
+            </div>
+            <div class="col-xs-4 info-box">
+                <div class="info-box-admin">
+                    10
+                </div>
+                <div class="info-box-admin more-info">
+                    admin
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

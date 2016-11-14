@@ -42,10 +42,6 @@ module.exports = {
         loader: 'html'
       },
       {
-        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-        loader: 'file?name=assets/[name].[hash].[ext]'
-      },
-      {
         test: /\.css$/,
         exclude: helpers.root('src', 'app'),
         loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
@@ -53,7 +49,11 @@ module.exports = {
       {
         test: /\.css$/,
         include: helpers.root('src', 'app'),
-        loader: 'raw'
+        loaders: ['to-string-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
+        loader: 'file?name=assets/[name].[hash].[ext]'
       }
     ]
   },
@@ -68,10 +68,10 @@ module.exports = {
     }),
 
     new webpack.ProvidePlugin({
-      $: "jquery",
-      jquery: "jquery",
-      jQuery: "jquery",
-      "windows.jQuery": "jquery"
+      $: 'jquery',
+      jquery: 'jquery',
+      jQuery: 'jquery',
+      'windows.jQuery': 'jquery'
     })
   ]
 };

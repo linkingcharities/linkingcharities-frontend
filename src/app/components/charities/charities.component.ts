@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Charity } from '../../constants/data-types';
 import { CharityService } from '../../services/charity.service';
 import { AppStateService } from '../../services/app-state.service';
@@ -20,8 +19,7 @@ export class CharitiesComponent implements OnInit {
   
   private subscription:any;
   
-  constructor(private router:Router,
-              private charityService:CharityService,
+  constructor(private charityService:CharityService,
               private appStateService:AppStateService) {
     this.subscription = this.charityService.charities$
       .subscribe(charities => {
@@ -43,11 +41,6 @@ export class CharitiesComponent implements OnInit {
     this.leftPos = this.appStateService.leftPos;
     this.rightPos = this.appStateService.rightPos;
     this.stepSize = this.appStateService.stepSize;
-  }
-  
-  goToDetail(charity:Charity):void {
-    let link = ['/detail', charity.id];
-    this.router.navigate(link);
   }
   
   moveRight():void {

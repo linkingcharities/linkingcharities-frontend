@@ -1,19 +1,30 @@
 <!-- ngIf is a hotfix, ideally the charity-form should be display when something is pressed -->
-<h3>List of charities (should be able to filter / sort through or something)</h3>
-<div *ngIf="charities">
-    <charity-search></charity-search>
-    <div id="nav-buttons">
-        <button (click)="moveLeft()">Move left</button>
-        {{leftPos + 1 }} - {{rightPos}}
-        <button (click)="moveRight()">Move right</button>
+<div class="banner-area">
+    <div class="col-xs-6 col-xs-offset-2">
+        <div class="banner-text">
+            <h3>Charity List</h3>
+        </div>
     </div>
+</div>
+<div class="container">
+    <div *ngIf="charities">
+        <div class="row">
+            <charity-search></charity-search>
+        </div>
 
-    <div *ngFor="let charity of displayCharities" (click)="goToDetail(charity)"
-         class="charity-small">
-        <h4>{{charity.name}}ExtendCharityName - charity rank</h4>
-        This is some short description of the charity, which should be pulled from the server.
+        <div class="row">
+            <charity-grid *ngFor="let charity of displayCharities"
+                          [charity]="charity">
+            </charity-grid>
+        </div>
+
+        <div id="nav-buttons">
+            <button (click)="moveLeft()">Move left</button>
+            {{leftPos + 1 }} - {{rightPos}}
+            <button (click)="moveRight()">Move right</button>
+        </div>
+
+        <!-- This form should be hidden behind authentication -->
+        <charity-form></charity-form>
     </div>
-
-    <!-- This form should be hidden behind authentication -->
-    <charity-form></charity-form>
 </div>

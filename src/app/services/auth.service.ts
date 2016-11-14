@@ -58,6 +58,13 @@ export class AuthService {
         localStorage.setItem("token", res.json());
         this.toasterService.pop('success', '', 'Login successful');
         this.isLoggedIn();
+  
+        // Get the redirect URL from our auth service
+        // If no redirect has been set, use the default
+        let redirect = this.redirectUrl ? this.redirectUrl : 'home';
+  
+        // Redirect the user
+        this.router.navigate([redirect]);
       }).catch();
   }
 

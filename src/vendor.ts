@@ -9,10 +9,10 @@ import 'reflect-metadata';
 import 'rxjs';
 import 'jquery';
 import 'bootstrap';
-
+import '../node_modules/angular2-toaster/lib/toaster.css';
+import './meanmenu.min.css';
+import './styles.css';
 // RxJS
 
 // Other vendors for example jQuery, Lodash or Bootstrap
 // You can import js, ts, css, sass, ...
-import './styles.css';
-import '../node_modules/angular2-toaster/lib/toaster.css'
