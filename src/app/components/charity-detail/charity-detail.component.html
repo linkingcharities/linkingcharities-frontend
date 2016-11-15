@@ -18,8 +18,11 @@
             <input type="hidden" name="cmd" value="_donations">
             <input type="hidden" name="business" value="{{ charity.paypal }}">
             <input type="hidden" name="lc" value="GB">
-            <input name="amount" [(ngModel)]="amount">
-            <input type="hidden" name="currency_code" value="USD">
+            <input name="amount" [(ngModel)]="amount"> <br>
+            <select type="hidden" [(ngModel)]="currency_code" name="currency_code">
+                <option value="USD">USD</option>
+                <option value="GBP">GBP</option>
+            </select> <br>
             <input type="image" name="submit"
                    src="https://www.paypalobjects.com/webstatic/en_US/i/btn/png/btn_donate_92x26.png" alt="Donate">
             <img alt="" border="0" src="https://www.paypalobjects.com/en_GB/i/scr/pixel.gif" width="1" height="1">
