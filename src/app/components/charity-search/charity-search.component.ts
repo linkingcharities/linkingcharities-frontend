@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
-import { Charity, CharityTarget, CharityTargets, CharityTypes, CharityType } from '../../constants/data-types';
+import {
+  Charity,
+  CharityTarget,
+  CharityTargets,
+  CharityTypes,
+  CharityType,
+  CharitySearchQuery,
+  DefaultTarget,
+  DefaultType
+} from '../../constants/data-types';
 import { CharityService } from '../../services/charity.service';
 
 @Component({
@@ -15,8 +24,11 @@ export class CharitySearchComponent implements OnInit {
   private prevTerm:string = null;
   charityTargets:CharityTarget[] = CharityTargets;
   charityTypes:CharityType[] = CharityTypes;
-  currentTarget:string = 'Target';
-  currentType:string = 'Type';
+  searchQuery:CharitySearchQuery = {
+    term: '',
+    target: DefaultTarget,
+    type: DefaultType
+  };
   
   constructor(private charityService:CharityService,
               private router:Router) {
@@ -32,7 +44,8 @@ export class CharitySearchComponent implements OnInit {
       .debounceTime(500)
       .subscribe(term => {
         if (term != this.prevTerm) {
-          this.charityService.search(term);
+          this.searchQuery.term = term;
+          this.charityService.search(this.searchQuery);
         }
         this.prevTerm = term;
       });
@@ -41,5 +54,22 @@ export class CharitySearchComponent implements OnInit {
   goToDetail(charity:Charity):void {
     let link = ['/detail', charity.id];
     this.router.navigate(link);
+  }
+  
+  clear(field:string):void {
+    if (field == 'target') {
+      this.searchQuery.target = DefaultTarget;
+    }
+    if (field == 'type') {
+      this.searchQuery.type = DefaultType;
+    }
+  }
+  
+  modifyTarget(target:CharityTarget):void {
+    this.searchQuery.target = target;
+  }
+  
+  modifyType(type:CharityType):void {
+    this.searchQuery.type = type;
   }
 }

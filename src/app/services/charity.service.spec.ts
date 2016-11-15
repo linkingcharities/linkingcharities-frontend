@@ -1,8 +1,9 @@
+///<reference path="../constants/data-types.ts"/>
 import { TestBed, getTestBed, async, inject } from '@angular/core/testing';
 import { BaseRequestOptions, Response, HttpModule, Http, XHRBackend, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { CharityService } from './charity.service';
-import { Charity } from '../constants/data-types';
+import { Charity, CharitySearchQuery, DefaultType, DefaultTarget } from '../constants/data-types';
 
 let testCharity1:Charity = {
   id: 1,
@@ -33,6 +34,7 @@ let testCharity3:Charity = {
   type: 'H',
   target: 'D'
 };
+
 
 describe('Charity service', () => {
   let mockBackend:MockBackend;
@@ -151,7 +153,12 @@ describe('Charity service', () => {
             )));
         });
       
-      charityService.search('Test');
+      let query:CharitySearchQuery = {
+        term: 'Test',
+        type: DefaultType,
+        target: DefaultTarget
+      };
+      charityService.search(query);
       charityService.charities$.subscribe((charities:Charity[]) => {
         expect(charities.length).toBeDefined();
         expect(charities.length).toEqual(2);
@@ -170,8 +177,13 @@ describe('Charity service', () => {
               }
             )));
         });
-      
-      charityService.search('test');
+  
+      let query:CharitySearchQuery = {
+        term: 'test',
+        type: DefaultType,
+        target: DefaultTarget
+      };
+      charityService.search(query);
       charityService.charities$.subscribe((charities:Charity[]) => {
         expect(charities.length).toBeDefined();
         expect(charities.length).toEqual(0);

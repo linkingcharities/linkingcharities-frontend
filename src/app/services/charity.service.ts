@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Charity } from '../constants/data-types';
+import { Charity, CharitySearchQuery } from '../constants/data-types';
 import { API_URL } from '../constants/config';
 import { Subject } from 'rxjs/Rx';
 
@@ -45,13 +45,13 @@ export class CharityService {
       .catch(this.handleError);
   }
   
-  search(term:string) {
+  search(searchQuery:CharitySearchQuery) {
     // This will work for now but obviously a filtered route is preferred going forward
     return this.http.get(API_URL + '/charities', this.getOptions())
       .toPromise()
       .then((res:Response) => {
         let charities = res.json() as Charity[];
-        let filtered = charities.filter(charity => charity.name.includes(term));
+        let filtered = charities.filter(charity => charity.name.includes(searchQuery.term));
         this.charitiesSource.next(filtered);
       })
       .catch(this.handleError);

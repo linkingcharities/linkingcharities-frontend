@@ -6,25 +6,32 @@
                    placeholder="Search for a charity"/>
         </div>
 
-        <div class="col-md-3 col-xs-5">
+        <div class="col-md-4 col-xs-12">
             <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                    {{ currentTarget }}
+                    {{ searchQuery.type.full }}
                     <span class="caret"></span></button>
                 <ul class="dropdown-menu">
-                    <li *ngFor="let charityTarget of charityTargets">
-                        <a>{{charityTarget.full}}</a>
+                    <li><a (click)="clear('type')">CLEAR</a></li>
+                    <li *ngFor="let charityType of charityTypes">
+                        <a (click)="modifyType(charityType)">{{charityType.full}}</a>
                     </li>
                 </ul>
             </div>
         </div>
 
-        <div class="col-md-3 col-xs-5">
-            Target audience
-        </div>
-
-        <div class="col-md-2 col-xs-2">
-            Reset
+        <div class="col-md-4 col-xs-12">
+            <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                    {{ searchQuery.target.full }}
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    <li><a (click)="clear('target')">CLEAR</a></li>
+                    <li *ngFor="let charityTarget of charityTargets">
+                        <a (click)="modifyTarget(charityTarget)">{{charityTarget.full}}</a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 
