@@ -63,13 +63,16 @@ export class CharitySearchComponent implements OnInit {
     if (field == 'type') {
       this.searchQuery.type = DefaultType;
     }
+    this.charityService.search(this.searchQuery);
   }
   
   modifyTarget(target:CharityTarget):void {
     this.searchQuery.target = target;
+    this.charityService.search(this.searchQuery);
   }
   
   modifyType(type:CharityType):void {
     this.searchQuery.type = type;
+    this.charityService.search(this.searchQuery);
   }
 }

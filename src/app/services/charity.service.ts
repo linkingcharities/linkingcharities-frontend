@@ -47,7 +47,11 @@ export class CharityService {
   
   search(searchQuery:CharitySearchQuery) {
     // This will work for now but obviously a filtered route is preferred going forward
-    return this.http.get(API_URL + '/charities', this.getOptions())
+    const serverQuery = API_URL + `/charities?`
+      + `type=${searchQuery.type.short}&`
+      + `target=${searchQuery.target.short}`;
+    console.log(serverQuery);
+    return this.http.get(serverQuery, this.getOptions())
       .toPromise()
       .then((res:Response) => {
         let charities = res.json() as Charity[];
