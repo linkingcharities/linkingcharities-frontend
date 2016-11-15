@@ -3,7 +3,7 @@ import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Charity } from '../constants/data-types';
 import { API_URL } from '../constants/config';
-import { Subject, Observable } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class CharityService {
@@ -36,23 +36,25 @@ export class CharityService {
   }
   
   getCharity(id:number) {
-    this.http.get(API_URL + '/charities', this.getOptions())
+    this.http.get(API_URL + '/charities?id=' + id, this.getOptions())
       .toPromise()
       .then((res:Response) => {
         let charities = res.json() as Charity[];
-        this.charitySource.next(charities.find(charity => charity.id === id));
+        this.charitySource.next(charities[0]);
       })
       .catch(this.handleError);
   }
   
-  search(term:string):Observable<Charity[]> {
+  search(term:string) {
     // This will work for now but obviously a filtered route is preferred going forward
     return this.http.get(API_URL + '/charities', this.getOptions())
-      .map((res:Response) => {
-          let charities = res.json() as Charity[];
-          return charities.filter(charity => charity.name.includes(term));
-        }
-      );
+      .toPromise()
+      .then((res:Response) => {
+        let charities = res.json() as Charity[];
+        let filtered = charities.filter(charity => charity.name.includes(term));
+        this.charitiesSource.next(filtered);
+      })
+      .catch(this.handleError);
   }
   
   // delete(id:number):Promise<void> {

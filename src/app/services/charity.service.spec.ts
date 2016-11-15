@@ -9,7 +9,9 @@ let testCharity1:Charity = {
   register_id: 1,
   name: 'Test charity',
   description: 'Test description',
-  paypal: 'asdf'
+  paypal: 'asdf',
+  type: 'G',
+  target: 'C'
 };
 
 let testCharity2:Charity = {
@@ -17,7 +19,9 @@ let testCharity2:Charity = {
   register_id: 2,
   name: 'Test charity 2',
   description: 'Test description 2',
-  paypal: 'asdf'
+  paypal: 'asdf',
+  type: 'E',
+  target: 'E'
 };
 
 let testCharity3:Charity = {
@@ -25,7 +29,9 @@ let testCharity3:Charity = {
   register_id: 3,
   name: 'JSDF',
   description: 'ROFL',
-  paypal: 'asdf'
+  paypal: 'asdf',
+  type: 'H',
+  target: 'D'
 };
 
 describe('Charity service', () => {
@@ -123,7 +129,7 @@ describe('Charity service', () => {
         (connection:MockConnection) => {
           connection.mockRespond(new Response(
             new ResponseOptions({
-                body: [testCharity1, testCharity2]
+                body: []
               }
             )));
         });
@@ -145,20 +151,28 @@ describe('Charity service', () => {
             )));
         });
       
-      charityService.search('Test').subscribe((charities:Charity[]) => {
+      charityService.search('Test');
+      charityService.charities$.subscribe((charities:Charity[]) => {
         expect(charities.length).toBeDefined();
         expect(charities.length).toEqual(2);
         expect(charities[0]).toBe(testCharity1);
         expect(charities[1]).toBe(testCharity2);
       });
+    })));
+  
+  it('should search for and return charities (empty case)',
+    async(inject([CharityService], (charityService:CharityService) => {
+      mockBackend.connections.subscribe(
+        (connection:MockConnection) => {
+          connection.mockRespond(new Response(
+            new ResponseOptions({
+                body: [testCharity1, testCharity2, testCharity3]
+              }
+            )));
+        });
       
-      charityService.search('JSDF').subscribe((charities:Charity[]) => {
-        expect(charities.length).toBeDefined();
-        expect(charities.length).toEqual(1);
-        expect(charities[0]).toBe(testCharity3);
-      });
-      
-      charityService.search('test').subscribe((charities:Charity[]) => {
+      charityService.search('test');
+      charityService.charities$.subscribe((charities:Charity[]) => {
         expect(charities.length).toBeDefined();
         expect(charities.length).toEqual(0);
       });
