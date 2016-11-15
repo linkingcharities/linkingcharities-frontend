@@ -15,6 +15,7 @@ import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityService } from './services/charity.service';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { CharityFormComponent } from './components/charity-form/charity-form.component';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
@@ -39,6 +40,7 @@ import { CharityGridComponent } from './components/charity-grid/charity-grid.com
     AppComponent,
     LoginComponent,
     SignupComponent,
+    ThankYouComponent,
     NavigationComponent,
     CharitiesComponent,
     CharityGridComponent,

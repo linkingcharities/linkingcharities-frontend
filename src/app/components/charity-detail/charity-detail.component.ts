@@ -37,7 +37,7 @@ export class CharityDetailComponent implements OnInit {
   onSubmit():void {
     console.log("Submit form", this.amount);
     // Does the redirect
-    window.open('https://www.paypal.com/cgi-bin/webscr?&cmd=_xclick&business=' + this.charity.paypal +
+    window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?&cmd=_xclick&business=' + this.charity.paypal +
       '&currency_code=USD&amount=1.00&item_name=testing');
   }
   
