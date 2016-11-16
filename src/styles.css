@@ -21,4 +21,25 @@ h2, h3 {
     font-family: Open Sans;
 }
 
-html { overflow-y: scroll; }
+@media screen and (min-width: 992px) {
+    html {
+        overflow-y: scroll;
+    }
+}
+
+/* Dropdown transitions */
+.dropdown .dropdown-menu {
+    display: block;
+    opacity: 0;
+
+    -moz-transition: all 500ms ease;
+    -webkit-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.dropdown.open .dropdown-menu {
+    display: block;
+    opacity: 1;
+}

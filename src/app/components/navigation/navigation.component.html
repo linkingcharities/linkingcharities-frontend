@@ -33,11 +33,18 @@
                                     <li routerLinkActive="active" *ngIf="!isLoggedIn">
                                         <a routerLink="/signup">Sign up</a>
                                     </li>
-                                    <li *ngIf="!isLoggedIn" class="login-button">
-                                        <a routerLink="/login">Login</a>
-                                    </li>
-                                    <li routerLinkActive="active" *ngIf="!isLoggedIn">
-                                        <facebook-login></facebook-login>
+                                    <!--<li *ngIf="!isLoggedIn" class="login-button">-->
+                                    <!--<a routerLink="/login">Login</a>-->
+                                    <!--</li>-->
+                                    <li *ngIf="!isLoggedIn" class="dropdown login-button">
+                                        <a class="dropdown-toggle" data-toggle="dropdown"
+                                           aria-expanded="false">
+                                            Login
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <facebook-login></facebook-login>
+                                            <login-small></login-small>
+                                        </ul>
                                     </li>
                                     <li *ngIf="isLoggedIn">
                                         <a (click)="logout()">Logout</a>

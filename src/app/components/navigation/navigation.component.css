@@ -80,6 +80,10 @@ header {
     text-transform: capitalize;
 }
 
+.login-button-form {
+    background-color: red;
+}
+
 /* Mobile menu styling */
 .mobile-menu-area {
     display: block;

@@ -50,7 +50,6 @@ export class CharityService {
     const serverQuery = API_URL + `/charities?`
       + `type=${searchQuery.type.short}&`
       + `target=${searchQuery.target.short}`;
-    console.log(serverQuery);
     return this.http.get(serverQuery, this.getOptions())
       .toPromise()
       .then((res:Response) => {
