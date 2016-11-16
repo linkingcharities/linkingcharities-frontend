@@ -4,7 +4,7 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
-import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
+import { QuizPageComponent } from './components/quiz/quiz.component';
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
@@ -20,9 +20,9 @@ const routes:Routes = [
   {path: 'charities', component: CharitiesComponent},
   {path: 'thank-you', component: ThankYouComponent},
   {
-    path: 'projects',
-    component: ProjectsPageComponent,
-    canActivate: [AuthGuard]
+    path: 'quiz',
+    component: QuizPageComponent
+    // ,canActivate: [AuthGuard]
   },
   {path: '', component: HomePageComponent},
   {path: '**', component: PageNotFoundComponent}
