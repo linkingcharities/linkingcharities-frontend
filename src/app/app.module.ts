@@ -24,6 +24,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AppStateService } from './services/app-state.service';
 import { CharityGridComponent } from './components/charity-grid/charity-grid.component';
 import { LoginSmallComponent } from './components/login-small/login-small.component';
+import { ProtectedDirective } from './directives/protected.directive';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { LoginSmallComponent } from './components/login-small/login-small.compon
     FacebookLoginComponent,
     CharitySearchComponent,
     PageNotFoundComponent,
-    LoginSmallComponent
+    LoginSmallComponent,
+    ProtectedDirective
   ],
   providers: [CharityService, AuthService, ToasterService, AppStateService],
   bootstrap: [AppComponent]
