@@ -43,7 +43,7 @@ export class CharityDetailComponent implements OnInit {
      '&amount=' + this.amount + 
      '&item_name=testing' +
      '&return=' + 'http://' + window.location.hostname + ':8080/thank-you' + 
-     '&rm=2' + 
+     '&rm=1' + 
      '&showHostedThankyouPage=false');
   }
   
