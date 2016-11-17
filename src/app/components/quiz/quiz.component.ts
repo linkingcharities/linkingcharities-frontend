@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, ElementRef } from "@angular/core";
 import { Question } from '../../constants/data-types';
 
 @Component({
@@ -10,11 +10,23 @@ import { Question } from '../../constants/data-types';
 export class QuizPageComponent  {
 
   //Sample data
-  sample_data:string = '[ { "question":"Which category would you like to extend a helping hand", "option1":"lion.png", "option2":"tiger.png", "option3":"cheetah.png" },\
-   { "question":"Which picture shows a labrador?", "option1":"labrador.png", "option2":"beagle.png", "option3":"poodle.png" },\
-    { "question":"Which picture shows a meerkat?", "option1":"meerkat.png", "option2":"chipmunk.png", "option3":"squirrel.png" }]';
+  sample_data:string = '[ { "question":"Which category would you like to extend a helping hand",\
+   "option1":"https://cdn.meme.am/images/80x80/7727258.jpg",\
+    "option2":"http://aromatherapy-courses.co.uk/wp-content/uploads/2013/04/Elderly-Care-80x80.jpg",\
+     "option3":"http://cdn1.twinfinite.net/wp-content/uploads/2016/01/pikachu-80x80.png" },\
+   { "question":"Which picture shows a labrador?",\
+    "option1":"labrador.png",\
+     "option2":"beagle.png",\
+      "option3":"poodle.png" },\
+    { "question":"Which picture shows a meerkat?",\
+     "option1":"meerkat.png",\
+      "option2":"chipmunk.png",\
+       "option3":"squirrel.png" }]';
 
-  constructor() {
+  theHtmlString:string;
+
+  constructor(private elementRef:ElementRef) {
+    this.initializeQuiz();
   }
 
 
@@ -48,15 +60,18 @@ export class QuizPageComponent  {
 
 
       this.theHtmlString = '<div class = "questionText">' + questions[0].question + '</div>\
-        <div id="1" class="pix"><img src="img/'+questions[0].option1+'"></div>\
-        <div id="2" class="pix"><img src="img/'+questions[0].option2+'"></div>\
-        <div id="3" class="pix"><img src="img/'+questions[0].option3+'"></div>';
+        <div id="1" class="pix"><img src="'+questions[0].option1+'"></div>\
+        <div id="2" class="pix"><img src="'+questions[0].option2+'"></div>\
+        <div id="3" class="pix"><img src="'+questions[0].option3+'"></div>';
 
+      var x = this.elementRef.nativeElement.querySelectorAll('.pix');
+      console.log(x);
+      console.log(x.length);
 
-      // $('#game1').append('<div class = "questionText">' + questions[0].question + '</div>\
-      //   <div id="1" class="pix"><img src="img/'+questions[0].option1+'"></div>\
-      //   <div id="2" class="pix"><img src="img/'+questions[0].option2+'"></div>\
-      //   <div id="3" class="pix"><img src="img/'+questions[0].option3+'"></div>');
+      // .addEventListener("click", function(){
+      //     alert("HOLA");
+      // });
+
       
       // $('.pix').click(function(){
       //   if (questionLock==false) { 

@@ -27,19 +27,18 @@
   color:#FFF;
 }
 
-.pix{
-  width:80px;
-  height:80px;
-  margin:15px;
-  float:left;
-  border: 5px solid white;
-  cursor:pointer;
-}
-
-.pix:hover{
-  border:#FC0 solid 5px;
-}
-
 .spacer{
   height:30px;
 }
+
+:host >>> .pix {
+      margin:15px;
+      float:left;
+      border: 5px solid white;
+      cursor:pointer; 
+    }
+
+:host >>> .pix:hover { 
+       border:#FC0 solid 5px;
+     }
+
