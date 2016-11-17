@@ -54,7 +54,7 @@ export class CharityService {
       .toPromise()
       .then((res:Response) => {
         let charities = res.json() as Charity[];
-        let filtered = charities.filter(charity => charity.name.includes(searchQuery.term));
+        let filtered = charities.filter(charity => charity.name.toLowerCase().includes(searchQuery.term.toLowerCase()));
         this.charitiesSource.next(filtered);
       })
       .catch(this.handleError);

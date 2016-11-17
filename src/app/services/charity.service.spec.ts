@@ -179,7 +179,7 @@ describe('Charity service', () => {
         });
   
       let query:CharitySearchQuery = {
-        term: 'test',
+        term: 'test123123',
         type: DefaultType,
         target: DefaultTarget
       };
