@@ -6,7 +6,8 @@ declare const FB:any;
 
 @Component({
   selector: 'facebook-login',
-  templateUrl: './facebook-login.html'
+  templateUrl: './facebook-login.component.html',
+  styleUrls: ['./facebook-login.component.css']
 })
 
 export class FacebookLoginComponent implements OnInit {

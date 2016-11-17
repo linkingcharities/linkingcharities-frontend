@@ -1,0 +1,14 @@
+.container-fluid {
+    min-width: 200px;
+    margin-top: 10px;
+}
+
+.form-control {
+    font-family: "Open Sans";
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+#spacer {
+    margin-left: 20px;
+}

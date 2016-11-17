@@ -10,7 +10,7 @@ class AuthServiceStub {
   
   logout() {
   };
-
+  
   logoutViaFb() {
   };
 }
@@ -48,13 +48,14 @@ describe('Navigation Component', () => {
     }
   ));
   
-  it('should redirect to homepage when logout is called', inject(
-    [NavigationComponent, Router],
-    (nav:NavigationComponent, router:RouterStub) => {
-      const spy = spyOn(router, 'navigate');
-      nav.logout();
-      const navArgs = spy.calls.first().args[0];
-      expect(navArgs).toEqual(['/home']);
-    }
-  ))
+  // This is no longer needed as we do not want to redirect
+  // it('should redirect to homepage when logout is called', inject(
+  //   [NavigationComponent, Router],
+  //   (nav:NavigationComponent, router:RouterStub) => {
+  //     const spy = spyOn(router, 'navigate');
+  //     nav.logout();
+  //     const navArgs = spy.calls.first().args[0];
+  //     expect(navArgs).toEqual(['/home']);
+  //   }
+  // ))
 });

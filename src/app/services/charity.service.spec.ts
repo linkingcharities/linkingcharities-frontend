@@ -1,15 +1,18 @@
+///<reference path="../constants/data-types.ts"/>
 import { TestBed, getTestBed, async, inject } from '@angular/core/testing';
 import { BaseRequestOptions, Response, HttpModule, Http, XHRBackend, ResponseOptions } from '@angular/http';
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { CharityService } from './charity.service';
-import { Charity } from '../constants/data-types';
+import { Charity, CharitySearchQuery, DefaultType, DefaultTarget } from '../constants/data-types';
 
 let testCharity1:Charity = {
   id: 1,
   register_id: 1,
   name: 'Test charity',
   description: 'Test description',
-  paypal: 'asdf'
+  paypal: 'asdf',
+  type: 'G',
+  target: 'C'
 };
 
 let testCharity2:Charity = {
@@ -17,7 +20,9 @@ let testCharity2:Charity = {
   register_id: 2,
   name: 'Test charity 2',
   description: 'Test description 2',
-  paypal: 'asdf'
+  paypal: 'asdf',
+  type: 'E',
+  target: 'E'
 };
 
 let testCharity3:Charity = {
@@ -25,8 +30,11 @@ let testCharity3:Charity = {
   register_id: 3,
   name: 'JSDF',
   description: 'ROFL',
-  paypal: 'asdf'
+  paypal: 'asdf',
+  type: 'H',
+  target: 'D'
 };
+
 
 describe('Charity service', () => {
   let mockBackend:MockBackend;
@@ -123,7 +131,7 @@ describe('Charity service', () => {
         (connection:MockConnection) => {
           connection.mockRespond(new Response(
             new ResponseOptions({
-                body: [testCharity1, testCharity2]
+                body: []
               }
             )));
         });
@@ -145,20 +153,38 @@ describe('Charity service', () => {
             )));
         });
       
-      charityService.search('Test').subscribe((charities:Charity[]) => {
+      let query:CharitySearchQuery = {
+        term: 'Test',
+        type: DefaultType,
+        target: DefaultTarget
+      };
+      charityService.search(query);
+      charityService.charities$.subscribe((charities:Charity[]) => {
         expect(charities.length).toBeDefined();
         expect(charities.length).toEqual(2);
         expect(charities[0]).toBe(testCharity1);
         expect(charities[1]).toBe(testCharity2);
       });
-      
-      charityService.search('JSDF').subscribe((charities:Charity[]) => {
-        expect(charities.length).toBeDefined();
-        expect(charities.length).toEqual(1);
-        expect(charities[0]).toBe(testCharity3);
-      });
-      
-      charityService.search('test').subscribe((charities:Charity[]) => {
+    })));
+  
+  it('should search for and return charities (empty case)',
+    async(inject([CharityService], (charityService:CharityService) => {
+      mockBackend.connections.subscribe(
+        (connection:MockConnection) => {
+          connection.mockRespond(new Response(
+            new ResponseOptions({
+                body: [testCharity1, testCharity2, testCharity3]
+              }
+            )));
+        });
+  
+      let query:CharitySearchQuery = {
+        term: 'test123123',
+        type: DefaultType,
+        target: DefaultTarget
+      };
+      charityService.search(query);
+      charityService.charities$.subscribe((charities:Charity[]) => {
         expect(charities.length).toBeDefined();
         expect(charities.length).toEqual(0);
       });

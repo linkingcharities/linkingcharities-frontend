@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
-  selector: 'signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css']
+  selector: 'login-small',
+  templateUrl: './login-small.component.html',
+  styleUrls: ['./login-small.component.css']
 })
 
-export class SignupComponent {
+export class LoginSmallComponent {
   username:String = null;
   password:String = null;
   isLoggedIn = false;
@@ -21,6 +21,6 @@ export class SignupComponent {
   }
   
   onSubmit():void {
-    this.authService.registerUser(this.username, this.password);
+    this.authService.userLogin(this.username, this.password);
   }
 }
