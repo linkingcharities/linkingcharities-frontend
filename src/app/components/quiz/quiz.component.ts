@@ -23,7 +23,10 @@ export class QuizPageComponent  {
       "option2":"chipmunk.png",\
        "option3":"squirrel.png" }]';
 
-  theHtmlString:string;
+  quiz1:string;
+  quiz2:string;
+  debug:string;
+  var questionLock=false;
 
   constructor(private elementRef:ElementRef) {
     this.initializeQuiz();
@@ -43,7 +46,7 @@ export class QuizPageComponent  {
       // var questionBank=new Array();
       // var stage="#game1";
       var stage2=new Object;
-      var questionLock=false;
+      
       var numberOfQuestions:number;
       var score=0;
 
@@ -59,14 +62,12 @@ export class QuizPageComponent  {
       // alert(questionBank);
 
 
-      this.theHtmlString = '<div class = "questionText">' + questions[0].question + '</div>\
+      this.quiz1 = '<div class = "questionText">' + questions[0].question + '</div>\
         <div id="1" class="pix"><img src="'+questions[0].option1+'"></div>\
         <div id="2" class="pix"><img src="'+questions[0].option2+'"></div>\
         <div id="3" class="pix"><img src="'+questions[0].option3+'"></div>';
 
-      var x = this.elementRef.nativeElement.querySelectorAll('.pix');
-      console.log(x);
-      console.log(x.length);
+
 
       // .addEventListener("click", function(){
       //     alert("HOLA");
@@ -87,5 +88,9 @@ export class QuizPageComponent  {
       //     //setTimeout(function(){changeQuestion()},1000); 
       // }})
 
+  }
+
+  ngAfterViewInit() {
+      var x = this.elementRef.nativeElement.querySelectorAll('.pix');
   }
 }
