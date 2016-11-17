@@ -4,20 +4,7 @@
     border-bottom: 1px solid #E5E5E5;
 }
 
-.selector-large {
-    display: none;
-}
-
-.selector-mobile {
-    display: block;
-}
-
-@media screen and (min-width: 992px) {
-    .selector-large {
-        display: block;
-    }
-
-    .selector-mobile {
-        display: none;
-    }
+.dropdown-menu {
+    width: 100%;
+    font-size: 15px;
 }

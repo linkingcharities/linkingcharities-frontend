@@ -7,39 +7,29 @@
         </div>
 
         <div class="col-md-4 col-xs-12">
-            <div class="dropdown selector-large">
-                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                    {{ searchQuery.type.full }}
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a (click)="clear('type')">CLEAR</a></li>
-                    <li *ngFor="let charityType of charityTypes">
-                        <a (click)="modifyType(charityType)" href="javascript:void(0)">{{charityType.full}}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="selector-mobile">
-                Mobile Type
-            </div>
+            <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-expanded="false">
+                {{ searchQuery.type.full }}
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a (click)="clear('type')">CLEAR</a></li>
+                <li *ngFor="let charityType of charityTypes">
+                    <a (click)="modifyType(charityType)">{{charityType.full}}</a>
+                </li>
+            </ul>
         </div>
 
         <div class="col-md-4 col-xs-12">
-            <div class="dropdown selector-large">
-                <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown"
-                        aria-expanded="false">
-                    {{ searchQuery.target.full }}
-                    <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                    <li><a (click)="clear('target')">CLEAR</a></li>
-                    <li *ngFor="let charityTarget of charityTargets">
-                        <a (click)="modifyTarget(charityTarget)" href="javascript:void(0)">{{charityTarget.full}}</a>
-                    </li>
-                </ul>
-            </div>
-            <div class="selector-mobile">
-                Mobile Target
-            </div>
+            <button class="btn btn-primary btn-block dropdown-toggle" type="button" data-toggle="dropdown"
+                    aria-expanded="false">
+                {{ searchQuery.target.full }}
+                <span class="caret"></span></button>
+            <ul class="dropdown-menu">
+                <li><a (click)="clear('target')">CLEAR</a></li>
+                <li *ngFor="let charityTarget of charityTargets">
+                    <a (click)="modifyTarget(charityTarget)">{{charityTarget.full}}</a>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

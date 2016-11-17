@@ -55,7 +55,9 @@ export class AuthService {
         
         // Redirect the user
         this.router.navigate([redirect]);
-      }).catch();
+      }).catch((err:Error) => {
+      this.toasterService.pop('error', '', 'Login failed');
+    });
   }
   
   registerUser(username:String, password:String) {
@@ -63,19 +65,20 @@ export class AuthService {
       {account: {username: username, password: password}})
       .toPromise()
       .then((res:Response) => {
-        //user is logged in after successful signup
         localStorage.setItem("user", username.toString());
         this.toasterService.pop('success', '', 'Signup successful');
         this.isLoggedIn();
-  
+        
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
         let redirect = this.redirectUrl ? this.redirectUrl : '/home';
         redirect = this.router.url != '/login' ? this.router.url : redirect;
-  
+        
         // Redirect the user
         this.router.navigate([redirect]);
-      }).catch();
+      }).catch((err:Error) => {
+      this.toasterService.pop('error', '', 'Login failed');
+    });
   }
   
   isCharity() {
@@ -152,6 +155,7 @@ export class AuthService {
       this.router.navigate([redirect]);
     } else if (resp.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
+      this.toasterService.pop('error', '', 'Login not authorised');
       console.log("The person is not authorized to login.");
       
     } else {
