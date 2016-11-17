@@ -9,7 +9,9 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
-import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
+import { QuizPageComponent } from './components/quiz/quiz.component';
+import { QuizQuestionComponent } from './components/quiz-question/quiz-question.component';
+import { QuizService } from './services/quiz.service';
 import { AppComponent } from './app.component';
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityService } from './services/charity.service';
@@ -38,7 +40,8 @@ import { ProtectedDirective } from './directives/protected.directive';
   declarations: [
     HomePageComponent,
     AboutPageComponent,
-    ProjectsPageComponent,
+    QuizPageComponent,
+    QuizQuestionComponent,
     AppComponent,
     LoginComponent,
     SignupComponent,
@@ -55,7 +58,7 @@ import { ProtectedDirective } from './directives/protected.directive';
     LoginSmallComponent,
     ProtectedDirective
   ],
-  providers: [CharityService, AuthService, ToasterService, AppStateService],
+  providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
