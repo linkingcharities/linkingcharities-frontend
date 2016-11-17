@@ -16,6 +16,13 @@ export class Charity {
   target:string;
 }
 
+export class Question {
+  question:string;
+  option1:string;
+  option2:string;
+  option3:string;
+}
+
 export const Charity_Target = {
   'C': 'Children / Young People',
   'E': 'Elderly / Old People',

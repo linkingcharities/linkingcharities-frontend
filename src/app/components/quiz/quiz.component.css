@@ -1,0 +1,45 @@
+#navContent{
+  margin:auto; 
+  width:800px;
+  height:400px;
+  position:relative;
+  overflow:hidden;
+}
+
+#game1{
+  margin:auto;
+  width:800px;
+  height:400px;
+  right:0px;
+  position:absolute;
+}
+
+#game2{
+  margin:auto; 
+  width:800px;
+  height:400px;
+  right:-800px;
+  position:absolute;
+}
+
+.questionText{
+  font-size:18px;
+  color:#FFF;
+}
+
+.pix{
+  width:80px;
+  height:80px;
+  margin:15px;
+  float:left;
+  border: 5px solid white;
+  cursor:pointer;
+}
+
+.pix:hover{
+  border:#FC0 solid 5px;
+}
+
+.spacer{
+  height:30px;
+}
