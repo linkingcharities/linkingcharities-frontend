@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'thank-you',
@@ -8,11 +8,17 @@ import { Router } from '@angular/router';
 })
 
 export class ThankYouComponent implements OnInit {
+
+  business:string = null;
+  amount:string = null;
   
-  constructor(private router:Router){}
+  constructor(private router:Router,
+              private ar:ActivatedRoute){}
 
   ngOnInit():void {
-    
+//    this.business = window.location.search().business;
+//    this.amount = window.location.search().amount;
+    console.log(this.ar.params);
   }
 
   goHome():void {
