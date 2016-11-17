@@ -23,7 +23,7 @@ export class QuizService {
 
   private questions:Question[];
   private count:number;
-  private current_question:number = 0;
+  private current_question:number;
   private choices:string;
 
   constructor(private http:Http) {
@@ -53,6 +53,7 @@ export class QuizService {
     //   .then((res:Response) => {
     //     let q = res.json() as Question[];
     //     this.count = this.questions.length;
+    //    this.current_question = 0;
     //    this.choices = "Result: ";
     //     this.nextQuestion();
     //   })
@@ -62,6 +63,7 @@ export class QuizService {
      let q = JSON.parse(this.sample_data) as Question[];
      this.questions = q;
      this.count = this.questions.length;
+     this.current_question = 0;
      this.choices = "Redirect to a category of charities? TBC. Choices made: ";
      this.nextQuestion();
 

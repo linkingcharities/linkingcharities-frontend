@@ -34,7 +34,6 @@ export class QuizQuestionComponent implements OnInit {
       .subscribe(result => {
         this.result = result;
       });    
-    // this.initializeQuiz();
   }
 
   ngOnInit():void {
