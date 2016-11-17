@@ -25,14 +25,13 @@ export class QuizService {
   private questions:Question[];
   private count:number;
   private current_question:number = 0;
+  private choices:string;
 
   constructor(private http:Http) {
   }
-  
-  // private questionsSource = new Subject<Question[]>();
-  // questions$ = this.questionsSource.asObservable();
 
-  //Create a resultSource as well and do the calculation here.
+  private resultSource = new Subject<string>();
+  result$ = this.resultSource.asObservable();  
 
   private questionSource = new Subject<string>();
   question$ = this.questionSource.asObservable();
@@ -54,7 +53,9 @@ export class QuizService {
     //   .toPromise()
     //   .then((res:Response) => {
     //     let q = res.json() as Question[];
-    //     this.questionSource.next(questions);
+    //     this.count = this.questions.length;
+    //    this.choices = "Result: ";
+    //     this.nextQuestion();
     //   })
     //   .catch(this.handleError);
 
@@ -62,6 +63,7 @@ export class QuizService {
      let q = JSON.parse(this.sample_data) as Question[];
      this.questions = q;
      this.count = this.questions.length;
+     this.choices = "Result: ";
      this.nextQuestion();
 
   }
@@ -78,9 +80,15 @@ export class QuizService {
      } else {
        this.questionSource.next(null);
        this.optionsSource.next(null);
+       this.resultSource.next(this.choices);
      }
      this.current_question++;
+  }
 
+  calculateResult(choice:number) {
+    //TODO: Some calculations which redirects to a list of charities?
+    console.log(choice);
+    this.choices += choice;
   }
 
   // Error handliing

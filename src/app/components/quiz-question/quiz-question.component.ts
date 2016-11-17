@@ -13,9 +13,11 @@ export class QuizQuestionComponent implements OnInit {
   // @Input() question:Questions;
   question:string;
   options:string[] = [];
+  result:string;
   
   private questionSubscription:any;
   private optionsSubscription:any;
+  private resultSubscription:any;
 
   constructor(private quizService:QuizService) {
     this.questionSubscription = this.quizService.question$
@@ -27,6 +29,11 @@ export class QuizQuestionComponent implements OnInit {
       .subscribe(options => {
         this.options = options;
       });
+
+    this.resultSubscription = this.quizService.result$
+      .subscribe(result => {
+        this.result = result;
+      });    
     // this.initializeQuiz();
   }
 
@@ -39,7 +46,8 @@ export class QuizQuestionComponent implements OnInit {
     this.optionsSubscription.unsubscribe();
   }
 
-  nextQuestion(){
+  nextQuestion(choice:number){
+    this.quizService.calculateResult(choice);
     this.quizService.nextQuestion();
   }
 }
