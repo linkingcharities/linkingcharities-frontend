@@ -13,14 +13,14 @@ export class QuizService {
    "option1":"https://cdn.meme.am/images/80x80/7727258.jpg",\
     "option2":"http://aromatherapy-courses.co.uk/wp-content/uploads/2013/04/Elderly-Care-80x80.jpg",\
      "option3":"http://cdn1.twinfinite.net/wp-content/uploads/2016/01/pikachu-80x80.png" },\
-   { "question":"Which picture shows a labrador?",\
-    "option1":"labrador.png",\
-     "option2":"beagle.png",\
-      "option3":"poodle.png" },\
-    { "question":"Which picture shows a meerkat?",\
-     "option1":"meerkat.png",\
-      "option2":"chipmunk.png",\
-       "option3":"squirrel.png" }]';
+   { "question":"Which image appeals to you most?",\
+    "option1":"http://aftlc.com/wp-content/uploads/2014/10/itc-activity-firstaid-80x80.jpg",\
+     "option2":"http://ensuretech.com/wp-content/uploads/2011/07/healthcare-thumbnail-clinics.jpg",\
+      "option3":"http://www.psypokes.com/dex/picdex/platinum_shiny_female/025_2.png" },\
+    { "question":"Which do you think weights the most",\
+     "option1":"https://thumb-tf.s3.envato.com/files/213731534/thumbnail.jpg",\
+      "option2":"https://thebirthinginn.com/wp-content/uploads/2016/02/African-American-Newborn-Baby-450sq-80x80.jpg",\
+       "option3":"http://media.cutimes.com/cutimes/article/2016/11/09/trump-crop-80x80.jpg" }]';
 
   private questions:Question[];
   private count:number;
