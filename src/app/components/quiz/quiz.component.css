@@ -6,39 +6,6 @@
   overflow:hidden;
 }
 
-#quiz1{
-  margin:auto;
-  width:800px;
-  height:400px;
-  right:0px;
-  position:absolute;
-}
-
-#quiz2{
-  margin:auto; 
-  width:800px;
-  height:400px;
-  right:-800px;
-  position:absolute;
-}
-
-.questionText{
-  font-size:18px;
-  color:#FFF;
-}
-
 .spacer{
   height:30px;
 }
-
-:host >>> .pix {
-      margin:15px;
-      float:left;
-      border: 5px solid white;
-      cursor:pointer; 
-    }
-
-:host >>> .pix:hover { 
-       border:#FC0 solid 5px;
-     }
-
