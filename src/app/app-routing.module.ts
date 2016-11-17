@@ -7,6 +7,7 @@ import { AboutPageComponent } from './components/about-page/about-page.component
 import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
+import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
@@ -17,6 +18,7 @@ const routes:Routes = [
   {path: 'about', component: AboutPageComponent},
   {path: 'detail/:id', component: CharityDetailComponent},
   {path: 'charities', component: CharitiesComponent},
+  {path: 'thank-you', component: ThankYouComponent},
   {
     path: 'projects',
     component: ProjectsPageComponent,
