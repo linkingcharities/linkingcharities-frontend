@@ -1,0 +1,21 @@
+<div class="container-fluid text-center">
+    <form class="form-horizontal" (submit)="onSubmit()">
+        <fieldset>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input type="text" class="form-control" id="username" required
+                           [(ngModel)]="username"
+                           name="username" placeholder="User name">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-xs-12">
+                    <input type="password" class="form-control" id="password" required
+                           [(ngModel)]="password"
+                           name="password" placeholder="Password">
+                </div>
+            </div>
+        </fieldset>
+        <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+</div>

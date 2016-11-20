@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { myToasterConfig } from './constants/toaster-config';
 import { ToasterConfig } from 'angular2-toaster/angular2-toaster';
 

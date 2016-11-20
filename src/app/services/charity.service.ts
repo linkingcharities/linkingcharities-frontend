@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Charity } from '../constants/data-types';
+import { Charity, CharitySearchQuery } from '../constants/data-types';
 import { API_URL } from '../constants/config';
-import { Subject, Observable } from 'rxjs/Rx';
+import { Subject } from 'rxjs/Rx';
 
 @Injectable()
 export class CharityService {
@@ -36,23 +36,28 @@ export class CharityService {
   }
   
   getCharity(id:number) {
-    this.http.get(API_URL + '/charities', this.getOptions())
+    this.http.get(API_URL + '/charities?id=' + id, this.getOptions())
       .toPromise()
       .then((res:Response) => {
         let charities = res.json() as Charity[];
-        this.charitySource.next(charities.find(charity => charity.id === id));
+        this.charitySource.next(charities[0]);
       })
       .catch(this.handleError);
   }
   
-  search(term:string):Observable<Charity[]> {
+  search(searchQuery:CharitySearchQuery) {
     // This will work for now but obviously a filtered route is preferred going forward
-    return this.http.get(API_URL + '/charities', this.getOptions())
-      .map((res:Response) => {
-          let charities = res.json() as Charity[];
-          return charities.filter(charity => charity.name.includes(term));
-        }
-      );
+    const serverQuery = API_URL + `/charities?`
+      + `type=${searchQuery.type.short}&`
+      + `target=${searchQuery.target.short}`;
+    return this.http.get(serverQuery, this.getOptions())
+      .toPromise()
+      .then((res:Response) => {
+        let charities = res.json() as Charity[];
+        let filtered = charities.filter(charity => charity.name.toLowerCase().includes(searchQuery.term.toLowerCase()));
+        this.charitiesSource.next(filtered);
+      })
+      .catch(this.handleError);
   }
   
   // delete(id:number):Promise<void> {

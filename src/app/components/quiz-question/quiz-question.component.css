@@ -1,0 +1,15 @@
+.option {
+      margin:15px;
+      float:left;
+      border: 5px solid white;
+      cursor:pointer; 
+    }
+
+.option:hover { 
+       border:#FC0 solid 5px;
+     }
+
+#question {
+  font-size:18px;
+  color:#000;
+}

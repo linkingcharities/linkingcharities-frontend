@@ -9,7 +9,9 @@ import { HomePageComponent } from './components/home-page/home-page.component';
 import { LoginComponent } from './components/login/login.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
-import { ProjectsPageComponent } from './components/projects-page/projects-page.component';
+import { QuizPageComponent } from './components/quiz/quiz.component';
+import { QuizQuestionComponent } from './components/quiz-question/quiz-question.component';
+import { QuizService } from './services/quiz.service';
 import { AppComponent } from './app.component';
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityService } from './services/charity.service';
@@ -24,6 +26,8 @@ import { CharitySearchComponent } from './components/charity-search/charity-sear
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { AppStateService } from './services/app-state.service';
 import { CharityGridComponent } from './components/charity-grid/charity-grid.component';
+import { LoginSmallComponent } from './components/login-small/login-small.component';
+import { ProtectedDirective } from './directives/protected.directive';
 
 @NgModule({
   imports: [
@@ -36,7 +40,8 @@ import { CharityGridComponent } from './components/charity-grid/charity-grid.com
   declarations: [
     HomePageComponent,
     AboutPageComponent,
-    ProjectsPageComponent,
+    QuizPageComponent,
+    QuizQuestionComponent,
     AppComponent,
     LoginComponent,
     SignupComponent,
@@ -49,9 +54,11 @@ import { CharityGridComponent } from './components/charity-grid/charity-grid.com
     CarouselComponent,
     FacebookLoginComponent,
     CharitySearchComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    LoginSmallComponent,
+    ProtectedDirective
   ],
-  providers: [CharityService, AuthService, ToasterService, AppStateService],
+  providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

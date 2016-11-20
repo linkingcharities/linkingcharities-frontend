@@ -1,53 +1,59 @@
 <header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3 col-sm-12 menu-logo-area">
-                <div class="menu-logo-pos">
-                    <span>
-                    <img src="logo.png" width="80px" height="80px">
-                    <span class="menu-logo-text">
-                        ChariLink
-                    </span>
-                    </span>
-                </div>
-            </div>
-            <div class="col-md-9 main-menu-area">
-                <div class="main-menu-pos">
-                    <div class="main-menu">
-                        <nav>
-                            <ul class="nav navbar-nav">
-                                <li class="main-menu-button">
-                                    <a routerLink="/home">Home</a>
-                                </li>
-                                <li class="main-menu-button">
-                                    <a routerLink="/about">About</a>
-                                </li>
-                                <li class="main-menu-button">
-                                    <a routerLink="/projects">Projects</a>
-                                </li>
-                                <li class="main-menu-button">
-                                    <a routerLink="/charities">Charities</a>
-                                </li>
-                            </ul>
-                        </nav>
+    <div [ngClass]="{'fixed-top':fixedHeader}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-sm-12 menu-logo-area">
+                    <div class="menu-logo-pos">
+                        <a routerLink="/home">
+                            <img src="logo.png" width="191px" height="80px">
+                        </a>
                     </div>
-                    <div class="login-register">
-                        <nav>
-                            <ul class="nav navbar-nav">
-                                <li routerLinkActive="active" *ngIf="!isLoggedIn">
-                                    <a routerLink="/signup">Sign up</a>
-                                </li>
-                                <li *ngIf="!isLoggedIn" class="login-button">
-                                    <a routerLink="/login">Login</a>
-                                </li>
-                                <li routerLinkActive="active" *ngIf="!isLoggedIn">
-                                    <facebook-login></facebook-login>
-                                </li>
-                                <li *ngIf="isLoggedIn">
-                                    <a (click)="logout()">Logout</a>
-                                </li>
-                            </ul>
-                        </nav>
+                </div>
+                <div class="col-md-9 main-menu-area">
+                    <div class="main-menu-pos">
+                        <div class="main-menu">
+                            <nav>
+                                <ul class="nav navbar-nav">
+                                    <li class="main-menu-button">
+                                        <a routerLink="/home">Home</a>
+                                    </li>
+                                    <li class="main-menu-button">
+                                        <a routerLink="/about">About</a>
+                                    </li>
+                                    <li class="main-menu-button">
+                                        <a routerLink="/quiz">Quiz</a>
+                                    </li>
+                                    <li class="main-menu-button">
+                                        <a routerLink="/charities">Charities</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="login-register">
+                            <nav>
+                                <ul class="nav navbar-nav">
+                                    <li routerLinkActive="active" *ngIf="!isLoggedIn">
+                                        <a routerLink="/signup">Sign up</a>
+                                    </li>
+                                    <!--<li *ngIf="!isLoggedIn" class="login-button">-->
+                                    <!--<a routerLink="/login">Login</a>-->
+                                    <!--</li>-->
+                                    <li *ngIf="!isLoggedIn" class="dropdown login-button">
+                                        <a class="dropdown-toggle" data-toggle="dropdown"
+                                           aria-expanded="false">
+                                            Login
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <facebook-login></facebook-login>
+                                            <login-small></login-small>
+                                        </ul>
+                                    </li>
+                                    <li *ngIf="isLoggedIn">
+                                        <a (click)="logout()">Logout</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -81,7 +87,7 @@
                                 <a routerLink="/about">About</a>
                             </li>
                             <li>
-                                <a routerLink="/projects">Projects</a>
+                                <a routerLink="/quiz">Quiz</a>
                             </li>
                             <li>
                                 <a routerLink="/charities">Charities</a>

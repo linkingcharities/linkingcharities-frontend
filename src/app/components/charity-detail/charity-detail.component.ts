@@ -42,7 +42,7 @@ export class CharityDetailComponent implements OnInit {
      '&currency_code=' + this.currency_code + 
      '&amount=' + this.amount + 
      '&item_name=testing' +
-     '&return=' + 'http://' + window.location.hostname + ':8080/thank-you' + 
+     '&return=' + 'http://' + window.location.hostname + '/thank-you' + 
      '&rm=1' + 
      '&showHostedThankyouPage=false');
   }
