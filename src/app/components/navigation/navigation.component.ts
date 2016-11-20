@@ -38,5 +38,9 @@ export class NavigationComponent implements OnInit {
     this.authService.logout();
     // this.router.navigate(['/home']);
   }
+
+  profile():void {
+    this.router.navigate(['/charity-form']);
+  }
   
 }

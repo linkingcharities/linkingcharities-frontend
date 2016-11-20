@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { CharityService } from '../../services/charity.service';
 import { AuthService } from '../../services/auth.service';
-
+import { Router } from '@angular/router';
+import { CharityType, CharityTypes, 
+         CharityTarget, CharityTargets} from '../../constants/data-types';
 
 @Component({
   selector: 'charity-form',
@@ -10,13 +12,22 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class CharityFormComponent {
+  username:string = null;
+  password:string = null;
   name:string = null;
   register_id:number = null;
+  type:CharityType = null;
+  target:CharityTarget = null;
+  paypal:string = null;
   description:string = null;
   isCharity:boolean = false;
+
+  charityTargets:CharityTarget[] = CharityTargets;
+  charityTypes:CharityType[] = CharityTypes;
   
   constructor(private charityService:CharityService,
-              private authService:AuthService) {
+              private authService:AuthService,
+              private router:Router) {
     authService.charity$.subscribe(
       isCharity => this.isCharity = isCharity
     );
@@ -37,4 +48,9 @@ export class CharityFormComponent {
       () => this.charityService.getCharities()
     );
   }
+ 
+  createUserAccount():void {
+    this.router.navigate(['/signup']);
+  }
+
 }

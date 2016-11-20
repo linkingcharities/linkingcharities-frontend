@@ -66,7 +66,7 @@ export class AuthService {
       .toPromise()
       .then((res:Response) => {
         localStorage.setItem("user", username.toString());
-        this.toasterService.pop('success', '', 'Signup successful');
+        this.toasterService.pop('success', '', 'Donor signup successful');
         this.isLoggedIn();
         
         // Get the redirect URL from our auth service
@@ -77,8 +77,27 @@ export class AuthService {
         // Redirect the user
         this.router.navigate([redirect]);
       }).catch((err:Error) => {
-      this.toasterService.pop('error', '', 'Login failed');
+      this.toasterService.pop('error', '', 'Donor register failed');
     });
+  }
+
+  registerCharity(username:String, password:String, paypal:String, description:String){
+    this.http.post(API_URL + '/charity/register',
+      {account: {username: username, password: password}, 
+        paypal: paypal, description: description})
+      .toPromise()
+      .then((res:Response) => {
+        localStorage.setItem("user", username.toString());
+        this.toasterService.pop('success', '', 'Charity signup successful');
+        this.isLoggedIn();
+        
+        let redirect = this.redirectUrl ? this.redirectUrl : '/home';
+        redirect = this.router.url != '/login' ? this.router.url : redirect;
+   
+        this.router.navigate([redirect]);
+      }).catch((err:Error) => {
+        this.toasterService.pop('error', '', 'Charity register failed.');
+      });
   }
   
   isCharity() {

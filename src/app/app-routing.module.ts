@@ -6,6 +6,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { AboutPageComponent } from './components/about-page/about-page.component';
 import { QuizPageComponent } from './components/quiz/quiz.component';
 import { CharitiesComponent } from './components/charities/charities.component';
+import { CharityFormComponent } from './components/charity-form/charity-form.component'
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { AuthGuard } from './services/auth-guard.service';
@@ -18,6 +19,7 @@ const routes:Routes = [
   {path: 'about', component: AboutPageComponent},
   {path: 'detail/:id', component: CharityDetailComponent},
   {path: 'charities', component: CharitiesComponent},
+  {path: 'charity-form', component: CharityFormComponent},
   {path: 'thank-you', component: ThankYouComponent},
   {
     path: 'quiz',
