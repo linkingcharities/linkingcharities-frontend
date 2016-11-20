@@ -15,7 +15,7 @@ export class NavigationComponent implements OnInit {
   
   @HostListener('window:scroll', ['$event'])
   fixHeader(event:any) {
-    this.fixedHeader = (document.body.scrollTop > 0);
+    //this.fixedHeader = (document.body.scrollTop > 0);
   }
   
   constructor(private router:Router,
