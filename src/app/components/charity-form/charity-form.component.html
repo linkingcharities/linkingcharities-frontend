@@ -32,16 +32,30 @@
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    <select [(ngModel)]="type" name="type">
-                        <option *ngFor="let type of charityTypes" value={{type.short}}>{{type.full}}</option>
-                    </select>
+                    <button class="btn btn-primary btn-block dropdown-toggle" 
+                            type="button" data-toggle="dropdown"
+                            aria-expanded="false">
+                    Charity type
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let type of charityTypes">
+                            <a (click)="modifyType(type)">{{type.full}}</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
-                    <select [(ngModel)]="target" name="target">
-                        <option *ngFor="let target of charityTargets" value={{target.short}}>{{target.full}}</option>
-                    </select>
+                    <button class="btn btn-primary btn-block dropdown-toggle" 
+                            type="button" data-toggle="dropdown"
+                            aria-expanded="false">
+                    Charity target
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let target of charityTargets">
+                            <a (click)="modifyTarget(target)">{{target.full}}</a>
+                        </li>    
+                    </ul>
                 </div>
             </div>
             <div class="form-group">

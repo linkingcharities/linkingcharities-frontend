@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { CharityType, CharityTypes, 
          CharityTarget, CharityTargets} from '../../constants/data-types';
 
+
 @Component({
   selector: 'charity-form',
   templateUrl: './charity-form.component.html',
@@ -38,19 +39,35 @@ export class CharityFormComponent {
   }
   
   onSubmit():void {
-    let data = JSON.stringify({
+    let data = {
+      username: this.username,
+      password: this.password,
       name: this.name,
       register_id: this.register_id,
-      description: this.description
-    });
+      description: this.description,
+      type: this.type.short,
+      target: this.target.short,
+      paypal: this.paypal
+    };
     
-    this.charityService.create(data).then(
+    this.authService.registerCharity(data);
+
+    /* this.charityService.create(data).then(
       () => this.charityService.getCharities()
-    );
+    ); */
+
   }
  
   createUserAccount():void {
     this.router.navigate(['/signup']);
+  }
+
+  modifyTarget(target:CharityTarget):void {
+    this.target = target;
+  }
+
+  modifyType(type:CharityType):void {
+    this.type = type;
   }
 
 }
