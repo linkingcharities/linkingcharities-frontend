@@ -9,6 +9,7 @@ import 'reflect-metadata';
 import 'rxjs';
 import 'jquery';
 import 'bootstrap';
+import 'chart.js';
 import '../node_modules/angular2-toaster/lib/toaster.css';
 import './meanmenu.min.css';
 import './styles.css';

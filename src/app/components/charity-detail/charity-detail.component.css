@@ -11,6 +11,11 @@
     font-weight: 800;
 }
 
+.chart-area {
+    width: 500px;
+    height: 500px;
+}
+
 @media (max-width: 768px) {
     .banner-text > h3 {
         font-size: 25px;

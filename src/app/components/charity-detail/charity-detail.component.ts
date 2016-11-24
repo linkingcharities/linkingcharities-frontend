@@ -17,7 +17,17 @@ export class CharityDetailComponent implements OnInit {
   amount:number = 1.00;
   currency_code:string = 'USD';
   isLoggedIn = false;
-
+  
+  
+  // Sample chart data
+  // Alternatively this formatting could be shifted inside the chart
+  chartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  chartData:any[] = [
+    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
+    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+  ];
+  chartTitle:string = "Some fancy chart";
+  
   private subscription:any;
   
   constructor(private charityService:CharityService,
@@ -27,6 +37,7 @@ export class CharityDetailComponent implements OnInit {
               private authService:AuthService) {
     this.subscription = this.charityService.charity$
       .subscribe(charity => {
+        // At this point, additional information about the charity should be loaded
         this.charity = charity
       });
     this.subscription = this.authService.login$
@@ -51,14 +62,14 @@ export class CharityDetailComponent implements OnInit {
     console.log(window.location.hostname);
     console.log("Submit form", this.amount);
     // Does the redirect
-     window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?&cmd=_xclick&business='     + this.charity.paypal + 
-     '&currency_code=' + this.currency_code + 
-     '&amount=' + this.amount + 
-     '&item_name=' +
-     username +
-     '&return=' + 'http://' + window.location.hostname + ':8000/api/make_payment' + 
-     '&rm=2' + 
-     '&showHostedThankyouPage=false');
+    window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?&cmd=_xclick&business=' + this.charity.paypal +
+      '&currency_code=' + this.currency_code +
+      '&amount=' + this.amount +
+      '&item_name=' +
+      username +
+      '&return=' + 'http://' + window.location.hostname + ':8000/api/make_payment' +
+      '&rm=2' +
+      '&showHostedThankyouPage=false');
   }
   
   // save():void {

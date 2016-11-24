@@ -28,6 +28,8 @@ import { AppStateService } from './services/app-state.service';
 import { CharityGridComponent } from './components/charity-grid/charity-grid.component';
 import { LoginSmallComponent } from './components/login-small/login-small.component';
 import { ProtectedDirective } from './directives/protected.directive';
+import { ChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 
 @NgModule({
   imports: [
@@ -35,7 +37,8 @@ import { ProtectedDirective } from './directives/protected.directive';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ToasterModule
+    ToasterModule,
+    ChartsModule
   ],
   declarations: [
     HomePageComponent,
@@ -56,7 +59,8 @@ import { ProtectedDirective } from './directives/protected.directive';
     CharitySearchComponent,
     PageNotFoundComponent,
     LoginSmallComponent,
-    ProtectedDirective
+    ProtectedDirective,
+    BarChartComponent
   ],
   providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
   bootstrap: [AppComponent]
