@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { Charity } from '../../constants/data-types';
 import { CharityService } from '../../services/charity.service';
 import { Http } from '@angular/http';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'charity-detail',
@@ -15,17 +16,22 @@ export class CharityDetailComponent implements OnInit {
   charity:Charity;
   amount:number = 1.00;
   currency_code:string = 'USD';
-  
+  isLoggedIn = false;
+
   private subscription:any;
   
   constructor(private charityService:CharityService,
               private route:ActivatedRoute,
               private http:Http,
-              private location:Location) {
+              private location:Location,
+              private authService:AuthService) {
     this.subscription = this.charityService.charity$
       .subscribe(charity => {
         this.charity = charity
       });
+    authService.login$.subscribe(
+        isLoggedIn => this.isLoggedIn = isLoggedIn
+    );
   }
   
   ngOnInit():void {
@@ -36,12 +42,16 @@ export class CharityDetailComponent implements OnInit {
   }
   
   onSubmit():void {
+    let username = localStorage.getItem("user");
+    let userData = this.isLoggedIn ? '&username=' + username : '';
+    console.log(userData);
     console.log("Submit form", this.amount);
     // Does the redirect
-    window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?&cmd=_xclick&business='           + this.charity.paypal + 
+     window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?&cmd=_xclick&business='     + this.charity.paypal + 
      '&currency_code=' + this.currency_code + 
      '&amount=' + this.amount + 
      '&item_name=testing' +
+     userData +
      '&return=' + 'http://' + window.location.hostname + '/thank-you' + 
      '&rm=1' + 
      '&showHostedThankyouPage=false');
