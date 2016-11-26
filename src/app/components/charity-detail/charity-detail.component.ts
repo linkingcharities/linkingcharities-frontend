@@ -29,9 +29,10 @@ export class CharityDetailComponent implements OnInit {
       .subscribe(charity => {
         this.charity = charity
       });
-    authService.login$.subscribe(
-        isLoggedIn => this.isLoggedIn = isLoggedIn
-    );
+    this.subscription = this.authService.login$
+      .subscribe(isLoggedIn => {
+        this.isLoggedIn = isLoggedIn
+      });
   }
   
   ngOnInit():void {
@@ -43,17 +44,20 @@ export class CharityDetailComponent implements OnInit {
   
   onSubmit():void {
     let username = localStorage.getItem("user");
-    let userData = this.isLoggedIn ? '&username=' + username : '';
-    console.log(userData);
+    if (!username) {
+      username = "donation";
+    }
+    console.log(this.isLoggedIn);
+    console.log(window.location.hostname);
     console.log("Submit form", this.amount);
     // Does the redirect
      window.open('https://www.sandbox.paypal.com/cgi-bin/webscr?&cmd=_xclick&business='     + this.charity.paypal + 
      '&currency_code=' + this.currency_code + 
      '&amount=' + this.amount + 
-     '&item_name=testing' +
-     userData +
-     '&return=' + 'http://' + window.location.hostname + '/thank-you' + 
-     '&rm=1' + 
+     '&item_name=' +
+     username +
+     '&return=' + 'http://' + window.location.hostname + ':8000/api/make_payment' + 
+     '&rm=2' + 
      '&showHostedThankyouPage=false');
   }
   
