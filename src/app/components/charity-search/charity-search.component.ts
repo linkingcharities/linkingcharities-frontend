@@ -24,14 +24,11 @@ export class CharitySearchComponent implements OnInit {
   private prevTerm:string = null;
   charityTargets:CharityTarget[] = CharityTargets;
   charityTypes:CharityType[] = CharityTypes;
-  searchQuery:CharitySearchQuery = {
-    term: '',
-    target: DefaultTarget,
-    type: DefaultType
-  };
+  searchQuery:CharitySearchQuery;
   
   constructor(private charityService:CharityService,
               private router:Router) {
+    this.searchQuery = charityService.prevQuery;
   }
   
   // Push a search term into the observable stream.

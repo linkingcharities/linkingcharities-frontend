@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Charity, CharitySearchQuery } from '../constants/data-types';
+import { Charity, CharitySearchQuery, DefaultType, DefaultTarget } from '../constants/data-types';
 import { API_URL } from '../constants/config';
 import { Subject } from 'rxjs/Rx';
 
@@ -16,6 +16,12 @@ export class CharityService {
   
   private charitySource = new Subject<Charity>();
   charity$ = this.charitySource.asObservable();
+  
+  prevQuery:CharitySearchQuery = {
+    term: '',
+    target: DefaultTarget,
+    type: DefaultType
+  };
   
   private getOptions():RequestOptions {
     let headers:Headers = new Headers();
@@ -56,6 +62,7 @@ export class CharityService {
         let charities = res.json() as Charity[];
         let filtered = charities.filter(charity => charity.name.toLowerCase().includes(searchQuery.term.toLowerCase()));
         this.charitiesSource.next(filtered);
+        this.prevQuery = searchQuery;
       })
       .catch(this.handleError);
   }

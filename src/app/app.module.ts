@@ -30,6 +30,7 @@ import { LoginSmallComponent } from './components/login-small/login-small.compon
 import { ProtectedDirective } from './directives/protected.directive';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   imports: [
@@ -60,7 +61,8 @@ import { BarChartComponent } from './components/bar-chart/bar-chart.component';
     PageNotFoundComponent,
     LoginSmallComponent,
     ProtectedDirective,
-    BarChartComponent
+    BarChartComponent,
+    ProfileComponent
   ],
   providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
   bootstrap: [AppComponent]

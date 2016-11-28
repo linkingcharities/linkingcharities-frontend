@@ -33,6 +33,10 @@ export class NavigationComponent implements OnInit {
     this.authService.isLoggedIn();
   }
   
+  profile():void {
+    this.router.navigate(['/profile']);
+  }
+  
   logout():void {
     this.authService.logoutViaFb();
     this.authService.logout();
