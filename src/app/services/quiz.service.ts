@@ -99,7 +99,7 @@ export class QuizService {
     //for sample data
      let q = JSON.parse(this.sample_data) as Question[];
      this.questions = q;
-     this.choices = "Redirect to a category of charities? TBC. Choices made: ";
+     this.choices = "Charity: ";
      this.nextQuestion("1"); //Start off with first question
 
   }
