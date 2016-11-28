@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'thank-you',
@@ -9,7 +10,8 @@ import { Router } from '@angular/router';
 
 export class ThankYouComponent implements OnInit {
   
-  constructor(private router:Router){}
+  constructor(private router:Router,
+    private authService:AuthService){}
 
   ngOnInit():void {
     
@@ -21,6 +23,10 @@ export class ThankYouComponent implements OnInit {
 
   moreCharities():void {
     this.router.navigate(['charities']);
+  }
+
+  shareFb():void {
+    this.authService.shareOnFb();
   }
 
 }
