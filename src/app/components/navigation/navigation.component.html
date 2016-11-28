@@ -49,7 +49,7 @@
                                         </ul>
                                     </li>
                                     <li *ngIf="isLoggedIn">
-                                        <a (click)="profile()">Profile</a>
+                                        <a (click)="profile()">{{ username }}</a>
                                     </li>
                                     <li *ngIf="isLoggedIn">
                                         <a (click)="logout()">Logout</a>

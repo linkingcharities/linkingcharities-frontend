@@ -6,6 +6,7 @@ import { User } from '../constants/data-types';
 import { Subject } from 'rxjs/Rx';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import { API_URL } from '../constants/config';
+import { isUndefined } from 'util';
 declare const FB:any;
 
 var users = [
@@ -27,14 +28,23 @@ export class AuthService {
   private charitySource = new Subject<boolean>();
   charity$ = this.charitySource.asObservable();
   
+  // To communicate username to components
+  private usernameSource = new Subject<string>();
+  userName$ = this.usernameSource.asObservable();
+  
   constructor(private http:Http,
               private router:Router,
               private toasterService:ToasterService) {
   }
   
   isLoggedIn() {
-    this.checkLogin = localStorage.getItem("user") !== null;
-    this.loginSource.next(localStorage.getItem("user") !== null);
+    var username = localStorage.getItem("username");
+    var userID = localStorage.getItem("userID");
+    this.checkLogin = username !== null || userID !== null;
+    this.loginSource.next(this.checkLogin);
+    if (username !== null && !isUndefined(username)) {
+      this.usernameSource.next(username);
+    }
   }
   
   userLogin(username:String, password:String) {
@@ -42,10 +52,9 @@ export class AuthService {
       , {username: username, password: password})
       .toPromise()
       .then((res:Response) => {
-        localStorage.setItem("user", username.toString());
+        localStorage.setItem("username", username.toString());
         localStorage.setItem("token", res.json());
         this.toasterService.pop('success', '', 'Login successful');
-        this.checkLogin = true;
         this.isLoggedIn();
         
         // Redirect the user
@@ -60,8 +69,9 @@ export class AuthService {
       {account: {username: username, password: password}})
       .toPromise()
       .then((res:Response) => {
-        localStorage.setItem("user", username.toString());
+        
         this.toasterService.pop('success', '', 'Donor signup successful');
+        localStorage.setItem("username", username.toString());
         this.isLoggedIn();
         
         // Get the redirect URL from our auth service
@@ -75,39 +85,41 @@ export class AuthService {
       this.toasterService.pop('error', '', 'Donor register failed');
     });
   }
- 
+  
   registerCharity(data:any) {
     this.http.post(API_URL + '/charity/register',
-      {account: {username: data['username'], password: data['password']}, 
-        paypal: data['paypal'], description: data['description']})
+      {
+        account: {username: data['username'], password: data['password']},
+        paypal: data['paypal'], description: data['description']
+      })
       .toPromise()
       .then((res:Response) => {
         console.log(data['type']);
-        this.http.post(API_URL + '/charities', 
-        { 
-          username: data['username'], 
-          name: data['name'], 
-          register_id: data['register_id'], 
-          target: data['target'],
-          type: data['type'],
-          paypal: data['paypal'],
-          description: data['description'],
-          total_income: data['total_income']
-         })
-        .toPromise()
-        .then((res:Response) => {
-          localStorage.setItem("user", data['username'].toString());
-          this.toasterService.pop('success', '', 'Charity signup successful');
-          this.isLoggedIn();
-
-          this.router.navigate(['/home']);
-        }).catch((err:Error) => {
+        this.http.post(API_URL + '/charities',
+          {
+            username: data['username'],
+            name: data['name'],
+            register_id: data['register_id'],
+            target: data['target'],
+            type: data['type'],
+            paypal: data['paypal'],
+            description: data['description'],
+            total_income: data['total_income']
+          })
+          .toPromise()
+          .then((res:Response) => {
+            localStorage.setItem("user", data['username'].toString());
+            this.toasterService.pop('success', '', 'Charity signup successful');
+            this.isLoggedIn();
+            
+            this.router.navigate(['/home']);
+          }).catch((err:Error) => {
           //May be customise the error info in the future?
           this.toasterService.pop('error', '', 'Charity register failed.')
         });
       }).catch((err:Error) => {
-        this.toasterService.pop('error', '', 'Charity register failed.');
-      });
+      this.toasterService.pop('error', '', 'Charity register failed.');
+    });
   }
   
   isCharity() {
@@ -115,7 +127,7 @@ export class AuthService {
   }
   
   logout() {
-    localStorage.removeItem("user");
+    localStorage.removeItem("username");
     localStorage.removeItem("charity");
     this.loginSource.next(false);
     this.charitySource.next(false);
@@ -136,7 +148,7 @@ export class AuthService {
   }
   
   setLoginAttributesFb(userID:string) {
-    localStorage.setItem("user", userID);
+    localStorage.setItem("userID", userID);
     localStorage.setItem("fb", 'true');
     this.isLoggedIn();
   }
@@ -147,7 +159,8 @@ export class AuthService {
       if (localStorage.getItem("fb") === 'true') {
         FB.logout(function (response:any) {
           localStorage.removeItem("fb");
-          // localStorage.removeItem("user");
+          localStorage.removeItem("userID");
+          // localStorage.removeItem("username");
           // this.loginSource.next(false);
           // this.toasterService.pop('success', '', 'Logout successful');
         });
@@ -175,6 +188,9 @@ export class AuthService {
       this.setLoginAttributesFb(resp.authResponse.userID);
       this.toasterService.pop('success', '', 'Login successful');
       
+      // Get username
+      this.getUsernameFb();
+      
       // Get the redirect URL from our auth service
       // If no redirect has been set, use the default
       let redirect = this.redirectUrl ? this.redirectUrl : '/home';
@@ -193,14 +209,23 @@ export class AuthService {
       console.log("The person is not logged into Facebook.");
     }
   }
-
+  
   shareOnFb() {
     FB.ui({
       method: 'share',
       quote: 'I HAVE JUST DONATED MONEY TO A CHARITY!',
       hashtag: '#charilink',
       href: '138.68.147.114/home',
-    }, function(response:any){});
+    }, function (response:any) {
+    });
+  }
+  
+  getUsernameFb() {
+    FB.api('/me', {fields: 'first_name'}, (resp:any) => {
+      console.log(resp);
+      localStorage.setItem("username", resp.first_name);
+      this.usernameSource.next(resp.first_name);
+    });
   }
   
   

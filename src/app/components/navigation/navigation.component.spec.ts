@@ -8,6 +8,9 @@ class AuthServiceStub {
   loginSource = new Subject<boolean>();
   login$ = this.loginSource.asObservable();
   
+  userNameSource = new Subject<string>();
+  userName$ = this.userNameSource.asObservable();
+  
   logout() {
   };
   
@@ -45,6 +48,9 @@ describe('Navigation Component', () => {
       
       auth.loginSource.next(false);
       expect(nav.isLoggedIn).toEqual(false);
+      
+      auth.userNameSource.next("test");
+      expect(nav.username).toEqual("test");
     }
   ));
   

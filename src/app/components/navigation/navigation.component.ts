@@ -12,6 +12,7 @@ export class NavigationComponent implements OnInit {
   isLoggedIn:boolean = false;
   menuOpen:boolean = false;
   fixedHeader:boolean = false;
+  username:string;
   
   @HostListener('window:scroll', ['$event'])
   fixHeader(event:any) {
@@ -22,6 +23,9 @@ export class NavigationComponent implements OnInit {
               private authService:AuthService) {
     authService.login$.subscribe(
       isLoggedIn => this.isLoggedIn = isLoggedIn
+    );
+    authService.userName$.subscribe(
+      username => this.username = username
     );
   }
   
