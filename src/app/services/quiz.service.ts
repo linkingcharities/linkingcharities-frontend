@@ -26,7 +26,7 @@ export class QuizService {
                  {"o":"images/3b.jpg", "a":"a3"}]\
     },\
     { "no":"4",\
-      "question":"I would like to find a charity that...",\
+      "question":"I would like to find a charity that helps...",\
       "options":[{"o":"images/4a.jpg", "a":"a2"},\
                  {"o":"images/4b.jpg", "a":"a4"}]\
     },\
