@@ -1,29 +1,66 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Question } from '../constants/data-types';
+import { Question, Option } from '../constants/data-types';
 import { API_URL } from '../constants/config';
 import { Subject, Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class QuizService {
 
-  sample_data:string = '[ { "question":"Which category would you like to extend a helping hand?",\
-   "option1":"https://cdn.meme.am/images/80x80/7727258.jpg",\
-    "option2":"http://aromatherapy-courses.co.uk/wp-content/uploads/2013/04/Elderly-Care-80x80.jpg",\
-     "option3":"http://cdn1.twinfinite.net/wp-content/uploads/2016/01/pikachu-80x80.png" },\
-   { "question":"Which image appeals to you most?",\
-    "option1":"http://aftlc.com/wp-content/uploads/2014/10/itc-activity-firstaid-80x80.jpg",\
-     "option2":"http://ensuretech.com/wp-content/uploads/2011/07/healthcare-thumbnail-clinics.jpg",\
-      "option3":"http://www.psypokes.com/dex/picdex/platinum_shiny_female/025_2.png" },\
-    { "question":"Which do you think weights the most?",\
-     "option1":"https://thumb-tf.s3.envato.com/files/213731534/thumbnail.jpg",\
-      "option2":"https://thebirthinginn.com/wp-content/uploads/2016/02/African-American-Newborn-Baby-450sq-80x80.jpg",\
-       "option3":"http://media.cutimes.com/cutimes/article/2016/11/09/trump-crop-80x80.jpg" }]';
+  sample_data:string = '[ { "no":"1",\
+    "question":"Choose an image that appeals to you?",\
+    "options":[{"o":"images/1a.jpg", "a":"2"},\
+               {"o":"images/1b.jpg", "a":"5"},\
+               {"o":"images/1c.jpg", "a":"9"},\
+               {"o":"images/1d.jpg", "a":"8"}]\
+    },\
+   { "no":"2",\
+     "question":"How far would you like to extend a helping hand?",\
+    "options":[{"o":"images/2a.jpg", "a":"3"},\
+               {"o":"images/2b.jpg", "a":"4"}]\
+    },\
+    { "no":"3",\
+      "question":"Which image invokes more sympathy?",\
+      "options":[{"o":"images/3a.jpg", "a":"a2"},\
+                 {"o":"images/3b.jpg", "a":"a3"}]\
+    },\
+    { "no":"4",\
+      "question":"I would like to find a charity that...",\
+      "options":[{"o":"images/4a.jpg", "a":"a2"},\
+                 {"o":"images/4b.jpg", "a":"a4"}]\
+    },\
+    { "no":"5",\
+      "question":"I would like to find a charity that does...",\
+      "options":[{"o":"images/5a.jpg", "a":"6"},\
+                 {"o":"images/5b.jpg", "a":"2"},\
+                 {"o":"images/5c.jpg", "a":"7"}]\
+    },\
+    { "no":"6",\
+      "question":"I would prefer a charity that does...",\
+      "options":[{"o":"images/6a.jpg", "a":"a1"},\
+                 {"o":"images/6b.jpg", "a":"a0"}]\
+    },\
+    { "no":"7",\
+      "question":"Which image is of concern?",\
+      "options":[{"o":"images/7a.jpg", "a":"a1"},\
+                 {"o":"images/7b.jpg", "a":"a3"}]\
+    },\
+    { "no":"8",\
+      "question":"Which institution would you like to lend a helping hand to?",\
+      "options":[{"o":"images/8a.jpg", "a":"a6"},\
+                 {"o":"images/8b.jpg", "a":"a6"},\
+                 {"o":"images/8c.jpg", "a":"a0"}]\
+    },\
+    { "no":"9",\
+      "question":"Which situation would you like to be in?",\
+      "options":[{"o":"images/9a.jpg", "a":"a5"},\
+                 {"o":"images/9b.jpg", "a":"a5"},\
+                 {"o":"images/9c.jpg", "a":"a6"},\
+                 {"o":"images/9d.jpg", "a":"a6"}]\
+    }]';
 
   private questions:Question[];
-  private count:number;
-  private current_question:number;
   private choices:string;
 
   constructor(private http:Http) {
@@ -35,7 +72,7 @@ export class QuizService {
   private questionSource = new Subject<string>();
   question$ = this.questionSource.asObservable();
 
-  private optionsSource = new Subject<string[]>();
+  private optionsSource = new Subject<Option[]>();
   options$ = this.optionsSource.asObservable();
     
   private getOptions():RequestOptions {
@@ -62,33 +99,22 @@ export class QuizService {
     //for sample data
      let q = JSON.parse(this.sample_data) as Question[];
      this.questions = q;
-     this.count = this.questions.length;
-     this.current_question = 0;
      this.choices = "Redirect to a category of charities? TBC. Choices made: ";
-     this.nextQuestion();
+     this.nextQuestion("1"); //Start off with first question
 
   }
 
-  nextQuestion() {
-     if (this.current_question<this.count) {
-       this.questionSource.next(this.questions[this.current_question].question);
-
-       let options: string[] = [this.questions[this.current_question].option1,
-       this.questions[this.current_question].option2,
-       this.questions[this.current_question].option3];
-
-       this.optionsSource.next(options)
-     } else {
-       this.questionSource.next(null);
-       this.optionsSource.next(null);
-       this.resultSource.next(this.choices);
-     }
-     this.current_question++;
-  }
-
-  calculateResult(choice:number) {
-    //TODO: Some calculations which redirects to a list of charities?
-    this.choices += choice;
+  nextQuestion(choice:string) {
+    if(choice.charAt(0) === 'a'){
+      this.questionSource.next(null);
+      this.optionsSource.next(null);
+      this.resultSource.next(this.choices + choice);
+    }else {
+      let nextQuestion:number = parseInt(choice)-1;
+      this.questionSource.next(this.questions[nextQuestion].question);
+      let options: Option[] = this.questions[nextQuestion].options;
+      this.optionsSource.next(options);
+    } 
   }
 
   // Error handliing

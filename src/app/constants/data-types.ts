@@ -16,11 +16,15 @@ export class Charity {
   target:string;
 }
 
+export class Option {
+  o:string;
+  a:string;
+}
+
 export class Question {
+  no:number;
   question:string;
-  option1:string;
-  option2:string;
-  option3:string;
+  options:Option[];
 }
 
 export const Charity_Target = {

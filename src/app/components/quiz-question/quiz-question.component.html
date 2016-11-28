@@ -1,5 +1,5 @@
 <div id="question">{{question}}</div>
-<div *ngFor="let option of options; let i = index">
-  <img class="option" src="{{option}}" alt="{{option}}" (click)="nextQuestion(i)">
+<div *ngFor="let option of options">
+  <img class="option" src="{{option.o}}" alt="{{option.o}}" (click)="nextQuestion(option.a)">
 </div>
 <div id="result">{{result}}</div>
