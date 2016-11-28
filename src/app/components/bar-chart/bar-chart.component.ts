@@ -26,15 +26,16 @@ export class BarChartComponent implements OnInit {
     };
     this.barChartType = 'bar';
     this.barChartLegend = true;
+    console.log(this.chartData);
   }
   
   // events
   chartClicked(e:any):void {
-    console.log(e);
+    // console.log(e);
   }
-  
+
   chartHovered(e:any):void {
-    console.log(e);
+    // console.log(e);
   }
   
   randomize():void {

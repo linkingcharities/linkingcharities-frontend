@@ -23,8 +23,7 @@ export class CharityDetailComponent implements OnInit {
   // Alternatively this formatting could be shifted inside the chart
   chartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   chartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
+    {data: [1, 2, 3, 4, 5, 6, 7], label: 'Donations per year'}
   ];
   chartTitle:string = "Some fancy chart";
   
