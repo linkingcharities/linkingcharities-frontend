@@ -20,7 +20,7 @@ const routes:Routes = [
   {path: 'detail/:id', component: CharityDetailComponent},
   {path: 'charities', component: CharitiesComponent},
   {path: 'charity-form', component: CharityFormComponent},
-  {path: 'thank-you', component: ThankYouComponent},
+  {path: 'thank-you/:id', component: ThankYouComponent},
   {
     path: 'quiz',
     component: QuizPageComponent

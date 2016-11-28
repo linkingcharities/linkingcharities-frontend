@@ -23,7 +23,7 @@ export class ThankYouComponent implements OnInit {
     });
 //    this.business = window.location.search().business;
 //    this.amount = window.location.search().amount;
-    console.log(this.ar.params);
+    console.log(this.payment);
   }
 
   goHome():void {
