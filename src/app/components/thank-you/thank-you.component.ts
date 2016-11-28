@@ -11,11 +11,16 @@ export class ThankYouComponent implements OnInit {
 
   business:string = null;
   amount:string = null;
-  
+  payment:number = null;
+  private sub: any;
+
   constructor(private router:Router,
               private ar:ActivatedRoute){}
 
   ngOnInit():void {
+    this.sub = this.ar.params.subscribe(params => {
+        this.payment = +params['id'];
+    });
 //    this.business = window.location.search().business;
 //    this.amount = window.location.search().amount;
     console.log(this.ar.params);
