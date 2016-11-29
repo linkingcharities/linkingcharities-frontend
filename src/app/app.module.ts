@@ -18,6 +18,7 @@ import { CharityService } from './services/charity.service';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { CharityFormComponent } from './components/charity-form/charity-form.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { VolunteeringComponent } from './components/volunteering/volunteering.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
@@ -51,6 +52,7 @@ import { ProtectedDirective } from './directives/protected.directive';
     CharityGridComponent,
     CharityDetailComponent,
     CharityFormComponent,
+    VolunteeringComponent,
     CarouselComponent,
     FacebookLoginComponent,
     CharitySearchComponent,

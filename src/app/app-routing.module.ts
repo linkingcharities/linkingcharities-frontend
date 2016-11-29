@@ -8,6 +8,7 @@ import { QuizPageComponent } from './components/quiz/quiz.component';
 import { CharitiesComponent } from './components/charities/charities.component';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { VolunteeringComponent } from './components/volunteering/volunteering.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
@@ -24,6 +25,7 @@ const routes:Routes = [
     component: QuizPageComponent
     // ,canActivate: [AuthGuard]
   },
+  {path: 'volunteering', component: VolunteeringComponent},
   {path: '', component: HomePageComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
