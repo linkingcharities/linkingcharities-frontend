@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import { Response, Http, RequestOptions } from '@angular/http';
 import { API_URL } from '../../constants/config';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'thank-you',
@@ -20,7 +21,8 @@ export class ThankYouComponent implements OnInit {
   constructor(private router:Router,
               private ar:ActivatedRoute,
               private toasterService:ToasterService,
-              private http:Http){}
+              private http:Http,
+              private authService:AuthService){}
 
   ngOnInit():void {
     this.sub = this.ar.params.subscribe(params => {
@@ -40,8 +42,6 @@ export class ThankYouComponent implements OnInit {
       }).catch((err:Error) => { 
       this.toasterService.pop('success', '', 'Thank you for your donation.');
     });
-//    this.business = window.location.search().business;
-//    this.amount = window.location.search().amount;
     } else {
       this.router.navigate(['homepage']);
     }
@@ -53,6 +53,10 @@ export class ThankYouComponent implements OnInit {
 
   moreCharities():void {
     this.router.navigate(['charities']);
+  }
+
+  shareFb():void {
+    this.authService.shareOnFb();
   }
 
 }

@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
-declare const FB:any;
-
 @Component({
   selector: 'facebook-login',
   templateUrl: './facebook-login.component.html',

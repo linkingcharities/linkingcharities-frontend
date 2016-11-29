@@ -192,6 +192,15 @@ export class AuthService {
       console.log("The person is not logged into Facebook.");
     }
   }
+
+  shareOnFb() {
+    FB.ui({
+      method: 'share',
+      quote: 'I HAVE JUST DONATED MONEY TO A CHARITY!',
+      hashtag: '#charilink',
+      href: '138.68.147.114/home',
+    }, function(response:any){});
+  }
   
   
   // Error handliing - required for HTTP
