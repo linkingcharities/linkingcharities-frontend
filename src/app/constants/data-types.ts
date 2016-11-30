@@ -23,6 +23,15 @@ export class Question {
   option3:string;
 }
 
+export class Opportunity {
+    id:number;
+    charity:number;
+    description:string;
+    start_date:string;
+    end_date:string;
+    url:string;
+}
+
 export const Charity_Target = {
   'C': 'Children / Young People',
   'E': 'Elderly / Old People',
@@ -104,5 +113,3 @@ export class CharitySearchQuery {
   target:CharityTarget;
   type:CharityType;
 }
-
-

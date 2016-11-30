@@ -5,3 +5,12 @@
         </div>
     </div>
 </div>
+<div class="container">
+    <div *ngIf="charities">
+        <div class="row">
+            <charity-grid *ngFor="let charity of displayCharities"
+                          [charity]="charity">
+            </charity-grid>
+        </div>
+    </div>
+</div>

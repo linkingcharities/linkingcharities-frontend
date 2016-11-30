@@ -19,6 +19,7 @@ import { CharityDetailComponent } from './components/charity-detail/charity-deta
 import { CharityFormComponent } from './components/charity-form/charity-form.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { VolunteeringComponent } from './components/volunteering/volunteering.component';
+import { VolunteeringService } from './services/volunteering.service';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
@@ -60,7 +61,7 @@ import { ProtectedDirective } from './directives/protected.directive';
     LoginSmallComponent,
     ProtectedDirective
   ],
-  providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
+  providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService, VolunteeringService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
