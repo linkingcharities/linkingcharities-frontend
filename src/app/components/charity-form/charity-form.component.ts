@@ -47,7 +47,8 @@ export class CharityFormComponent {
       description: this.description,
       type: this.type.short,
       target: this.target.short,
-      paypal: this.paypal
+      paypal: this.paypal,
+      total_income: 1
     };
     
     this.authService.registerCharity(data);

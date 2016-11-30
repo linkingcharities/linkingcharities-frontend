@@ -92,6 +92,7 @@ export class AuthService {
           type: data['type'],
           paypal: data['paypal'],
           description: data['description'],
+          total_income: data['total_income']
          })
         .toPromise()
         .then((res:Response) => {
