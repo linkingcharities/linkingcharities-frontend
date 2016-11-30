@@ -4,6 +4,7 @@ import { BaseRequestOptions, Response, HttpModule, Http, XHRBackend, ResponseOpt
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { CharityService } from './charity.service';
 import { Charity, CharitySearchQuery, DefaultType, DefaultTarget } from '../constants/data-types';
+import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
 let testCharity1:Charity = {
   id: 1,
@@ -50,6 +51,7 @@ describe('Charity service', () => {
         CharityService,
         MockBackend,
         BaseRequestOptions,
+        ToasterService,
         {
           provide: Http,
           deps: [MockBackend, BaseRequestOptions],

@@ -1,7 +1,7 @@
 <div protected>
-    <h1>This is the profile page</h1>
+    <h1>This is {{username}}'s profile page</h1>
     <div *ngIf="isCharity">
-        <charity-form-profile></charity-form-profile>
+        <charity-form-profile [username]="username"></charity-form-profile>
     </div>
     <div *ngIf="isFb">
         Facebook linked account

@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -10,8 +10,10 @@ import { AuthService } from '../../services/auth.service';
 export class ProfileComponent {
   isCharity:boolean = false;
   isFb:boolean = false;
+  username:string;
   
   private subscription:any;
+  private subscription2:any;
   
   constructor(private authService:AuthService) {
     this.subscription = authService.accountType$.subscribe(
@@ -20,14 +22,20 @@ export class ProfileComponent {
         this.isFb = (accountType === 'fb');
       }
     );
+    
+    this.subscription2 = authService.userName$.subscribe(
+      username => this.username = username
+    );
   }
   
   ngOnInit() {
+    this.authService.isLoggedIn();
     this.authService.accountType();
   }
   
   ngOnDestroy() {
     // Unsubscribe when the component is destroyed
     this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 }

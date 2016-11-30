@@ -6,6 +6,9 @@ import { Subject } from 'rxjs/Rx';
 class AuthServiceStub {
   accountTypeSource = new Subject<string>();
   accountType$ = this.accountTypeSource.asObservable();
+  
+  userNameSource = new Subject<string>();
+  userName$ = this.userNameSource.asObservable();
 }
 
 describe('Profile', () => {

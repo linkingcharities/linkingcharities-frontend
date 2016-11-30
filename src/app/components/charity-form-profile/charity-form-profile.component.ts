@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CharityService } from '../../services/charity.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
@@ -12,6 +12,7 @@ import { CharityType, CharityTypes, CharityTarget, CharityTargets, Charity } fro
 })
 
 export class CharityFormProfileComponent {
+  @Input() username:string;
   charityID:number = null;
   isCharity:boolean = false;
   charity:Charity;
@@ -41,7 +42,9 @@ export class CharityFormProfileComponent {
   }
   
   onSubmit():void {
-    // this.charityService.updateCharity(this.charity);
+    this.charity.type = this.type.short;
+    this.charity.target = this.target.short;
+    this.charityService.updateCharity(this.charity, this.charityID, this.username);
   }
   
   modifyTarget(target:CharityTarget):void {

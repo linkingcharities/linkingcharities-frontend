@@ -4,11 +4,13 @@ import 'rxjs/add/operator/toPromise';
 import { Charity, CharitySearchQuery, DefaultType, DefaultTarget } from '../constants/data-types';
 import { API_URL } from '../constants/config';
 import { Subject } from 'rxjs/Rx';
+import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
 @Injectable()
 export class CharityService {
   
-  constructor(private http:Http) {
+  constructor(private http:Http,
+              private toasterService:ToasterService) {
   }
   
   private charitiesSource = new Subject<Charity[]>();
@@ -84,17 +86,29 @@ export class CharityService {
       .catch(this.handleError);
   }
   
-  //
-  // update(hero:Hero):Promise<Hero> {
-  //   const url = `${this.heroesUrl}/${hero.id}`;
-  //   console.log(url);
-  //   return this.http
-  //     .put(url, JSON.stringify(hero), {headers: this.headers})
-  //     .toPromise()
-  //     .then(() => hero)
-  //     .catch(this.handleError);
-  // }
-  //
+  updateCharity(charity:Charity, charityID:number, username:string) {
+    let data = {
+      'username': username,
+      'name': charity.name,
+      'register_id': charity.register_id,
+      'description': charity.description,
+      'paypal': charity.paypal,
+      'type': charity.type,
+      'target': charity.target
+    };
+    this.http.patch(API_URL + '/update_charity', data, this.getOptions())
+      .toPromise()
+      .then((res:Response) => {
+          console.log(res);
+          this.getCharity(charityID);
+          this.toasterService.pop('success', '', 'Charity update successful');
+        }
+      )
+      .catch((err:Error) => {
+        this.toasterService.pop('error', '', 'Charity update failed');
+      });
+  }
+  
   // Error handliing
   private handleError(error:Response | any) {
     // In a real world app, we might use a remote logging infrastructure
