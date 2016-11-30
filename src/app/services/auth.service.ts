@@ -24,9 +24,9 @@ export class AuthService {
   private loginSource = new Subject<boolean>();
   login$ = this.loginSource.asObservable();
   
-  // To communicate charity status to components
-  private charitySource = new Subject<boolean>();
-  charity$ = this.charitySource.asObservable();
+  // To communicate account type to components
+  private accountSource = new Subject<string>();
+  accountType$ = this.accountSource.asObservable();
   
   // To communicate username to components
   private usernameSource = new Subject<string>();
@@ -57,11 +57,26 @@ export class AuthService {
         this.toasterService.pop('success', '', 'Login successful');
         this.isLoggedIn();
         
+        // Load additional user information
+        this.loadUserInfo(username);
+        
         // Redirect the user
         this.router.navigate(['/home']);
       }).catch((err:Error) => {
       this.toasterService.pop('error', '', 'Login failed');
     });
+  }
+  
+  loadUserInfo(username:String) {
+    this.http.get(API_URL + `/account_info/?username=${username}`)
+      .toPromise()
+      .then((res:Response) => {
+        let response = res.json();
+        if (response.is_charity) {
+          localStorage.setItem("charity", 'true');
+          localStorage.setItem("charityID", response.charity_id);
+        }
+      })
   }
   
   registerUser(username:String, password:String) {
@@ -123,14 +138,34 @@ export class AuthService {
   }
   
   isCharity() {
-    this.charitySource.next(localStorage.getItem("charity") === 'true');
+    if (localStorage.getItem("charity") === 'true') {
+      this.accountSource.next('charity')
+    }
+  }
+  
+  getCharityID() {
+    return localStorage.getItem("charityID");
+  }
+  
+  accountType() {
+    if (localStorage.getItem("charity") === 'true') {
+      this.accountSource.next('charity')
+    }
+    if (localStorage.getItem("fb") === 'true') {
+      this.accountSource.next('fb');
+    }
   }
   
   logout() {
+    // Clearing localStorage
     localStorage.removeItem("username");
     localStorage.removeItem("charity");
+    localStorage.removeItem("fb");
+    localStorage.removeItem("userID");
+    localStorage.removeItem("charityID");
+    
     this.loginSource.next(false);
-    this.charitySource.next(false);
+    this.accountSource.next('none');
     this.checkLogin = false;
     this.toasterService.pop('success', '', 'Logout successful');
   }

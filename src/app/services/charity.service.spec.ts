@@ -12,7 +12,8 @@ let testCharity1:Charity = {
   description: 'Test description',
   paypal: 'asdf',
   type: 'G',
-  target: 'C'
+  target: 'C',
+  area_served: 'test'
 };
 
 let testCharity2:Charity = {
@@ -22,7 +23,8 @@ let testCharity2:Charity = {
   description: 'Test description 2',
   paypal: 'asdf',
   type: 'E',
-  target: 'E'
+  target: 'E',
+  area_served: 'test'
 };
 
 let testCharity3:Charity = {
@@ -32,7 +34,8 @@ let testCharity3:Charity = {
   description: 'ROFL',
   paypal: 'asdf',
   type: 'H',
-  target: 'D'
+  target: 'D',
+  area_served: 'test'
 };
 
 
@@ -177,7 +180,7 @@ describe('Charity service', () => {
               }
             )));
         });
-  
+      
       let query:CharitySearchQuery = {
         term: 'test123123',
         type: DefaultType,

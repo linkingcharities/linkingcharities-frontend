@@ -29,8 +29,8 @@ export class CharityFormComponent {
   constructor(private charityService:CharityService,
               private authService:AuthService,
               private router:Router) {
-    authService.charity$.subscribe(
-      isCharity => this.isCharity = isCharity
+    authService.accountType$.subscribe(
+      accountType => this.isCharity = (accountType === 'charity')
     );
   }
   

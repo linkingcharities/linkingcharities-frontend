@@ -14,6 +14,7 @@ export class Charity {
   paypal:string;
   type:string;
   target:string;
+  area_served:string;
 }
 
 export class Question {

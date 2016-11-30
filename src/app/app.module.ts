@@ -31,6 +31,7 @@ import { ProtectedDirective } from './directives/protected.directive';
 import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { CharityFormProfileComponent } from './components/charity-form-profile/charity-form-profile.component';
 
 @NgModule({
   imports: [
@@ -62,7 +63,8 @@ import { ProfileComponent } from './components/profile/profile.component';
     LoginSmallComponent,
     ProtectedDirective,
     BarChartComponent,
-    ProfileComponent
+    ProfileComponent,
+    CharityFormProfileComponent
   ],
   providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
   bootstrap: [AppComponent]
