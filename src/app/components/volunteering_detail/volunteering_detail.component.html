@@ -1,0 +1,18 @@
+<div class="banner-area">
+    <div class="col-xs-6 col-xs-offset-2">
+        <div *ngIf="opportunity" class="banner-text">
+            <h3>{{ opportunity.name }}</h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <h2>Volunteering Details component</h2>
+    <div *ngIf="opportunity">
+        ID - {{ opportunity.id }} <br/>
+        Description - {{ opportunity.description }} <br/>
+        Start Date - {{ opportunity.start_date }} <br/>
+        End Date - {{ opportunity.end_date }} <br/>
+        URL - {{ opportunity.url }} <br/>
+        <button (click)="goBack()">Go back</button>
+    </div>
+</div>

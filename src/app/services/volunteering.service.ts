@@ -15,7 +15,7 @@ export class VolunteeringService {
   opportunities$ = this.volunteeringSource.asObservable();
 
   private volunteerSource = new Subject<Opportunity>();
-  opportunity$ = this.volunteeringSource.asObservable();
+  opportunity$ = this.volunteerSource.asObservable();
 
   private getOptions():RequestOptions {
     let headers:Headers = new Headers();
@@ -35,38 +35,15 @@ export class VolunteeringService {
       .catch(this.handleError);
   }
 
-  /*getCharity(id:number) {
-    this.http.get(API_URL + '/charities?id=' + id, this.getOptions())
+  getOpportunity(id:number) {
+    this.http.get(API_URL + '/volunteering?id=' + id, this.getOptions())
       .toPromise()
       .then((res:Response) => {
-        let charities = res.json() as Charity[];
-        this.charitySource.next(charities[0]);
+        let opportunities = res.json() as Opportunity[];
+        this.volunteerSource.next(opportunities[0]);
       })
       .catch(this.handleError);
   }
-
-  search(searchQuery:CharitySearchQuery) {
-    // This will work for now but obviously a filtered route is preferred going forward
-    const serverQuery = API_URL + `/charities?`
-      + `type=${searchQuery.type.short}&`
-      + `target=${searchQuery.target.short}`;
-    return this.http.get(serverQuery, this.getOptions())
-      .toPromise()
-      .then((res:Response) => {
-        let charities = res.json() as Charity[];
-        let filtered = charities.filter(charity => charity.name.toLowerCase().includes(searchQuery.term.toLowerCase()));
-        this.charitiesSource.next(filtered);
-      })
-      .catch(this.handleError);
-  }
-
-  create(data:string):Promise<Charity> {
-    return this.http
-      .post(API_URL + '/volunteering', data, this.getOptions())
-      .toPromise()
-      .then(res => res.json().data)
-      .catch(this.handleError);
-  }*/
 
   // Error handliing
   private handleError(error:Response | any) {

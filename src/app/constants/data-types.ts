@@ -25,6 +25,7 @@ export class Question {
 
 export class Opportunity {
     id:number;
+    name:string;
     charity:number;
     description:string;
     start_date:string;

@@ -19,6 +19,7 @@ import { CharityDetailComponent } from './components/charity-detail/charity-deta
 import { CharityFormComponent } from './components/charity-form/charity-form.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { VolunteeringComponent } from './components/volunteering/volunteering.component';
+import { VolunteeringDetailComponent } from './components/volunteering_detail/volunteering_detail.component';
 import { VolunteeringService } from './services/volunteering.service';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
@@ -54,6 +55,7 @@ import { ProtectedDirective } from './directives/protected.directive';
     CharityDetailComponent,
     CharityFormComponent,
     VolunteeringComponent,
+    VolunteeringDetailComponent,
     CarouselComponent,
     FacebookLoginComponent,
     CharitySearchComponent,
