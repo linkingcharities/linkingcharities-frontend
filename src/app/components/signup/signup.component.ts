@@ -23,4 +23,9 @@ export class SignupComponent {
   onSubmit():void {
     this.authService.registerUser(this.username, this.password);
   }
+
+  charityCreation():void {
+    this.router.navigate(['/charity-form']);
+  }
+ 
 }

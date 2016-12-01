@@ -1,5 +1,6 @@
 html, body {
     height: 100%;
+    margin-top: 40px;
 }
 
 body {
@@ -8,7 +9,7 @@ body {
 }
 
 #main-body {
-    padding: 0 0 0 0;
+    padding: 80px 0 0;
 }
 
 #bg-layout {

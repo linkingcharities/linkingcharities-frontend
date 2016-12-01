@@ -1,19 +1,68 @@
-<div *ngIf='isCharity' class="container-fluid col-md-8">
+<div class="container-fluid col-md-8">
     <h2>Charity creation</h2>
     <form class="form-horizontal" (submit)="onSubmit()">
         <fieldset>
             <div class="form-group">
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="username" required
-                           [(ngModel)]="name"
-                           name="username" placeholder="Name of the charity">
+                        [(ngModel)]="username"
+                        name="username" placeholder="Login username">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <input type="password" class="form-control" id="password" required
+                        [(ngModel)]="password"
+                        name="password" placeholder="Password">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="charityname" required
+                        [(ngModel)]="name"
+                        name="charityname" placeholder="Name of the charity">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-6">
                     <input type="text" class="form-control" id="register_id" required
-                           [(ngModel)]="register_id"
-                           name="password" placeholder="Charity registration ID">
+                        [(ngModel)]="register_id"
+                        name="register_id" placeholder="Charity registration ID">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block dropdown-toggle" 
+                            type="button" data-toggle="dropdown"
+                            aria-expanded="false">
+                    Charity type
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let type of charityTypes">
+                            <a (click)="modifyType(type)">{{type.full}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <button class="btn btn-primary btn-block dropdown-toggle" 
+                            type="button" data-toggle="dropdown"
+                            aria-expanded="false">
+                    Charity target
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li *ngFor="let target of charityTargets">
+                            <a (click)="modifyTarget(target)">{{target.full}}</a>
+                        </li>    
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-6">
+                    <input type="text" class="form-control" id="paypal" required
+                        [(ngModel)]="paypal"
+                        name="paypal" placeholder="Charity paypal">
                 </div>
             </div>
             <div class="form-group">
@@ -25,5 +74,6 @@
             </div>
         </fieldset>
         <button type="submit" class="btn btn-primary">Create charity</button>
+        <a (click)="createUserAccount()">Create Donor Account</a>
     </form>
 </div>
