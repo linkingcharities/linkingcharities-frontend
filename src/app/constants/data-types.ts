@@ -36,6 +36,16 @@ export class Question {
   options:Option[];
 }
 
+export class Opportunity {
+    id:number;
+    name:string;
+    charity:number;
+    description:string;
+    start_date:string;
+    end_date:string;
+    url:string;
+}
+
 export const Image_Hosting = {
   'a0' : '/a0.jpg',
   'a1' : '/a1.jpg',

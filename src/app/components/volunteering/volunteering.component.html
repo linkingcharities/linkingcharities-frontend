@@ -1,0 +1,24 @@
+<div class="banner-area">
+    <div class="col-xs-6 col-xs-offset-2">
+        <div class="banner-text">
+            <h3>Volunteering</h3>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div *ngIf="opportunities">
+        <div class="row">
+            <volunteering-search></volunteering-search>
+        </div>
+        <div class="row">
+            <volunteering-grid *ngFor="let opportunity of displayOpportunities"
+                          [opportunity]="opportunity">
+            </volunteering-grid>
+        </div>
+        <div id="nav-buttons">
+            <button (click)="moveLeft()">Move left</button>
+            {{leftPos + 1 }} - {{rightPos}}
+            <button (click)="moveRight()">Move right</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+/* Banner */
+.banner-area {
+    background: url('banner.jpg') repeat scroll center center;
+    padding: 128px 0;
+    transition: all 0.3s ease 0s;
+
+}
+
+.banner-text > h3 {
+    color: white;
+    font-size: 40px;
+    font-weight: 800;
+    text-shadow: 3px 3px 0px #000;
+}
+
+#charity_image {
+    padding: 10px;
+    margin: auto 0;
+}

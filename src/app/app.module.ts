@@ -18,6 +18,11 @@ import { CharityService } from './services/charity.service';
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { CharityFormComponent } from './components/charity-form/charity-form.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
+import { VolunteeringComponent } from './components/volunteering/volunteering.component';
+import { VolunteeringDetailComponent } from './components/volunteering-detail/volunteering-detail.component';
+import { VolunteeringService } from './services/volunteering.service';
+import { VolunteeringGridComponent } from './components/volunteering-grid/volunteering-grid.component';
+import { VolunteeringSearchComponent } from './components/volunteering-search/volunteering-search.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
@@ -60,6 +65,10 @@ import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
     CharityGridComponent,
     CharityDetailComponent,
     CharityFormComponent,
+    VolunteeringComponent,
+    VolunteeringDetailComponent,
+    VolunteeringGridComponent,
+    VolunteeringSearchComponent,
     CarouselComponent,
     FacebookLoginComponent,
     CharitySearchComponent,
@@ -72,7 +81,7 @@ import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
     ProfilePaymentComponent,
     NG_TABLE_DIRECTIVES
   ],
-  providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
+  providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService, VolunteeringService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
