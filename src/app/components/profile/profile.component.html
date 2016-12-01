@@ -1,6 +1,7 @@
 <div class="col-md-10 col-md-offset-1 col-xs-12" protected>
     <h1>{{username}}</h1>
     <div class="col-md-6 col-xs-12">
+        <h2>User information</h2>
         <div *ngIf="isCharity">
             <charity-form-profile [username]="username"></charity-form-profile>
         </div>
@@ -14,6 +15,7 @@
         </div>
     </div>
     <div class="col-md-6 col-xs-12">
+        <h2>Payment history</h2>
         <div *ngIf="isCharity">
             Other information for charity
         </div>
@@ -23,13 +25,7 @@
         </div>
 
         <div *ngIf="isDonor">
-            <div *ngFor="let payment of payments">
-                {{payment.username}} <br/>
-                {{payment.charity}} <br/>
-                {{payment.currency}} <br/>
-                {{payment.amount}} <br/>
-                {{payment.date}} <br/>
-            </div>
+            <profile-payment *ngIf="payments" [data]="payments"></profile-payment>
         </div>
     </div>
 </div>

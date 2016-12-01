@@ -32,6 +32,9 @@ import { ChartsModule } from 'ng2-charts';
 import { BarChartComponent } from './components/bar-chart/bar-chart.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { CharityFormProfileComponent } from './components/charity-form-profile/charity-form-profile.component';
+import { ProfilePaymentComponent } from './components/profile-payment/profile-payment.component';
+import { NG_TABLE_DIRECTIVES } from 'ng2-table/ng2-table';
+import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 @NgModule({
   imports: [
@@ -40,7 +43,8 @@ import { CharityFormProfileComponent } from './components/charity-form-profile/c
     HttpModule,
     AppRoutingModule,
     ToasterModule,
-    ChartsModule
+    ChartsModule,
+    PaginationModule
   ],
   declarations: [
     HomePageComponent,
@@ -64,7 +68,9 @@ import { CharityFormProfileComponent } from './components/charity-form-profile/c
     ProtectedDirective,
     BarChartComponent,
     ProfileComponent,
-    CharityFormProfileComponent
+    CharityFormProfileComponent,
+    ProfilePaymentComponent,
+    NG_TABLE_DIRECTIVES
   ],
   providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
   bootstrap: [AppComponent]
