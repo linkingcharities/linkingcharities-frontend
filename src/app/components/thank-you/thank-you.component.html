@@ -1,9 +1,25 @@
 
+<div class="banner-area">
+    <div class="col-xs-6 col-xs-offset-2">
+        <div class="banner-text">
+            Thank you for your donation.
+        </div>
+    </div>
+</div>
 
-<h1>Thank you</h1>
+<div class="container">
+    <h1>Thank you</h1>
 
-<h2>Thank you for your donations</h2>
+    <h2>Thank you for donating {{ amount }} dollars to {{ business }}.</h2>
 
-<button (click)="goHome()">Home</button>
+    <h2>Please continue to give your support to our site and charities.</h2>
 
-<button (click)="moreCharities()">See more Charities</button>
+    <button (click)="goHome()">Home</button>
+
+    <button (click)="moreCharities()">See more Charities</button>
+
+    <button class="btn btn-social-icon btn-facebook facebook-login" (click)="shareFb()">
+       <span class="fa fa-facebook"></span>
+    </button>
+
+</div>

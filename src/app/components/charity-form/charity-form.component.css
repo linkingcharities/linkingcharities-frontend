@@ -5,10 +5,19 @@
     margin-bottom: 20px;
 }
 
+.container-fluid {
+    margin-left: 35%;
+}
+
 @media (min-width: 992px) {
     .material-icons {
         font-size:240px;
     }
+}
+
+.dropdown-menu {
+    width: 100%;
+    font-size: 15px;
 }
 
 .form-control {

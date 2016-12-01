@@ -11,6 +11,10 @@ h1 {
 }
 
 header {
+    position: fixed;
+    background: #FFFFFF;
+    z-index: 1;
+    width: 100%;
 }
 
 .fixed-top {
