@@ -4,6 +4,7 @@ import { BaseRequestOptions, Response, HttpModule, Http, XHRBackend, ResponseOpt
 import { MockBackend, MockConnection } from '@angular/http/testing';
 import { CharityService } from './charity.service';
 import { Charity, CharitySearchQuery, DefaultType, DefaultTarget } from '../constants/data-types';
+import { ToasterService } from 'angular2-toaster/angular2-toaster';
 
 let testCharity1:Charity = {
   id: 1,
@@ -12,7 +13,8 @@ let testCharity1:Charity = {
   description: 'Test description',
   paypal: 'asdf',
   type: 'G',
-  target: 'C'
+  target: 'C',
+  area_served: 'test'
 };
 
 let testCharity2:Charity = {
@@ -22,7 +24,8 @@ let testCharity2:Charity = {
   description: 'Test description 2',
   paypal: 'asdf',
   type: 'E',
-  target: 'E'
+  target: 'E',
+  area_served: 'test'
 };
 
 let testCharity3:Charity = {
@@ -32,7 +35,8 @@ let testCharity3:Charity = {
   description: 'ROFL',
   paypal: 'asdf',
   type: 'H',
-  target: 'D'
+  target: 'D',
+  area_served: 'test'
 };
 
 
@@ -47,6 +51,7 @@ describe('Charity service', () => {
         CharityService,
         MockBackend,
         BaseRequestOptions,
+        ToasterService,
         {
           provide: Http,
           deps: [MockBackend, BaseRequestOptions],
@@ -177,7 +182,7 @@ describe('Charity service', () => {
               }
             )));
         });
-  
+      
       let query:CharitySearchQuery = {
         term: 'test123123',
         type: DefaultType,

@@ -1,0 +1,27 @@
+
+.material-icons {
+    font-size: 150px;
+    color: #FF9999;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 992px) {
+    .material-icons {
+        font-size:240px;
+    }
+}
+
+.dropdown-menu {
+    width: 100%;
+    font-size: 15px;
+}
+
+.form-control {
+    font-family: "Open Sans";
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+#spacer {
+    margin-left: 20px;
+}

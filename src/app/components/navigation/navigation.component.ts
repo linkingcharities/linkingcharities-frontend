@@ -12,16 +12,20 @@ export class NavigationComponent implements OnInit {
   isLoggedIn:boolean = false;
   menuOpen:boolean = false;
   fixedHeader:boolean = false;
+  username:string;
   
-  @HostListener('window:scroll', ['$event'])
-  fixHeader(event:any) {
-    //this.fixedHeader = (document.body.scrollTop > 0);
-  }
+  // @HostListener('window:scroll', ['$event'])
+  // fixHeader(event:any) {
+  //   //this.fixedHeader = (document.body.scrollTop > 0);
+  // }
   
   constructor(private router:Router,
               private authService:AuthService) {
     authService.login$.subscribe(
       isLoggedIn => this.isLoggedIn = isLoggedIn
+    );
+    authService.userName$.subscribe(
+      username => this.username = username
     );
   }
   
@@ -40,7 +44,7 @@ export class NavigationComponent implements OnInit {
   }
 
   profile():void {
-    this.router.navigate(['/charity-form']);
+    this.router.navigate(['/profile']);
   }
   
 }

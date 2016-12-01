@@ -49,8 +49,10 @@
                                         </ul>
                                     </li>
                                     <li *ngIf="isLoggedIn">
+                                        <a (click)="profile()">{{ username }}</a>
+                                    </li>
+                                    <li *ngIf="isLoggedIn">
                                         <a (click)="logout()">Logout</a>
-                                        <a (click)="profile()">My Profile</a>
                                     </li>
                                 </ul>
                             </nav>

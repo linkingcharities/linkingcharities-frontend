@@ -14,6 +14,7 @@ export class Charity {
   paypal:string;
   type:string;
   target:string;
+  area_served:string;
 }
 
 export class Option {
@@ -143,6 +144,15 @@ export class CharitySearchQuery {
   term:string;
   target:CharityTarget;
   type:CharityType;
+}
+
+// Payments
+export class Payment {
+  amount:number;
+  charity:string;
+  currency:string;
+  date:string;
+  username:string;
 }
 
 

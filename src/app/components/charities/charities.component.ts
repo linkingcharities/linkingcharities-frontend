@@ -1,7 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { Charity } from '../../constants/data-types';
+import {
+  Charity,
+  CharitySearchQuery,
+  DefaultTarget,
+  DefaultType,
+  Charity_Type,
+  CharityType
+} from '../../constants/data-types';
 import { CharityService } from '../../services/charity.service';
 import { AppStateService } from '../../services/app-state.service';
+import { Params, ActivatedRoute } from '@angular/router';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'charities',
@@ -19,8 +28,16 @@ export class CharitiesComponent implements OnInit {
   
   private subscription:any;
   
+  // To load the types
+  searchQuery:CharitySearchQuery = {
+    term: '',
+    target: DefaultTarget,
+    type: DefaultType
+  };
+  
   constructor(private charityService:CharityService,
-              private appStateService:AppStateService) {
+              private appStateService:AppStateService,
+              private route:ActivatedRoute) {
     this.subscription = this.charityService.charities$
       .subscribe(charities => {
         this.charities = charities;
@@ -37,7 +54,20 @@ export class CharitiesComponent implements OnInit {
   }
   
   ngOnInit():void {
-    this.charityService.getCharities();
+    this.route.params.forEach((params:Params) => {
+      let type = params['type'];
+      if (!isUndefined(type)) {
+        if (type in Charity_Type) {
+          this.searchQuery.type = new CharityType(type, Charity_Type[type]);
+          this.charityService.search(this.searchQuery);
+        } else {
+          this.charityService.getCharities();
+        }
+      } else {
+        this.charityService.getCharities();
+      }
+    });
+    
     this.leftPos = this.appStateService.leftPos;
     this.rightPos = this.appStateService.rightPos;
     this.stepSize = this.appStateService.stepSize;

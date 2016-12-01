@@ -28,6 +28,13 @@ import { AppStateService } from './services/app-state.service';
 import { CharityGridComponent } from './components/charity-grid/charity-grid.component';
 import { LoginSmallComponent } from './components/login-small/login-small.component';
 import { ProtectedDirective } from './directives/protected.directive';
+import { ChartsModule } from 'ng2-charts';
+import { BarChartComponent } from './components/bar-chart/bar-chart.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { CharityFormProfileComponent } from './components/charity-form-profile/charity-form-profile.component';
+import { ProfilePaymentComponent } from './components/profile-payment/profile-payment.component';
+import { NG_TABLE_DIRECTIVES } from 'ng2-table/ng2-table';
+import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 @NgModule({
   imports: [
@@ -35,7 +42,9 @@ import { ProtectedDirective } from './directives/protected.directive';
     FormsModule,
     HttpModule,
     AppRoutingModule,
-    ToasterModule
+    ToasterModule,
+    ChartsModule,
+    PaginationModule
   ],
   declarations: [
     HomePageComponent,
@@ -56,7 +65,12 @@ import { ProtectedDirective } from './directives/protected.directive';
     CharitySearchComponent,
     PageNotFoundComponent,
     LoginSmallComponent,
-    ProtectedDirective
+    ProtectedDirective,
+    BarChartComponent,
+    ProfileComponent,
+    CharityFormProfileComponent,
+    ProfilePaymentComponent,
+    NG_TABLE_DIRECTIVES
   ],
   providers: [CharityService, AuthService, ToasterService, AppStateService, QuizService],
   bootstrap: [AppComponent]
