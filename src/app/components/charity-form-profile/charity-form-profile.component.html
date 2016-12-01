@@ -1,22 +1,22 @@
-<div class="container-fluid col-md-8" *ngIf="charity">
+<div class="container-fluid col-xs-10" *ngIf="charity">
     <form class="form-horizontal" (submit)="onSubmit()">
         <fieldset>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-xs-12">
                     <input type="text" class="form-control" id="charityname" required
                         [(ngModel)]="charity.name"
                         name="charityname" placeholder="Name of the charity">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-xs-12">
                     <input type="text" class="form-control" id="register_id" required
                         [(ngModel)]="charity.register_id"
                         name="register_id" placeholder="Charity registration ID">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-xs-12">
                     <button class="btn btn-primary btn-block dropdown-toggle" 
                             type="button" data-toggle="dropdown"
                             aria-expanded="false">
@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-xs-12">
                     <button class="btn btn-primary btn-block dropdown-toggle" 
                             type="button" data-toggle="dropdown"
                             aria-expanded="false">
@@ -44,14 +44,14 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-xs-12">
                     <input type="text" class="form-control" id="paypal" required
                         [(ngModel)]="charity.paypal"
                         name="paypal" placeholder="Charity paypal">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-xs-12">
                     <textarea class="form-control" id="description" required
                               [(ngModel)]="charity.description"
                               name="description" placeholder="Enter a short description of your charity"></textarea>

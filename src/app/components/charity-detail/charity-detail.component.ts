@@ -53,7 +53,7 @@ export class CharityDetailComponent implements OnInit {
   }
   
   onSubmit():void {
-    let username = localStorage.getItem("user");
+    let username = localStorage.getItem("username");
     if (!username) {
       username = "donation";
     }

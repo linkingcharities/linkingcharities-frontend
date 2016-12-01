@@ -106,4 +106,13 @@ export class CharitySearchQuery {
   type:CharityType;
 }
 
+// Payments
+export class Payment {
+  amount:number;
+  charity:string;
+  currency:string;
+  date:string;
+  username:string;
+}
+
 

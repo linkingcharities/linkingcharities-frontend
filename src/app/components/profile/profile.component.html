@@ -1,9 +1,35 @@
-<div protected>
-    <h1>This is {{username}}'s profile page</h1>
-    <div *ngIf="isCharity">
-        <charity-form-profile [username]="username"></charity-form-profile>
+<div class="col-md-10 col-md-offset-1 col-xs-12" protected>
+    <h1>{{username}}</h1>
+    <div class="col-md-6 col-xs-12">
+        <div *ngIf="isCharity">
+            <charity-form-profile [username]="username"></charity-form-profile>
+        </div>
+
+        <div *ngIf="isFb">
+            Facebook linked account
+        </div>
+
+        <div *ngIf="isDonor">
+            Normal account (not via FB)
+        </div>
     </div>
-    <div *ngIf="isFb">
-        Facebook linked account
+    <div class="col-md-6 col-xs-12">
+        <div *ngIf="isCharity">
+            Other information for charity
+        </div>
+
+        <div *ngIf="isFb">
+            Other information for FB login
+        </div>
+
+        <div *ngIf="isDonor">
+            <div *ngFor="let payment of payments">
+                {{payment.username}} <br/>
+                {{payment.charity}} <br/>
+                {{payment.currency}} <br/>
+                {{payment.amount}} <br/>
+                {{payment.date}} <br/>
+            </div>
+        </div>
     </div>
 </div>

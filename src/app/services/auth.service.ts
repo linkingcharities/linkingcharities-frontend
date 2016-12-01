@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Headers, Http, Response } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { User } from '../constants/data-types';
+import { User, Payment } from '../constants/data-types';
 import { Subject } from 'rxjs/Rx';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
 import { API_URL } from '../constants/config';
@@ -31,6 +31,13 @@ export class AuthService {
   // To communicate username to components
   private usernameSource = new Subject<string>();
   userName$ = this.usernameSource.asObservable();
+  
+  // To communication payment info to components
+  private paymentsSource = new Subject<Payment[]>();
+  payments$ = this.paymentsSource.asObservable();
+  
+  // Info about the user
+  payments:Payment[] = null;
   
   constructor(private http:Http,
               private router:Router,
@@ -76,6 +83,8 @@ export class AuthService {
           localStorage.setItem("charity", 'true');
           localStorage.setItem("charityID", response.charity_id);
         }
+        this.payments = response.payments as Payment[];
+        this.paymentsSource.next(this.payments);
       })
   }
   
@@ -147,18 +156,29 @@ export class AuthService {
     return localStorage.getItem("charityID");
   }
   
+  getPayments() {
+    if (this.payments !== null) {
+      this.paymentsSource.next(this.payments);
+      return;
+    }
+    this.loadUserInfo(localStorage.getItem("username"));
+  }
+  
   accountType() {
+    // It could be argued that FB is just an alternative auth method but we ignore for now
     if (localStorage.getItem("charity") === 'true') {
       this.accountSource.next('charity')
-    }
-    if (localStorage.getItem("fb") === 'true') {
+    } else if (localStorage.getItem("fb") === 'true') {
       this.accountSource.next('fb');
+    } else if (localStorage.getItem("username") !== null) {
+      this.accountSource.next('donor');
     }
   }
   
   logout() {
     // Clearing localStorage
     localStorage.removeItem("username");
+    localStorage.removeItem("user");
     localStorage.removeItem("charity");
     localStorage.removeItem("fb");
     localStorage.removeItem("userID");
@@ -167,6 +187,7 @@ export class AuthService {
     this.loginSource.next(false);
     this.accountSource.next('none');
     this.checkLogin = false;
+    this.payments = null;
     this.toasterService.pop('success', '', 'Logout successful');
   }
   
