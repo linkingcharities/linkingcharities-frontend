@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { Opportunity } from "../../constants/data-types";
+import { Charity, Opportunity } from "../../constants/data-types";
 import { VolunteeringService } from "../../services/volunteering.service";
 
 @Component({
@@ -12,6 +12,7 @@ import { VolunteeringService } from "../../services/volunteering.service";
 
 export class VolunteeringDetailComponent implements OnInit {
     opportunity: Opportunity;
+    charity: Charity;
 
     private subscription:any;
 
@@ -33,6 +34,10 @@ export class VolunteeringDetailComponent implements OnInit {
 
     goBack():void {
         this.location.back();
+    }
+
+    goToURL():void {
+        window.location.href='http://' + this.opportunity.url;
     }
 
     ngOnDestroy() {

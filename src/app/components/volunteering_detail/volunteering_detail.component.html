@@ -5,14 +5,15 @@
         </div>
     </div>
 </div>
-<div class="container">
-    <h2>Volunteering Details component</h2>
-    <div *ngIf="opportunity">
-        ID - {{ opportunity.id }} <br/>
-        Description - {{ opportunity.description }} <br/>
-        Start Date - {{ opportunity.start_date }} <br/>
-        End Date - {{ opportunity.end_date }} <br/>
-        URL - {{ opportunity.url }} <br/>
-        <button (click)="goBack()">Go back</button>
+<div class="container col-xs-offset-3">
+    <div class="col-xs-9" id="charity_image">
+        <img src="placeholder.png" />
     </div>
+     <div class="col-xs-9" *ngIf="opportunity">
+         <h4>Description: </h4>
+         <p>{{ opportunity.description }}</p>
+         <h4>Start Date: {{ opportunity.start_date }}</h4>
+         <h4>End Date: {{ opportunity.end_date }}</h4>
+         <button class="btn btn-default"(click)="goToURL()">More Information</button>
+      </div>
 </div>

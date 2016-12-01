@@ -39,8 +39,8 @@ export class VolunteeringService {
     this.http.get(API_URL + '/volunteering?id=' + id, this.getOptions())
       .toPromise()
       .then((res:Response) => {
-        let opportunities = res.json() as Opportunity[];
-        this.volunteerSource.next(opportunities[0]);
+        let opportunity = res.json() as Opportunity;
+        this.volunteerSource.next(opportunity);
       })
       .catch(this.handleError);
   }
