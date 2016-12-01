@@ -4,7 +4,7 @@ import 'rxjs/add/operator/toPromise';
 import { Question, Option, Result } from '../constants/data-types';
 import { API_URL } from '../constants/config';
 import { Subject, Observable } from 'rxjs/Rx';
-import { Charity_Type } from '../constants/data-types';
+import { Charity_Type, Image_Hosting, Quiz_Description } from '../constants/data-types';
 
 @Injectable()
 export class QuizService {
@@ -123,55 +123,40 @@ export class QuizService {
     {
       case "a0" :
         result.title="Arts & Cultural";
-        result.picture_link="a0.png";
-        result.description="a0";
         result.links=["C"];
         break;
       case "a1" :
         result.title="Education";
-        result.picture_link="a1.png";
-        result.description="a1";
         result.links=["E","S","RE"];
         break;
       case "a2" :
         result.title="Health";
-        result.picture_link="a2.png";
-        result.description="a2";
         result.links=["H","D"];
         break;
       case "a3" :
         result.title="Community Development";
-        result.picture_link="a3.png";
-        result.description="a3";
         result.links=["EC"];
         break;
       case "a4":
         result.title="Human Services";
-        result.picture_link="a4.png";
-        result.description="a4";
         result.links=["HR","P","O"];
         break;
       case "a5":
         result.title="Animal Welfare & Environment";
-        result.picture_link="a5.png";
-        result.description="a5";
-        result.links=["AN,EN"];
+        result.links=["AN","EN"];
         break;
       case "a6":
         result.title="General Charitable Purpose";
-        result.picture_link="a6.png";
-        result.description="a6";
         result.links=["G","R","A","OT"];
         break;
     }
 
     result.link_types = [];
+    result.description = Quiz_Description[choice];
+    result.picture_link = Image_Hosting[choice];
 
     for (var i = 0; i < result.links.length; i++) {
-        console.log(result.links[i]);
-        console.log(Charity_Type[result.links[i]]);
         result.link_types.push(Charity_Type[result.links[i]]);
-
     }
 
     for (let test of result.link_types) {

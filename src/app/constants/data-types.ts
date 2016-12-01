@@ -35,6 +35,34 @@ export class Question {
   options:Option[];
 }
 
+export const Image_Hosting = {
+  'a0' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a0.jpg',
+  'a1' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a1.jpg',
+  'a2' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a2.jpg',
+  'a3' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a3.jpg',
+  'a4' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a4.jpg',
+  'a5' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a5.jpg',
+  'a6' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a6.jpg'
+};
+
+export const Quiz_Description = {
+  'a0' : 'These types of charities help preserve artistic and cultural heritage \
+          as well as celebrate the arts and our history.',
+  'a1' : 'Education charities serve students from every age group, \
+          pre-school to graduate school and beyond.  Some serve as the \
+          educational institutions while focus on making education more accessible and effective.',
+  'a2' : 'Health charities cover everything from supporting and treating the sick and disabled, \
+          working on cures for deseases, and promoting public awareness of specific health risks.',
+  'a3' : 'Community development is the practice of developing the social well- being of local, \
+          regional and, sometimes, national communities.',
+  'a4' : 'These organizations feed the hungry, provide emergency response during natural disasters, \
+          and offer shelter to those in need.',
+  'a5' : 'Animal & Environmental Charities focus on ways to promote preservation, \
+          appreciation, and sustainable development for the environment and its habitants. ',
+  'a6' : 'You got a heart of gold and you prefer charities advocating faith, religion or perhaps\
+          aiding the tough veterans at war.'
+};
+
 export const Charity_Target = {
   'C': 'Children / Young People',
   'E': 'Elderly / Old People',
