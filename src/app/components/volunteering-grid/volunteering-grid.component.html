@@ -1,0 +1,19 @@
+<div class="col-xs-12 col-sm-6 col-md-4">
+    <div class="container-fluid volunteering-grid overlay-hover">
+        <div class="volunteering-grid-title" (click)="goToDetail(opportunity)">
+            {{ opportunity.name }}
+        </div>
+        <div class="volunteering-grid-charity">
+            {{ opportunity.charity_name }}
+        </div>
+        <div class="volunteering-grid-start-date">
+            {{ opportunity.start_date }}
+        </div>
+        <div class="volunteering-grid-end-date">
+            {{ opportunity.end_date }}
+        </div>
+        <div class="volunteering-grid-description">
+            {{ opportunity.description }}
+        </div>
+    </div>
+</div>

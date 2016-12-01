@@ -1,0 +1,24 @@
+.volunteering-grid {
+    margin: 0 0 30px 0;
+    padding: 5px;
+    min-height: 400px;
+    border: 1px solid #F5F5F5;
+    position: relative;
+}
+
+.overlay-hover {
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.overlay-hover:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.overlay-hover:hover .volunteering-grid-title {
+    color: #00AFF0;
+}
+
+.volunteering-grid-title {
+    font-size: 20px;
+    font-weight: bold;
+}

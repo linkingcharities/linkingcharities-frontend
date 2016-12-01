@@ -12,3 +12,17 @@
     font-weight: 800;
     text-shadow: 3px 3px 0px #000;
 }
+
+#nav-buttons {
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .banner-text > h3 {
+        font-size: 25px;
+    }
+
+    .banner-area {
+        padding: 80px 0;
+    }
+}
