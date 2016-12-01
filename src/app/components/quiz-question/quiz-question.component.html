@@ -1,5 +1,7 @@
+<div id="quizAnimation" [style.opacity]="questionOpacity">
 <div id="question">{{question}}</div>
 <div *ngFor="let option of options">
   <img class="option" src="{{option.o}}" alt="{{option.o}}" (click)="nextQuestion(option.a)">
 </div>
 <div id="result">{{result}}</div>
+</div>

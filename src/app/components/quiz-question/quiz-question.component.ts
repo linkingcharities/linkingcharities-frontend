@@ -14,6 +14,7 @@ export class QuizQuestionComponent implements OnInit {
   question:string;
   options:Option[] = [];
   result:string;
+  questionOpacity:any = 1;
   
   private questionSubscription:any;
   private optionsSubscription:any;
@@ -47,6 +48,11 @@ export class QuizQuestionComponent implements OnInit {
   }
 
   nextQuestion(choice:string){
-    this.quizService.nextQuestion(choice);
+    this.questionOpacity = 0;
+    setTimeout(() =>{
+      this.quizService.nextQuestion(choice);
+      this.questionOpacity = 1;
+    }, 1000
+    );
   }
 }

@@ -9,7 +9,7 @@ import { Subject, Observable } from 'rxjs/Rx';
 export class QuizService {
 
   sample_data:string = '[ { "no":"1",\
-    "question":"Choose an image that appeals to you?",\
+    "question":"Choose an image that appeals to you.",\
     "options":[{"o":"images/1a.jpg", "a":"2"},\
                {"o":"images/1b.jpg", "a":"5"},\
                {"o":"images/1c.jpg", "a":"9"},\
