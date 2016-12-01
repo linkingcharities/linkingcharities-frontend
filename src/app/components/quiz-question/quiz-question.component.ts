@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Question, Option } from '../../constants/data-types';
+import { Question, Option, Result } from '../../constants/data-types';
 import { QuizService } from '../../services/quiz.service';
 
 @Component({
@@ -13,7 +13,8 @@ export class QuizQuestionComponent implements OnInit {
   // @Input() question:Questions;
   question:string;
   options:Option[] = [];
-  result:string;
+  result:Result;
+  displayResult:boolean = false;
   questionOpacity:any = 1;
   
   private questionSubscription:any;

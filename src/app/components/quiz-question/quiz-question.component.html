@@ -3,5 +3,13 @@
 <div *ngFor="let option of options">
   <img class="option" src="{{option.o}}" alt="{{option.o}}" (click)="nextQuestion(option.a)">
 </div>
-<div id="result">{{result}}</div>
+<div id="result" *ngIf="result">
+<h2>{{result.title}}</h2>
+<img class="resultPicture" src="{{result.picture_link}}" alt="{{result.picture_link}}">
+<p>{{result.description}}</p>
+<span>You might be interested in:</span>
+<div *ngFor="let link of result.links; let i = index;">
+  <a routerLink="/charities/{{link}}">{{result.link_types[i]}}</a><br />
+</div>
+</div>
 </div>

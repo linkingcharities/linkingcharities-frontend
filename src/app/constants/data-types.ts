@@ -21,6 +21,14 @@ export class Option {
   a:string;
 }
 
+export class Result {
+  title:string;
+  picture_link:string;
+  description:string;
+  links:string[];
+  link_types:string[];
+}
+
 export class Question {
   no:number;
   question:string;
