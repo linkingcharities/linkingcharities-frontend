@@ -53,7 +53,7 @@ export class QuizQuestionComponent implements OnInit {
     setTimeout(() =>{
       this.quizService.nextQuestion(choice);
       this.questionOpacity = 1;
-    }, 1000
+    }, 700
     );
   }
 }

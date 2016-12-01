@@ -36,13 +36,13 @@ export class Question {
 }
 
 export const Image_Hosting = {
-  'a0' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a0.jpg',
-  'a1' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a1.jpg',
-  'a2' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a2.jpg',
-  'a3' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a3.jpg',
-  'a4' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a4.jpg',
-  'a5' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a5.jpg',
-  'a6' : 'https://dl.dropboxusercontent.com/u/49220569/charilink/a6.jpg'
+  'a0' : '/a0.jpg',
+  'a1' : '/a1.jpg',
+  'a2' : '/a2.jpg',
+  'a3' : '/a3.jpg',
+  'a4' : '/a4.jpg',
+  'a5' : '/a5.jpg',
+  'a6' : '/a6.jpg'
 };
 
 export const Quiz_Description = {
