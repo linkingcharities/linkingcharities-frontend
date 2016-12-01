@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Question } from '../../constants/data-types';
+import { Question, Option, Result } from '../../constants/data-types';
 import { QuizService } from '../../services/quiz.service';
 
 @Component({
@@ -12,8 +12,10 @@ export class QuizQuestionComponent implements OnInit {
 
   // @Input() question:Questions;
   question:string;
-  options:string[] = [];
-  result:string;
+  options:Option[] = [];
+  result:Result;
+  displayResult:boolean = false;
+  questionOpacity:any = 1;
   
   private questionSubscription:any;
   private optionsSubscription:any;
@@ -43,10 +45,15 @@ export class QuizQuestionComponent implements OnInit {
   ngOnDestroy() {
     this.questionSubscription.unsubscribe();
     this.optionsSubscription.unsubscribe();
+    this.resultSubscription.unsubscribe();
   }
 
-  nextQuestion(choice:number){
-    this.quizService.calculateResult(choice);
-    this.quizService.nextQuestion();
+  nextQuestion(choice:string){
+    this.questionOpacity = 0;
+    setTimeout(() =>{
+      this.quizService.nextQuestion(choice);
+      this.questionOpacity = 1;
+    }, 700
+    );
   }
 }

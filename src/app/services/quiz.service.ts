@@ -1,41 +1,78 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Question } from '../constants/data-types';
-import { API_URL } from '../constants/config';
+import { Question, Option, Result } from '../constants/data-types';
+import { API_URL, IMAGE_URL } from '../constants/config';
 import { Subject, Observable } from 'rxjs/Rx';
+import { Charity_Type, Image_Hosting, Quiz_Description } from '../constants/data-types';
 
 @Injectable()
 export class QuizService {
 
-  sample_data:string = '[ { "question":"Which category would you like to extend a helping hand?",\
-   "option1":"https://cdn.meme.am/images/80x80/7727258.jpg",\
-    "option2":"http://aromatherapy-courses.co.uk/wp-content/uploads/2013/04/Elderly-Care-80x80.jpg",\
-     "option3":"http://cdn1.twinfinite.net/wp-content/uploads/2016/01/pikachu-80x80.png" },\
-   { "question":"Which image appeals to you most?",\
-    "option1":"http://aftlc.com/wp-content/uploads/2014/10/itc-activity-firstaid-80x80.jpg",\
-     "option2":"http://ensuretech.com/wp-content/uploads/2011/07/healthcare-thumbnail-clinics.jpg",\
-      "option3":"http://www.psypokes.com/dex/picdex/platinum_shiny_female/025_2.png" },\
-    { "question":"Which do you think weights the most?",\
-     "option1":"https://thumb-tf.s3.envato.com/files/213731534/thumbnail.jpg",\
-      "option2":"https://thebirthinginn.com/wp-content/uploads/2016/02/African-American-Newborn-Baby-450sq-80x80.jpg",\
-       "option3":"http://media.cutimes.com/cutimes/article/2016/11/09/trump-crop-80x80.jpg" }]';
+  sample_data:string = '[ { "no":"1",\
+    "question":"Choose an image that appeals to you.",\
+    "options":[{"o":"'+IMAGE_URL+'/1a.png", "a":"2"},\
+               {"o":"'+IMAGE_URL+'/1b.png", "a":"5"},\
+               {"o":"'+IMAGE_URL+'/1c.png", "a":"9"},\
+               {"o":"'+IMAGE_URL+'/1d.png", "a":"8"}]\
+    },\
+   { "no":"2",\
+     "question":"How far would you like to extend a helping hand?",\
+    "options":[{"o":"'+IMAGE_URL+'/2a.png", "a":"3"},\
+               {"o":"'+IMAGE_URL+'/2b.png", "a":"4"}]\
+    },\
+    { "no":"3",\
+      "question":"Which image invokes more sympathy?",\
+      "options":[{"o":"'+IMAGE_URL+'/3a.png", "a":"a2"},\
+                 {"o":"'+IMAGE_URL+'/3b.png", "a":"a3"}]\
+    },\
+    { "no":"4",\
+      "question":"I would like to find a charity that helps...",\
+      "options":[{"o":"'+IMAGE_URL+'/4a.png", "a":"a2"},\
+                 {"o":"'+IMAGE_URL+'/4b.png", "a":"a4"}]\
+    },\
+    { "no":"5",\
+      "question":"I would like to find a charity that does...",\
+      "options":[{"o":"'+IMAGE_URL+'/5a.png", "a":"6"},\
+                 {"o":"'+IMAGE_URL+'/5b.png", "a":"2"},\
+                 {"o":"'+IMAGE_URL+'/5c.png", "a":"7"}]\
+    },\
+    { "no":"6",\
+      "question":"I would prefer a charity that does...",\
+      "options":[{"o":"'+IMAGE_URL+'/6a.png", "a":"a1"},\
+                 {"o":"'+IMAGE_URL+'/6b.png", "a":"a0"}]\
+    },\
+    { "no":"7",\
+      "question":"Which image is of concern?",\
+      "options":[{"o":"'+IMAGE_URL+'/7a.png", "a":"a1"},\
+                 {"o":"'+IMAGE_URL+'/7b.png", "a":"a3"}]\
+    },\
+    { "no":"8",\
+      "question":"Which institution would you like to lend a helping hand to?",\
+      "options":[{"o":"'+IMAGE_URL+'/8a.png", "a":"a6"},\
+                 {"o":"'+IMAGE_URL+'/8b.png", "a":"a6"},\
+                 {"o":"'+IMAGE_URL+'/8c.png", "a":"a0"}]\
+    },\
+    { "no":"9",\
+      "question":"Which situation would you like to be in?",\
+      "options":[{"o":"'+IMAGE_URL+'/9a.png", "a":"a5"},\
+                 {"o":"'+IMAGE_URL+'/9b.png", "a":"a5"},\
+                 {"o":"'+IMAGE_URL+'/9c.png", "a":"a6"},\
+                 {"o":"'+IMAGE_URL+'/9d.png", "a":"a6"}]\
+    }]';
 
   private questions:Question[];
-  private count:number;
-  private current_question:number;
-  private choices:string;
 
   constructor(private http:Http) {
   }
 
-  private resultSource = new Subject<string>();
+  private resultSource = new Subject<Result>();
   result$ = this.resultSource.asObservable();  
 
   private questionSource = new Subject<string>();
   question$ = this.questionSource.asObservable();
 
-  private optionsSource = new Subject<string[]>();
+  private optionsSource = new Subject<Option[]>();
   options$ = this.optionsSource.asObservable();
     
   private getOptions():RequestOptions {
@@ -62,33 +99,71 @@ export class QuizService {
     //for sample data
      let q = JSON.parse(this.sample_data) as Question[];
      this.questions = q;
-     this.count = this.questions.length;
-     this.current_question = 0;
-     this.choices = "Redirect to a category of charities? TBC. Choices made: ";
-     this.nextQuestion();
+     this.nextQuestion("1"); //Start off with first question
 
   }
 
-  nextQuestion() {
-     if (this.current_question<this.count) {
-       this.questionSource.next(this.questions[this.current_question].question);
-
-       let options: string[] = [this.questions[this.current_question].option1,
-       this.questions[this.current_question].option2,
-       this.questions[this.current_question].option3];
-
-       this.optionsSource.next(options)
-     } else {
-       this.questionSource.next(null);
-       this.optionsSource.next(null);
-       this.resultSource.next(this.choices);
-     }
-     this.current_question++;
+  nextQuestion(choice:string) {
+    if(choice.charAt(0) === 'a'){
+      this.questionSource.next(null);
+      this.optionsSource.next(null);
+      this.generateResult(choice);
+    }else {
+      let nextQuestion:number = parseInt(choice)-1;
+      this.questionSource.next(this.questions[nextQuestion].question);
+      let options: Option[] = this.questions[nextQuestion].options;
+      this.optionsSource.next(options);
+    } 
   }
 
-  calculateResult(choice:number) {
-    //TODO: Some calculations which redirects to a list of charities?
-    this.choices += choice;
+  private generateResult(choice:string) {
+    let result = new Result;
+    //generate the cases
+    switch (choice)
+    {
+      case "a0" :
+        result.title="Arts & Cultural";
+        result.links=["C"];
+        break;
+      case "a1" :
+        result.title="Education";
+        result.links=["E","S","RE"];
+        break;
+      case "a2" :
+        result.title="Health";
+        result.links=["H","D"];
+        break;
+      case "a3" :
+        result.title="Community Development";
+        result.links=["EC"];
+        break;
+      case "a4":
+        result.title="Human Services";
+        result.links=["HR","P","O"];
+        break;
+      case "a5":
+        result.title="Animal Welfare & Environment";
+        result.links=["AN","EN"];
+        break;
+      case "a6":
+        result.title="General Charitable Purpose";
+        result.links=["G","R","A","OT"];
+        break;
+    }
+
+    result.link_types = [];
+    result.description = Quiz_Description[choice];
+    result.picture_link = IMAGE_URL + Image_Hosting[choice];
+
+    for (var i = 0; i < result.links.length; i++) {
+        result.link_types.push(Charity_Type[result.links[i]]);
+    }
+
+    for (let test of result.link_types) {
+      console.log(test);
+    }
+
+    this.resultSource.next(result);
   }
 
   // Error handliing

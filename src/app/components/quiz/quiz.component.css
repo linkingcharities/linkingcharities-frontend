@@ -1,7 +1,11 @@
-#navContent{
+#navContent {
   margin:auto; 
   width:50%;
-  margin-top:30px;
+  margin-top:20px;
   position:relative;
   overflow:hidden;
+}
+
+.quizTitle {
+  text-align: center;
 }

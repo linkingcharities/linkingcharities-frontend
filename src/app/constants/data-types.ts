@@ -14,13 +14,26 @@ export class Charity {
   paypal:string;
   type:string;
   target:string;
+  area_served:string;
+}
+
+export class Option {
+  o:string;
+  a:string;
+}
+
+export class Result {
+  title:string;
+  picture_link:string;
+  description:string;
+  links:string[];
+  link_types:string[];
 }
 
 export class Question {
+  no:number;
   question:string;
-  option1:string;
-  option2:string;
-  option3:string;
+  options:Option[];
 }
 
 export class Opportunity {
@@ -32,6 +45,34 @@ export class Opportunity {
     end_date:string;
     url:string;
 }
+
+export const Image_Hosting = {
+  'a0' : '/a0.jpg',
+  'a1' : '/a1.jpg',
+  'a2' : '/a2.jpg',
+  'a3' : '/a3.jpg',
+  'a4' : '/a4.jpg',
+  'a5' : '/a5.jpg',
+  'a6' : '/a6.jpg'
+};
+
+export const Quiz_Description = {
+  'a0' : 'These types of charities help preserve artistic and cultural heritage \
+          as well as celebrate the arts and our history.',
+  'a1' : 'Education charities serve students from every age group, \
+          pre-school to graduate school and beyond.  Some serve as the \
+          educational institutions while focus on making education more accessible and effective.',
+  'a2' : 'Health charities cover everything from supporting and treating the sick and disabled, \
+          working on cures for deseases, and promoting public awareness of specific health risks.',
+  'a3' : 'Community development is the practice of developing the social well- being of local, \
+          regional and, sometimes, national communities.',
+  'a4' : 'These organizations feed the hungry, provide emergency response during natural disasters, \
+          and offer shelter to those in need.',
+  'a5' : 'Animal & Environmental Charities focus on ways to promote preservation, \
+          appreciation, and sustainable development for the environment and its habitants. ',
+  'a6' : 'You got a heart of gold and you prefer charities advocating faith, religion or perhaps\
+          aiding the tough veterans at war.'
+};
 
 export const Charity_Target = {
   'C': 'Children / Young People',
@@ -114,3 +155,14 @@ export class CharitySearchQuery {
   target:CharityTarget;
   type:CharityType;
 }
+
+// Payments
+export class Payment {
+  amount:number;
+  charity:string;
+  currency:string;
+  date:string;
+  username:string;
+}
+
+

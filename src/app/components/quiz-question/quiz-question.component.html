@@ -1,5 +1,23 @@
-<div id="question">{{question}}</div>
-<div *ngFor="let option of options; let i = index">
-  <img class="option" src="{{option}}" alt="{{option}}" (click)="nextQuestion(i)">
+<div id="quizAnimation" [style.opacity]="questionOpacity">
+  <h2 id="question" class="display-1">{{question}}</h2>
+  <div *ngFor="let option of options">
+    <img class="option" src="{{option.o}}" alt="{{option.o}}" (click)="nextQuestion(option.a)">
+  </div>
+  <div id="result" *ngIf="result" class="row">
+    <div class="col-md-6">
+      <img class="resultPicture" src="{{result.picture_link}}" alt="{{result.picture_link}}">
+    </div>
+    <div class="col-md-6">
+      <h2 id="resultTitle" class="display-2">{{result.title}}</h2>
+      <p class="lead">{{result.description}}</p>
+      <span>You might be interested in:</span>
+      <ul>
+        <div *ngFor="let link of result.links; let i = index;">
+          <li>
+            <a routerLink="/charities/{{link}}">{{result.link_types[i]}}</a>
+          </li>
+        </div>
+      </ul>
+    </div>
+  </div>
 </div>
-<div id="result">{{result}}</div>
