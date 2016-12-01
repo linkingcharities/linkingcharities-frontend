@@ -5,9 +5,9 @@ import { Charity, Opportunity } from "../../constants/data-types";
 import { VolunteeringService } from "../../services/volunteering.service";
 
 @Component({
-    selector: 'volunteering_detail',
-    templateUrl: './volunteering_detail.component.html',
-    styleUrls: ['./volunteering_detail.component.css']
+    selector: 'volunteering-detail',
+    templateUrl: './volunteering-detail.component.html',
+    styleUrls: ['./volunteering-detail.component.css']
 })
 
 export class VolunteeringDetailComponent implements OnInit {

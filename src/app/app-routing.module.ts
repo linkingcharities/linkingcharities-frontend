@@ -10,7 +10,7 @@ import { CharityFormComponent } from './components/charity-form/charity-form.com
 import { CharityDetailComponent } from './components/charity-detail/charity-detail.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { VolunteeringComponent } from './components/volunteering/volunteering.component';
-import { VolunteeringDetailComponent } from './components/volunteering_detail/volunteering_detail.component';
+import { VolunteeringDetailComponent } from './components/volunteering-detail/volunteering-detail.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 

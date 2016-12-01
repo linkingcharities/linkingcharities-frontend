@@ -19,9 +19,10 @@ import { CharityDetailComponent } from './components/charity-detail/charity-deta
 import { CharityFormComponent } from './components/charity-form/charity-form.component';
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { VolunteeringComponent } from './components/volunteering/volunteering.component';
-import { VolunteeringDetailComponent } from './components/volunteering_detail/volunteering_detail.component';
+import { VolunteeringDetailComponent } from './components/volunteering-detail/volunteering-detail.component';
 import { VolunteeringService } from './services/volunteering.service';
 import { VolunteeringGridComponent } from './components/volunteering-grid/volunteering-grid.component';
+import { VolunteeringSearchComponent } from './components/volunteering-search/volunteering-search.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
@@ -58,6 +59,7 @@ import { ProtectedDirective } from './directives/protected.directive';
     VolunteeringComponent,
     VolunteeringDetailComponent,
     VolunteeringGridComponent,
+    VolunteeringSearchComponent,
     CarouselComponent,
     FacebookLoginComponent,
     CharitySearchComponent,
