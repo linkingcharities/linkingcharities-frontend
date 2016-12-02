@@ -29,12 +29,13 @@ export class ThankYouComponent implements OnInit {
         this.payment = +params['id'];
     });
     
-    let user:String = localStorage.getItem("user");
+    let user:String = localStorage.getItem("username");
     if (user) {
       this.http.post(API_URL + '/show_payment', 
       {'username': user, 'payment': this.payment.toString()})
       .toPromise()
       .then((res:Response) => {
+        console.log("Reached");
         console.log(res.json());
         let data = res.json();
         this.business = data['charity'];
@@ -43,7 +44,7 @@ export class ThankYouComponent implements OnInit {
       this.toasterService.pop('success', '', 'Thank you for your donation.');
     });
     } else {
-      this.router.navigate(['homepage']);
+      this.router.navigate(['home']);
     }
   }
 
