@@ -12,10 +12,19 @@ env:
     - CHROME_BIN=chromium-browser
 before_script:
   - sh -e /etc/init.d/xvfb start
+before_install:
+  - echo -e "Host 138.68.147.114\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+  - openssl aes-256-cbc -K $encrypted_544cc9ef7876_key -iv $encrypted_544cc9ef7876_iv
+  -in deploy-key.enc -out deploy-key -d
 install:
   - npm install
 script:
   - npm test
+after_success:
+  - chmod 600 deploy-key
+  - mv deploy-key ~/.ssh/id_rsa
+  - git remote add deploy ssh://root@138.68.147.114/var/git/frontend.git
+  - git push deploy
 
 notifications:
   email: false
