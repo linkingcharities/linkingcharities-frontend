@@ -17,6 +17,7 @@ export class VolunteeringComponent implements OnInit {
   displayOpportunities:Opportunity[] = null;
   leftPos:number = null;
   rightPos:number = null;
+  displayPagination:boolean = false;
 
   private subscription:any;
 
@@ -27,6 +28,7 @@ export class VolunteeringComponent implements OnInit {
         this.opportunities = opportunities;
         this.rightPosAdjust();
         this.displayOpportunities = this.opportunities.slice(this.leftPos, this.rightPos);
+        this.displayPagination = this.displayOpportunities.length != 0;
       });
   }
 
@@ -39,13 +41,13 @@ export class VolunteeringComponent implements OnInit {
 
   ngOnInit():void {
     this.volunteeringService.getOpportunities();
-    this.leftPos = this.appStateService.leftPos;
-    this.rightPos = this.appStateService.rightPos;
-    this.stepSize = this.appStateService.stepSize;
+    this.leftPos = this.appStateService.volunteerLeftPos;
+    this.rightPos = this.appStateService.volunteerRightPos;
+    this.stepSize = this.appStateService.volunteerStepSize;
   }
 
   moveRight():void {
-    if (this.leftPos + this.stepSize < this.opportunities.length - 1) {
+    if (this.leftPos + this.stepSize < this.opportunities.length) {
       this.leftPos += this.stepSize;
       this.rightPosAdjust();
       this.displayOpportunities = this.opportunities.slice(this.leftPos, this.rightPos);
@@ -63,7 +65,7 @@ export class VolunteeringComponent implements OnInit {
   ngOnDestroy() {
     // Unsubscribe when the component is destroyed
     this.subscription.unsubscribe();
-    this.appStateService.leftPos = this.leftPos;
-    this.appStateService.rightPos = this.rightPos;
+    this.appStateService.volunteerLeftPos = this.leftPos;
+    this.appStateService.volunteerRightPos = this.rightPos;
   }
 }

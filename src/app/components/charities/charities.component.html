@@ -18,7 +18,7 @@
             </charity-grid>
         </div>
 
-        <div id="nav-buttons">
+        <div id="nav-buttons" *ngIf="displayPagination">
             <button (click)="moveLeft()">Move left</button>
             {{leftPos + 1 }} - {{rightPos}}
             <button (click)="moveRight()">Move right</button>
