@@ -41,6 +41,7 @@ export class CharitiesComponent implements OnInit {
     this.subscription = this.charityService.charities$
       .subscribe(charities => {
         this.charities = charities;
+        console.log(this.charities.length);
         this.rightPosAdjust();
         this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
       });
@@ -74,11 +75,12 @@ export class CharitiesComponent implements OnInit {
   }
   
   moveRight():void {
-    if (this.leftPos + this.stepSize < this.charities.length - 1) {
+    if (this.leftPos + this.stepSize < this.charities.length) {
       this.leftPos += this.stepSize;
       this.rightPosAdjust();
       this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
     }
+    console.log(this.leftPos, this.rightPos, this.stepSize);
   }
   
   moveLeft():void {
@@ -87,6 +89,7 @@ export class CharitiesComponent implements OnInit {
       this.rightPosAdjust();
       this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
     }
+    console.log(this.leftPos, this.rightPos, this.stepSize);
   }
   
   ngOnDestroy() {
