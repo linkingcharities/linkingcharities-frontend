@@ -1,8 +1,22 @@
-<h1 class="display-1 quizTitle">Find out which Charity fits you!</h1>
 
-<div id="navContent">
-<quiz-question>
+<div class="banner-area">
+    <div class="col-xs-6 col-xs-offset-2">
+        <div class="banner-text">
+            <h3>Quiz</h3>
+        </div>
+    </div>
+</div>
+
+<div id="navContent" [style.opacity]="quizOpacity">
+
+<div id="beginQuiz" *ngIf="!startQuiz"> 
+<p class="h3">Find out which charity fits you!</p>
+<button class="btn btn-primary" (click)="begin()">Begin!</button>
+</div>
+
+<quiz-question *ngIf="startQuiz">
 Loading Question..
 </quiz-question>
+
 </div>
 

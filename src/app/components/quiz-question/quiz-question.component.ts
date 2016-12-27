@@ -1,6 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, AfterViewInit } from "@angular/core";
 import { Question, Option, Result } from '../../constants/data-types';
 import { QuizService } from '../../services/quiz.service';
+
 
 @Component({
   selector: 'quiz-question',
@@ -8,7 +9,7 @@ import { QuizService } from '../../services/quiz.service';
   styleUrls: ['./quiz-question.component.css']
 })
 
-export class QuizQuestionComponent implements OnInit {
+export class QuizQuestionComponent implements OnInit, AfterViewInit {
 
   // @Input() question:Questions;
   question:string;
@@ -41,6 +42,13 @@ export class QuizQuestionComponent implements OnInit {
   ngOnInit():void {
     this.quizService.initializeQuiz();
   }
+
+  ngAfterViewInit() {
+    $( document ).ready(function() {
+      var $target = $('html,body'); 
+      $target.scrollTop($target.height());
+    });
+  } 
 
   ngOnDestroy() {
     this.questionSubscription.unsubscribe();

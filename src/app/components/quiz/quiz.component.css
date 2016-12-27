@@ -4,8 +4,39 @@
   margin-top:20px;
   position:relative;
   overflow:hidden;
+  padding-bottom: 15px;
+
+  -webkit-transition: all 0.7s ease-in-out;
+  -moz-transition: all 0.7s ease-in-out;
+  -ms-transition: all 0.7s ease-in-out;
+  -o-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
 
 .quizTitle {
   text-align: center;
 }
+
+/* Banner */
+.banner-area {
+    background: url('banner.jpg') repeat scroll center center;
+    padding: 128px 0;
+    transition: all 0.3s ease 0s
+}
+
+.banner-text > h3 {
+    color: #FFFFFF;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+@media (max-width: 768px) {
+    .banner-text > h3 {
+        font-size: 25px;
+    }
+
+    .banner-area {
+        padding: 80px 0;
+    }
+}
+
