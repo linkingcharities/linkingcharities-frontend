@@ -20,11 +20,12 @@ install:
   - npm install
 script:
   - npm test
-after_success:
-  - chmod 600 deploy-key
-  - mv deploy-key ~/.ssh/id_rsa
-  - git remote add deploy ssh://root@138.68.147.114/var/git/frontend.git
-  - git push deploy
+
+deploy:
+    provider: script
+    script: scripts/deploy.sh
+    on:
+        branch: master
 
 notifications:
   email: false
