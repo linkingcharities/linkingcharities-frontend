@@ -45,7 +45,7 @@ export class VolunteeringComponent implements OnInit {
   }
 
   moveRight():void {
-    if (this.leftPos + this.stepSize < this.opportunities.length - 1) {
+    if (this.leftPos + this.stepSize < this.opportunities.length) {
       this.leftPos += this.stepSize;
       this.rightPosAdjust();
       this.displayOpportunities = this.opportunities.slice(this.leftPos, this.rightPos);
