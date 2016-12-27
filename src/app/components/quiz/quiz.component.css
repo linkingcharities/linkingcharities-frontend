@@ -4,6 +4,7 @@
   margin-top:20px;
   position:relative;
   overflow:hidden;
+  padding-bottom: 15px;
 
   -webkit-transition: all 0.7s ease-in-out;
   -moz-transition: all 0.7s ease-in-out;
