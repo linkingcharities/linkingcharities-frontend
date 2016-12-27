@@ -1,9 +1,15 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { CharityService } from '../../services/charity.service';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
-import { CharityType, CharityTypes, 
-         CharityTarget, CharityTargets} from '../../constants/data-types';
+import {
+  CharityType,
+  CharityTypes,
+  CharityTarget,
+  CharityTargets,
+  DefaultTarget,
+  DefaultType
+} from '../../constants/data-types';
 
 
 @Component({
@@ -17,12 +23,12 @@ export class CharityFormComponent {
   password:string = null;
   name:string = null;
   register_id:number = null;
-  type:CharityType = null;
-  target:CharityTarget = null;
+  type:CharityType = DefaultType;
+  target:CharityTarget = DefaultTarget;
   paypal:string = null;
   description:string = null;
   isCharity:boolean = false;
-
+  
   charityTargets:CharityTarget[] = CharityTargets;
   charityTypes:CharityType[] = CharityTypes;
   
@@ -52,23 +58,23 @@ export class CharityFormComponent {
     };
     
     this.authService.registerCharity(data);
-
+    
     /* this.charityService.create(data).then(
-      () => this.charityService.getCharities()
-    ); */
-
+     () => this.charityService.getCharities()
+     ); */
+    
   }
- 
+  
   createUserAccount():void {
     this.router.navigate(['/signup']);
   }
-
+  
   modifyTarget(target:CharityTarget):void {
     this.target = target;
   }
-
+  
   modifyType(type:CharityType):void {
     this.type = type;
   }
-
+  
 }

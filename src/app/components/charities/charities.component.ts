@@ -25,6 +25,7 @@ export class CharitiesComponent implements OnInit {
   displayCharities:Charity[] = null;
   leftPos:number = null;
   rightPos:number = null;
+  displayPagination:boolean = false;
   
   private subscription:any;
   
@@ -44,6 +45,7 @@ export class CharitiesComponent implements OnInit {
         console.log(this.charities.length);
         this.rightPosAdjust();
         this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
+        this.displayPagination = this.displayCharities.length != 0;
       });
   }
   
