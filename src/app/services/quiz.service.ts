@@ -11,54 +11,54 @@ export class QuizService {
 
   sample_data:string = '[ { "no":"1",\
     "question":"Choose an image that appeals to you.",\
-    "options":[{"o":"'+IMAGE_URL+'/1a.png", "a":"2"},\
-               {"o":"'+IMAGE_URL+'/1b.png", "a":"5"},\
-               {"o":"'+IMAGE_URL+'/1c.png", "a":"9"},\
-               {"o":"'+IMAGE_URL+'/1d.png", "a":"8"}]\
+    "options":[{"o":"'+IMAGE_URL+'/1a.jpg", "a":"2"},\
+               {"o":"'+IMAGE_URL+'/1b.jpg", "a":"5"},\
+               {"o":"'+IMAGE_URL+'/1c.jpg", "a":"9"},\
+               {"o":"'+IMAGE_URL+'/1d.jpg", "a":"8"}]\
     },\
    { "no":"2",\
      "question":"How far would you like to extend a helping hand?",\
-    "options":[{"o":"'+IMAGE_URL+'/2a.png", "a":"3"},\
-               {"o":"'+IMAGE_URL+'/2b.png", "a":"4"}]\
+    "options":[{"o":"'+IMAGE_URL+'/2a.jpg", "a":"3"},\
+               {"o":"'+IMAGE_URL+'/2b.jpg", "a":"4"}]\
     },\
     { "no":"3",\
       "question":"Which image invokes more sympathy?",\
-      "options":[{"o":"'+IMAGE_URL+'/3a.png", "a":"a2"},\
-                 {"o":"'+IMAGE_URL+'/3b.png", "a":"a3"}]\
+      "options":[{"o":"'+IMAGE_URL+'/3a.jpg", "a":"a2"},\
+                 {"o":"'+IMAGE_URL+'/3b.jpg", "a":"a3"}]\
     },\
     { "no":"4",\
       "question":"I would like to find a charity that helps...",\
-      "options":[{"o":"'+IMAGE_URL+'/4a.png", "a":"a2"},\
-                 {"o":"'+IMAGE_URL+'/4b.png", "a":"a4"}]\
+      "options":[{"o":"'+IMAGE_URL+'/4a.jpg", "a":"a2"},\
+                 {"o":"'+IMAGE_URL+'/4b.jpg", "a":"a4"}]\
     },\
     { "no":"5",\
       "question":"I would like to find a charity that does...",\
       "options":[{"o":"'+IMAGE_URL+'/5a.png", "a":"6"},\
-                 {"o":"'+IMAGE_URL+'/5b.png", "a":"2"},\
-                 {"o":"'+IMAGE_URL+'/5c.png", "a":"7"}]\
+                 {"o":"'+IMAGE_URL+'/5b.jpg", "a":"2"},\
+                 {"o":"'+IMAGE_URL+'/5c.jpg", "a":"7"}]\
     },\
     { "no":"6",\
       "question":"I would prefer a charity that does...",\
-      "options":[{"o":"'+IMAGE_URL+'/6a.png", "a":"a1"},\
-                 {"o":"'+IMAGE_URL+'/6b.png", "a":"a0"}]\
+      "options":[{"o":"'+IMAGE_URL+'/6a.jpg", "a":"a1"},\
+                 {"o":"'+IMAGE_URL+'/6b.jpg", "a":"a0"}]\
     },\
     { "no":"7",\
       "question":"Which image is of concern?",\
-      "options":[{"o":"'+IMAGE_URL+'/7a.png", "a":"a1"},\
-                 {"o":"'+IMAGE_URL+'/7b.png", "a":"a3"}]\
+      "options":[{"o":"'+IMAGE_URL+'/7a.jpg", "a":"a1"},\
+                 {"o":"'+IMAGE_URL+'/7b.jpg", "a":"a3"}]\
     },\
     { "no":"8",\
       "question":"Which institution would you like to lend a helping hand to?",\
-      "options":[{"o":"'+IMAGE_URL+'/8a.png", "a":"a6"},\
-                 {"o":"'+IMAGE_URL+'/8b.png", "a":"a6"},\
-                 {"o":"'+IMAGE_URL+'/8c.png", "a":"a0"}]\
+      "options":[{"o":"'+IMAGE_URL+'/8a.jpg", "a":"a6"},\
+                 {"o":"'+IMAGE_URL+'/8b.jpg", "a":"a6"},\
+                 {"o":"'+IMAGE_URL+'/8c.jpg", "a":"a0"}]\
     },\
     { "no":"9",\
       "question":"Which situation would you like to be in?",\
       "options":[{"o":"'+IMAGE_URL+'/9a.png", "a":"a5"},\
-                 {"o":"'+IMAGE_URL+'/9b.png", "a":"a5"},\
-                 {"o":"'+IMAGE_URL+'/9c.png", "a":"a6"},\
-                 {"o":"'+IMAGE_URL+'/9d.png", "a":"a6"}]\
+                 {"o":"'+IMAGE_URL+'/9b.jpg", "a":"a5"},\
+                 {"o":"'+IMAGE_URL+'/9c.jpg", "a":"a6"},\
+                 {"o":"'+IMAGE_URL+'/9d.jpg", "a":"a6"}]\
     }]';
 
   private questions:Question[];
