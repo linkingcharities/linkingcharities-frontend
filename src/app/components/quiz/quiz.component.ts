@@ -8,17 +8,17 @@ import { QuizService } from '../../services/quiz.service';
   styleUrls: ['./quiz.component.css']
 })
 
-export class QuizPageComponent implements OnInit {
+export class QuizPageComponent implements OnInit{
 
   startQuiz:boolean;
   quizOpacity:any = 1;
+
 
   constructor() {
   }
 
   begin():void {
     this.quizOpacity = 0;
-    
     setTimeout(() =>{
       this.startQuiz = true;
       this.quizOpacity = 1;
@@ -29,5 +29,4 @@ export class QuizPageComponent implements OnInit {
   ngOnInit():void {
     this.startQuiz = false;
   }
-
 }
