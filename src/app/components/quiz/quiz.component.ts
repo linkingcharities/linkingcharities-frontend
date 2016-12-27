@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { Question } from '../../constants/data-types';
 import { QuizService } from '../../services/quiz.service';
 
@@ -8,9 +8,26 @@ import { QuizService } from '../../services/quiz.service';
   styleUrls: ['./quiz.component.css']
 })
 
-export class QuizPageComponent {
+export class QuizPageComponent implements OnInit {
+
+  startQuiz:boolean;
+  quizOpacity:any = 1;
 
   constructor() {
+  }
+
+  begin():void {
+    this.quizOpacity = 0;
+    
+    setTimeout(() =>{
+      this.startQuiz = true;
+      this.quizOpacity = 1;
+    }, 700
+    );
+  }
+
+  ngOnInit():void {
+    this.startQuiz = false;
   }
 
 }

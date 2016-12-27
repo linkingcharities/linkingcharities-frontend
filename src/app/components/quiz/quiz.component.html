@@ -7,9 +7,16 @@
     </div>
 </div>
 
-<div id="navContent">
-<quiz-question>
+<div id="navContent" [style.opacity]="quizOpacity">
+
+<div id="beginQuiz" *ngIf="!startQuiz"> 
+<p class="h3">Find out which Charity fits you!</p>
+<button class="btn btn-primary" (click)="begin()">Begin!</button>
+</div>
+
+<quiz-question *ngIf="startQuiz">
 Loading Question..
 </quiz-question>
+
 </div>
 

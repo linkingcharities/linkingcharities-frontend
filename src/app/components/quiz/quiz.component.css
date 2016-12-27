@@ -4,6 +4,12 @@
   margin-top:20px;
   position:relative;
   overflow:hidden;
+
+  -webkit-transition: all 0.7s ease-in-out;
+  -moz-transition: all 0.7s ease-in-out;
+  -ms-transition: all 0.7s ease-in-out;
+  -o-transition: all 0.7s ease-in-out;
+  transition: all 0.7s ease-in-out;
 }
 
 .quizTitle {
@@ -32,3 +38,4 @@
         padding: 80px 0;
     }
 }
+
