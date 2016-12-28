@@ -55,8 +55,10 @@ export class VolunteeringService {
           .then((res:Response) => {
               let opportunities = res.json() as Opportunity[];
               let filtered = opportunities.filter(opportunity =>
-                  opportunity.name.toLowerCase().includes(
-                                               searchQuery.term.toLowerCase()));
+                  opportunity.name.toLowerCase().
+                  includes(searchQuery.term.toLowerCase()) ||
+                  opportunity.charity_name.toLowerCase().
+                  includes(searchQuery.term.toLowerCase()));
               this.volunteeringSource.next(filtered);
               this.prevQuery = searchQuery;
           }).catch(this.handleError);
