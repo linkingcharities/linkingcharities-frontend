@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 
@@ -8,24 +8,41 @@ import { AuthService } from '../../services/auth.service';
   styleUrls: ['./signup.component.css']
 })
 
-export class SignupComponent {
-  username:String = null;
-  password:String = null;
+export class SignupComponent implements OnInit {
+  username:string = null;
+  password:string = null;
+  passwordConfirm:string = null;
   isLoggedIn = false;
+  usernameTaken = false;
+  passwordMismatch = false;
   
   constructor(private router:Router,
               private authService:AuthService) {
     authService.login$.subscribe(
-      isLoggedIn => this.isLoggedIn = isLoggedIn
+      isLoggedIn => {
+        this.isLoggedIn = isLoggedIn;
+        if (this.username !== null) {
+          this.usernameTaken = !this.isLoggedIn;
+        }
+      }
     );
   }
   
+  ngOnInit():void {
+    this.authService.isLoggedIn();
+  }
+  
   onSubmit():void {
+    if (this.password != this.passwordConfirm) {
+      this.passwordMismatch = true;
+      return
+    }
+    this.passwordMismatch = false;
     this.authService.registerUser(this.username, this.password);
   }
-
+  
   charityCreation():void {
     this.router.navigate(['/charity-form']);
   }
- 
+  
 }
