@@ -24,3 +24,12 @@
         padding: 80px 0;
     }
 }
+
+.page-text {
+    font-size: 20px;
+    margin: 0 20px 10px 20px;
+}
+
+.disabled {
+    color: #8c8c8c;
+}

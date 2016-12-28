@@ -281,9 +281,9 @@ export class AuthService {
   
   getUsernameFb() {
     FB.api('/me', {fields: 'first_name'}, (resp:any) => {
-      console.log(resp);
-      localStorage.setItem("username", resp.first_name);
-      this.usernameSource.next(resp.first_name);
+      let name = resp.first_name.split(' ')[0];
+      localStorage.setItem("username", name);
+      this.usernameSource.next(name);
     });
   }
   
