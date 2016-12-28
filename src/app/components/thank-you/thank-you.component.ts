@@ -56,8 +56,8 @@ export class ThankYouComponent implements OnInit {
     this.router.navigate(['charities']);
   }
 
-  shareFb():void {
-    this.authService.shareOnFb();
+  shareFb(amount:string, business:string):void {
+    this.authService.shareOnFb(amount, business);
   }
 
 }

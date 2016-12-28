@@ -2,24 +2,22 @@
 <div class="banner-area">
     <div class="col-xs-6 col-xs-offset-2">
         <div class="banner-text">
-            Thank you for your donation.
+            <h3>Thank you</h3>
         </div>
     </div>
 </div>
-
 <div class="container">
-    <h1>Thank you</h1>
+    <br />
+    <img src="thank-you-sign.jpg" class="thank-you-sign" />
+    <p class="thank-you-text">You have truly made a difference.</p>
+    <br />
+    <p>Thank you for contributing {{ amount }} dollars to {{ business }} and supporting our goals in helping charities worldwide.</p>
+    <p><small>We appreciate your contribution and work to ensure that your generosity will directly benefit those in need.
+    </small></p>
 
-    <h2>Thank you for donating {{ amount }} dollars to {{ business }}.</h2>
-
-    <h2>Please continue to give your support to our site and charities.</h2>
-
-    <button (click)="goHome()">Home</button>
-
-    <button (click)="moreCharities()">See more Charities</button>
-
-    <button class="btn btn-social-icon btn-facebook facebook-login" (click)="shareFb()">
+    <button class="btn btn-social-icon btn-facebook facebook-login" (click)="shareFb(amount, business)">
        <span class="fa fa-facebook"></span>
     </button>
+    <strong>Share</strong>
 
 </div>
