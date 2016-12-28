@@ -3,9 +3,6 @@
         <div class="volunteering-grid-title">
             {{ opportunity.name }}
         </div>
-        <div class="col-md-8 col-md-offset-4">
-            <img id="charityLogo" src="oxfam-logo.gif" />
-        </div>
         <div class="volunteering-grid-charity">
             <p>
                 <b>Charity: </b>{{ opportunity.charity_name }}
@@ -16,8 +13,8 @@
             <b>Until:</b> {{ opportunity.end_date }}
         </div>
         <br />
-        <div class="volunteering-grid-description">
-            {{ opportunity.description }}
+        <div class="col-md-8 col-md-offset-4 col-sm-4 col-sm-offset-4 col-xs-offset-4">
+            <img id="charityLogo" src="oxfam-logo.gif" />
         </div>
     </div>
 </div>

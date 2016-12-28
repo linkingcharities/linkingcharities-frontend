@@ -44,6 +44,7 @@ export class Opportunity {
     start_date:string;
     end_date:string;
     url:string;
+    charity_name:string;
 }
 
 export const Image_Hosting = {

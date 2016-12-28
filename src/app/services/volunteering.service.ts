@@ -44,7 +44,7 @@ export class VolunteeringService {
       .toPromise()
       .then((res:Response) => {
         let opportunity = res.json() as Opportunity;
-        this.volunteerSource.next(opportunity);
+        this.volunteerSource.next(opportunity[0]);
       })
       .catch(this.handleError);
   }
