@@ -165,4 +165,7 @@ export class Payment {
   username:string;
 }
 
-
+// For volunteering search
+export class VolunteeringSearchQuery {
+  term:string;
+}
