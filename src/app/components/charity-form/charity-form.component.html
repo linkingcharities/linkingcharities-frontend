@@ -1,42 +1,42 @@
-<div class="container-fluid col-md-8">
-    <h2>Charity creation</h2>
+<div class="col-md-8 col-md-offset-2">
+    <h2 class="text-center">Charity creation</h2>
     <form class="form-horizontal" (submit)="onSubmit()">
         <fieldset>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-md-8 col-md-offset-2">
                     <input type="text" class="form-control" id="username" required
-                        [(ngModel)]="username"
-                        name="username" placeholder="Login username">
+                           [(ngModel)]="username"
+                           name="username" placeholder="Login username">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-md-8 col-md-offset-2">
                     <input type="password" class="form-control" id="password" required
-                        [(ngModel)]="password"
-                        name="password" placeholder="Password">
+                           [(ngModel)]="password"
+                           name="password" placeholder="Password">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-md-8 col-md-offset-2">
                     <input type="text" class="form-control" id="charityname" required
-                        [(ngModel)]="name"
-                        name="charityname" placeholder="Name of the charity">
+                           [(ngModel)]="name"
+                           name="charityname" placeholder="Name of the charity">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-md-8 col-md-offset-2">
                     <input type="text" class="form-control" id="register_id" required
-                        [(ngModel)]="register_id"
-                        name="register_id" placeholder="Charity registration ID">
+                           [(ngModel)]="register_id"
+                           name="register_id" placeholder="Charity registration ID">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
-                    <button class="btn btn-primary btn-block dropdown-toggle" 
+                <div class="col-md-8 col-md-offset-2">
+                    <button class="btn btn-primary btn-block dropdown-toggle"
                             type="button" data-toggle="dropdown"
                             aria-expanded="false">
-                    Charity type
-                    <span class="caret"></span></button>
+                        {{type.full}}
+                        <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <li *ngFor="let type of charityTypes">
                             <a (click)="modifyType(type)">{{type.full}}</a>
@@ -45,35 +45,38 @@
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
-                    <button class="btn btn-primary btn-block dropdown-toggle" 
+                <div class="col-md-8 col-md-offset-2">
+                    <button class="btn btn-primary btn-block dropdown-toggle"
                             type="button" data-toggle="dropdown"
                             aria-expanded="false">
-                    Charity target
-                    <span class="caret"></span></button>
+                        {{target.full}}
+                        <span class="caret"></span></button>
                     <ul class="dropdown-menu">
                         <li *ngFor="let target of charityTargets">
                             <a (click)="modifyTarget(target)">{{target.full}}</a>
-                        </li>    
+                        </li>
                     </ul>
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-md-8 col-md-offset-2">
                     <input type="text" class="form-control" id="paypal" required
-                        [(ngModel)]="paypal"
-                        name="paypal" placeholder="Charity paypal">
+                           [(ngModel)]="paypal"
+                           name="paypal" placeholder="Charity paypal">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-6">
+                <div class="col-md-8 col-md-offset-2">
                     <textarea class="form-control" id="description" required
                               [(ngModel)]="description"
                               name="description" placeholder="Enter a short description of your charity"></textarea>
                 </div>
             </div>
         </fieldset>
-        <button type="submit" class="btn btn-primary">Create charity</button>
-        <a (click)="createUserAccount()">Create Donor Account</a>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary text-center">Create charity</button>
+            <br/><br/>
+            <a (click)="createUserAccount()" class="text-center">Register as donor</a>
+        </div>
     </form>
 </div>

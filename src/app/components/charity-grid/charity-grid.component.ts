@@ -13,6 +13,11 @@ export class CharityGridComponent implements OnInit {
   charityType:string = null;
   charityTarget:string = null;
   
+  // Numbers can be brought in from API
+  cause:number = 80;
+  fundraise:number = 80;
+  admin:number = 80;
+  
   constructor(private router:Router) {
   }
   

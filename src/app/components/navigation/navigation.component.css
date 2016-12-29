@@ -17,6 +17,11 @@ header {
     width: 100%;
 }
 
+.dropdown-menu {
+    width: 300px;
+    left: -115px;
+}
+
 .fixed-top {
     position: fixed;
     width: 100%;

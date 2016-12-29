@@ -9,10 +9,6 @@
        border:#FC0 solid 5px;
      }
 
-#question {
-  font-size:18px;
-  color:#000;
-}
 
 #quizAnimation {
     -webkit-transition: all 0.7s ease-in-out;

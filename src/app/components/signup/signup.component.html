@@ -1,12 +1,17 @@
 <div class="container-fluid col-md-8 col-md-offset-2 col-xs-offset-4 text-center">
     <i class="material-icons">account_circle</i>
-    <form class="form-horizontal" (submit)="onSubmit()">
+    <form class="form-horizontal" (ngSubmit)="onSubmit()">
         <fieldset>
-            <div class="form-group">
+            <div class="form-group" [class.has-error]="usernameTaken">
                 <div class="col-md-4 col-md-offset-4">
                     <input type="text" class="form-control" id="username" required
                            [(ngModel)]="username"
                            name="username" placeholder="User name">
+                </div>
+                <div class="col-md-4 col-md-offset-4" *ngIf="usernameTaken">
+                    <p class="text-danger">
+                        Username in use
+                    </p>
                 </div>
             </div>
             <div class="form-group">
@@ -16,9 +21,22 @@
                            name="password" placeholder="Password">
                 </div>
             </div>
-            <a (click)='charityCreation()'>Register As Charity</a>
+            <div class="form-group" [class.has-error]="passwordMismatch">
+                <div class="col-md-4 col-md-offset-4">
+                    <input type="password" class="form-control" id="passwordConfirm" required
+                           [(ngModel)]="passwordConfirm"
+                           name="passwordConfirm" placeholder="Confirm password"
+                    >
+                </div>
+                <div class="col-md-4 col-md-offset-4" *ngIf="passwordMismatch">
+                    <p class="text-danger">
+                        Passwords do not match
+                    </p>
+                </div>
+            </div>
         </fieldset>
-
         <button type="submit" class="btn btn-primary">Sign up</button>
+        <br/><br/>
+        <a (click)='charityCreation()'>Register as charity</a>
     </form>
 </div>

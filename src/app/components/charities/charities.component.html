@@ -2,7 +2,7 @@
 <div class="banner-area">
     <div class="col-xs-6 col-xs-offset-2">
         <div class="banner-text">
-            <h3>Charity List</h3>
+            <h3>Charity Search</h3>
         </div>
     </div>
 </div>
@@ -18,14 +18,18 @@
             </charity-grid>
         </div>
 
-        <div id="nav-buttons">
-            <button (click)="moveLeft()">Move left</button>
-            {{leftPos + 1 }} - {{rightPos}}
-            <button (click)="moveRight()">Move right</button>
+        <div id="nav-buttons" class="text-center" *ngIf="displayPagination">
+            <i class="fa fa-chevron-left fa-2x"
+               aria-hidden="true"
+               (click)="moveLeft()"
+               [class.disabled]="leftLim"></i>
+            <span class="page-text">
+                {{leftPos + 1 }} - {{rightPos}}
+            </span>
+            <i class="fa fa-chevron-right fa-2x"
+               aria-hidden="true"
+               (click)="moveRight()"
+               [class.disabled]="rightLim"></i>
         </div>
-
-        <!-- This form should be hidden behind authentication -->
-        <!-- A form on charities page? Wat? -->
-        <!-- <charity-form></charity-form> -->
     </div>
 </div>

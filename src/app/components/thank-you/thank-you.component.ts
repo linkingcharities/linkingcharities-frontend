@@ -35,13 +35,13 @@ export class ThankYouComponent implements OnInit {
       {'username': user, 'payment': this.payment.toString()})
       .toPromise()
       .then((res:Response) => {
-        console.log("Reached");
-        console.log(res.json());
         let data = res.json();
         this.business = data['charity'];
         this.amount = data['amount'];
+
       }).catch((err:Error) => { 
       this.toasterService.pop('success', '', 'Thank you for your donation.');
+      this.router.navigate(['home']);
     });
     } else {
       this.router.navigate(['home']);
@@ -56,8 +56,8 @@ export class ThankYouComponent implements OnInit {
     this.router.navigate(['charities']);
   }
 
-  shareFb():void {
-    this.authService.shareOnFb();
+  shareFb(amount:string, business:string):void {
+    this.authService.shareOnFb(amount, business);
   }
 
 }

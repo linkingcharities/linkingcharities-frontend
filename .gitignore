@@ -71,3 +71,7 @@ jspm_packages
 bower_components
 aot/*
 dist/*
+
+# Don't put in deploy key
+deploy_key
+deploy-key

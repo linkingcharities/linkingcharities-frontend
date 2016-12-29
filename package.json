@@ -36,6 +36,7 @@
   },
   "devDependencies": {
     "angular-ui-bootstrap": "^2.2.0",
+    "angular2-auto-scroll": "^1.0.12",
     "angular2-template-loader": "^0.4.0",
     "angular2-toaster": "^1.0.2",
     "awesome-typescript-loader": "^2.2.4",
