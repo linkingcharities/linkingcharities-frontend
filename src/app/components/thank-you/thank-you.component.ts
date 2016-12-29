@@ -41,6 +41,7 @@ export class ThankYouComponent implements OnInit {
 
       }).catch((err:Error) => { 
       this.toasterService.pop('success', '', 'Thank you for your donation.');
+      this.router.navigate(['home']);
     });
     } else {
       this.router.navigate(['home']);
