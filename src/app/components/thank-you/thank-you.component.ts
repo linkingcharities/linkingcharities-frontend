@@ -35,11 +35,10 @@ export class ThankYouComponent implements OnInit {
       {'username': user, 'payment': this.payment.toString()})
       .toPromise()
       .then((res:Response) => {
-        console.log("Reached");
-        console.log(res.json());
         let data = res.json();
         this.business = data['charity'];
         this.amount = data['amount'];
+
       }).catch((err:Error) => { 
       this.toasterService.pop('success', '', 'Thank you for your donation.');
     });
