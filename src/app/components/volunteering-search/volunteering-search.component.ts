@@ -36,4 +36,14 @@ export class VolunteeringSearchComponent implements OnInit {
     search(term:string):void {
         this.searchTerms.next(term);
     }
+
+    modifyStartDate():void {
+        this.searchQuery.start_date = $('#start_date').val();
+        this.volunteeringService.search(this.searchQuery);
+    }
+
+    modifyEndDate():void {
+        this.searchQuery.end_date = $('#end_date').val();
+        this.volunteeringService.search(this.searchQuery);
+    }
 }

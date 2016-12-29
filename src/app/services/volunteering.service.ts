@@ -18,7 +18,9 @@ export class VolunteeringService {
   opportunity$ = this.volunteerSource.asObservable();
 
   prevQuery:VolunteeringSearchQuery = {
-      term: ''
+      term: '',
+      start_date: '',
+      end_date: ''
   };
 
   private getOptions():RequestOptions {
@@ -50,7 +52,10 @@ export class VolunteeringService {
   }
 
   search(searchQuery:VolunteeringSearchQuery) {
-      const serverQuery = API_URL + '/volunteering';
+      const serverQuery = API_URL + '/volunteering?'
+        + `start_date=${searchQuery.start_date}&`
+        + `end_date=${searchQuery.end_date}`;
+
       return this.http.get(serverQuery, this.getOptions()).toPromise()
           .then((res:Response) => {
               let opportunities = res.json() as Opportunity[];

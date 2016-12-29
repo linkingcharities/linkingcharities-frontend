@@ -169,4 +169,6 @@ export class Payment {
 // For volunteering search
 export class VolunteeringSearchQuery {
   term:string;
+  start_date:string;
+  end_date:string;
 }
