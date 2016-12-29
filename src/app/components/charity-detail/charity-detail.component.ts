@@ -54,9 +54,9 @@ export class CharityDetailComponent implements OnInit {
   }
   
   onSubmit():void {
-    let username = localStorage.getItem("username");
-    if (!username) {
-      username = "donation";
+    let userID= localStorage.getItem("userID");
+    if (!userID) {
+      userID= "donation";
     }
     console.log(this.isLoggedIn);
     console.log(window.location.hostname);
@@ -66,7 +66,7 @@ export class CharityDetailComponent implements OnInit {
       '&currency_code=' + this.currency_code +
       '&amount=' + this.amount +
       '&item_name=' +
-      username +
+      userID +
       '&return=' + 'http://' + window.location.hostname + ':8000/api/make_payment' +
       '&rm=2' +
       '&showHostedThankyouPage=false');

@@ -60,12 +60,14 @@ export class AuthService {
       .toPromise()
       .then((res:Response) => {
         localStorage.setItem("username", username.toString());
-        localStorage.setItem("token", res.json());
+        let resp_json = res.json();
+        localStorage.setItem("token", resp_json.token);
+        localStorage.setItem("userID", resp_json.id);
         this.toasterService.pop('success', '', 'Login successful');
         this.isLoggedIn();
         
         // Load additional user information
-        this.loadUserInfo(username);
+        this.loadUserInfo(resp_json.id);
         
         // Redirect the user
         this.router.navigate(['/home']);
@@ -74,8 +76,9 @@ export class AuthService {
     });
   }
   
-  loadUserInfo(username:String) {
-    this.http.get(API_URL + `/account_info/?username=${username}`)
+  loadUserInfo(userID:String) {
+    console.log(userID);
+    this.http.get(API_URL + `/account_info/?account_id=${userID}`)
       .toPromise()
       .then((res:Response) => {
         let response = res.json();
@@ -163,7 +166,7 @@ export class AuthService {
       this.paymentsSource.next(this.payments);
       return;
     }
-    this.loadUserInfo(localStorage.getItem("username"));
+    this.loadUserInfo(localStorage.getItem("userID"));
   }
   
   accountType() {
