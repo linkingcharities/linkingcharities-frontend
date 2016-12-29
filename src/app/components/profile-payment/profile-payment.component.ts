@@ -53,7 +53,6 @@ export class ProfilePaymentComponent implements OnInit {
   
   public ngOnInit():void {
     this.length = this.data.length;
-    console.log(this.data);
     this.onChangeTable(this.config);
   }
   

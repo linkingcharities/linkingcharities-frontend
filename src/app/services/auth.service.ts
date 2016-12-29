@@ -77,7 +77,6 @@ export class AuthService {
   }
   
   loadUserInfo(userID:String) {
-    console.log(userID);
     this.http.get(API_URL + `/account_info/?account_id=${userID}`)
       .toPromise()
       .then((res:Response) => {
@@ -275,7 +274,7 @@ export class AuthService {
     this.initFb();
     FB.ui({
       method: 'share',
-      quote: 'I HAVE JUST DONATED ' + amount + ' TO '+ business +'!',
+      quote: 'I HAVE JUST DONATED ' + amount + ' TO ' + business + '!',
       hashtag: '#charilink',
       href: '138.68.147.114/home',
     }, function (response:any) {
