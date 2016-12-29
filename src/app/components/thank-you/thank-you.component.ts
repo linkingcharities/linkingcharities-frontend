@@ -40,7 +40,7 @@ export class ThankYouComponent implements OnInit {
         this.amount = data['amount'];
 
       }).catch((err:Error) => { 
-      this.toasterService.pop('success', '', 'Thank you for your donation.');
+      this.toasterService.pop('success', '', 'That donation does not belong to you.');
       this.router.navigate(['home']);
     });
     } else {
