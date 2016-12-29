@@ -23,11 +23,12 @@ export class CharityDetailComponent implements OnInit {
   // Alternatively this formatting could be shifted inside the chart
   chartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
   chartData:any[] = [
-    {data: [1, 2, 3, 4, 5, 6, 7], label: 'Donations per year'}
+    {data: [1, 2, 3, 4, 5, 6, 7], label: 'Donations per year (dollars)'}
   ];
-  chartTitle:string = "Some fancy chart";
+  chartTitle:string = "Donation history";
   
   private subscription:any;
+  private subscription2:any;
   
   constructor(private charityService:CharityService,
               private route:ActivatedRoute,
@@ -39,7 +40,7 @@ export class CharityDetailComponent implements OnInit {
         // At this point, additional information about the charity should be loaded
         this.charity = charity
       });
-    this.subscription = this.authService.login$
+    this.subscription2 = this.authService.login$
       .subscribe(isLoggedIn => {
         this.isLoggedIn = isLoggedIn
       });
@@ -53,9 +54,9 @@ export class CharityDetailComponent implements OnInit {
   }
   
   onSubmit():void {
-    let username = localStorage.getItem("username");
-    if (!username) {
-      username = "donation";
+    let userID= localStorage.getItem("userID");
+    if (!userID) {
+      userID= "donation";
     }
     console.log(this.isLoggedIn);
     console.log(window.location.hostname);
@@ -65,17 +66,11 @@ export class CharityDetailComponent implements OnInit {
       '&currency_code=' + this.currency_code +
       '&amount=' + this.amount +
       '&item_name=' +
-      username +
+      userID +
       '&return=' + 'http://' + window.location.hostname + ':8000/api/make_payment' +
       '&rm=2' +
       '&showHostedThankyouPage=false');
   }
-  
-  // save():void {
-  //   this.heroService.update(this.hero)
-  //     .then(() => this.goBack());
-  // }
-  //
   
   goBack():void {
     this.location.back();
@@ -84,5 +79,6 @@ export class CharityDetailComponent implements OnInit {
   ngOnDestroy() {
     // Unsubscribe when the component is destroyed
     this.subscription.unsubscribe();
+    this.subscription2.unsubscribe();
   }
 }

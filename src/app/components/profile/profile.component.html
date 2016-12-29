@@ -1,31 +1,36 @@
 <div class="col-md-10 col-md-offset-1 col-xs-12" protected>
     <h1>{{username}}</h1>
     <div class="col-md-6 col-xs-12">
-        <h2>User information</h2>
         <div *ngIf="isCharity">
+            <h2>Charity information</h2>
             <charity-form-profile [username]="username"></charity-form-profile>
         </div>
 
+        <!-- Should combine with isDonor -->
         <div *ngIf="isFb">
             Facebook linked account
         </div>
 
         <div *ngIf="isDonor">
-            Normal account (not via FB)
+            <h2>Payment history</h2>
+            <profile-payment *ngIf="payments" [data]="payments"></profile-payment>
         </div>
     </div>
     <div class="col-md-6 col-xs-12">
-        <h2>Payment history</h2>
         <div *ngIf="isCharity">
+            <h2>Other information</h2>
             Other information for charity
         </div>
 
+        <!-- Should combine with isDonor -->
         <div *ngIf="isFb">
             Other information for FB login
         </div>
 
         <div *ngIf="isDonor">
-            <profile-payment *ngIf="payments" [data]="payments"></profile-payment>
+            <h2>Other information</h2>
+            Other information for donor
         </div>
+
     </div>
 </div>

@@ -60,12 +60,14 @@ export class AuthService {
       .toPromise()
       .then((res:Response) => {
         localStorage.setItem("username", username.toString());
-        localStorage.setItem("token", res.json());
+        let resp_json = res.json();
+        localStorage.setItem("token", resp_json.token);
+        localStorage.setItem("userID", resp_json.id);
         this.toasterService.pop('success', '', 'Login successful');
         this.isLoggedIn();
         
         // Load additional user information
-        this.loadUserInfo(username);
+        this.loadUserInfo(resp_json.id);
         
         // Redirect the user
         this.router.navigate(['/home']);
@@ -74,8 +76,8 @@ export class AuthService {
     });
   }
   
-  loadUserInfo(username:String) {
-    this.http.get(API_URL + `/account_info/?username=${username}`)
+  loadUserInfo(userID:String) {
+    this.http.get(API_URL + `/account_info/?account_id=${userID}`)
       .toPromise()
       .then((res:Response) => {
         let response = res.json();
@@ -101,12 +103,14 @@ export class AuthService {
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
         let redirect = this.redirectUrl ? this.redirectUrl : '/home';
-        redirect = this.router.url != '/login' ? this.router.url : redirect;
+        redirect = this.router.url != '/signup' ? this.router.url : redirect;
         
         // Redirect the user
+        console.log(redirect);
         this.router.navigate([redirect]);
       }).catch((err:Error) => {
-      this.toasterService.pop('error', '', 'Donor register failed');
+      this.toasterService.pop('error', '', 'Registration failed');
+      this.isLoggedIn()
     });
   }
   
@@ -161,7 +165,7 @@ export class AuthService {
       this.paymentsSource.next(this.payments);
       return;
     }
-    this.loadUserInfo(localStorage.getItem("username"));
+    this.loadUserInfo(localStorage.getItem("userID"));
   }
   
   accountType() {
@@ -270,7 +274,7 @@ export class AuthService {
     this.initFb();
     FB.ui({
       method: 'share',
-      quote: 'I HAVE JUST DONATED ' + amount + ' TO '+ business +'!',
+      quote: 'I HAVE JUST DONATED ' + amount + ' TO ' + business + '!',
       hashtag: '#charilink',
       href: '138.68.147.114/home',
     }, function (response:any) {
@@ -279,9 +283,9 @@ export class AuthService {
   
   getUsernameFb() {
     FB.api('/me', {fields: 'first_name'}, (resp:any) => {
-      console.log(resp);
-      localStorage.setItem("username", resp.first_name);
-      this.usernameSource.next(resp.first_name);
+      let name = resp.first_name.split(' ')[0];
+      localStorage.setItem("username", name);
+      this.usernameSource.next(name);
     });
   }
   

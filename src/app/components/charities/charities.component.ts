@@ -26,6 +26,8 @@ export class CharitiesComponent implements OnInit {
   leftPos:number = null;
   rightPos:number = null;
   displayPagination:boolean = false;
+  leftLim = true;
+  rightLim = false;
   
   private subscription:any;
   
@@ -42,10 +44,10 @@ export class CharitiesComponent implements OnInit {
     this.subscription = this.charityService.charities$
       .subscribe(charities => {
         this.charities = charities;
-        console.log(this.charities.length);
         this.rightPosAdjust();
         this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
         this.displayPagination = this.displayCharities.length != 0;
+        this.checkPos();
       });
   }
   
@@ -74,6 +76,7 @@ export class CharitiesComponent implements OnInit {
     this.leftPos = this.appStateService.leftPos;
     this.rightPos = this.appStateService.rightPos;
     this.stepSize = this.appStateService.stepSize;
+    
   }
   
   moveRight():void {
@@ -82,7 +85,7 @@ export class CharitiesComponent implements OnInit {
       this.rightPosAdjust();
       this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
     }
-    console.log(this.leftPos, this.rightPos, this.stepSize);
+    this.checkPos();
   }
   
   moveLeft():void {
@@ -91,7 +94,12 @@ export class CharitiesComponent implements OnInit {
       this.rightPosAdjust();
       this.displayCharities = this.charities.slice(this.leftPos, this.rightPos);
     }
-    console.log(this.leftPos, this.rightPos, this.stepSize);
+    this.checkPos();
+  }
+  
+  checkPos():void {
+    this.leftLim = this.leftPos == 0;
+    this.rightLim = this.rightPos == this.charities.length;
   }
   
   ngOnDestroy() {
@@ -100,28 +108,5 @@ export class CharitiesComponent implements OnInit {
     this.appStateService.leftPos = this.leftPos;
     this.appStateService.rightPos = this.rightPos;
   }
-  
-  // add(name:string):void {
-  //   name = name.trim();
-  //   if (!name) {
-  //     return;
-  //   }
-  //   this.heroService.create(name)
-  //     .then(hero => {
-  //       this.heroes.push(hero);
-  //       this.selectedHero = null;
-  //     });
-  // }
-  //
-  // delete(hero:Hero):void {
-  //   this.heroService
-  //     .delete(hero.id)
-  //     .then(() => {
-  //       this.heroes = this.heroes.filter(h => h !== hero);
-  //       if (this.selectedHero === hero) {
-  //         this.selectedHero = null;
-  //       }
-  //     });
-  // }
   
 }
