@@ -1,9 +1,15 @@
 <div class="container search-container">
-    <div class="row">
-        <div class="col-md-4 col-xs-12">
-            <input class="form-control" #searchBox
-                   (keyup)="search(searchBox.value)"
-                   placeholder="Search for a opportunity"/>
-        </div>
+  <div class="row">
+    <div class="col-md-4 col-xs-12">
+      <input id="searchBox" class="form-control" #searchBox (keyup)="search(searchBox.value)" placeholder="Search for a opportunity/charity" />
     </div>
+    <div class="col-md-6 col-xs-8">
+      <my-date-range-picker #MDRP [options]="myDateRangePickerOptions"
+               (dateRangeChanged)="onDateRangeChanged($event)"
+               (inputFieldChanged)="onInputFieldChanged($event)"></my-date-range-picker>
+    </div>
+    <div class="col-md-2 col-xs-4">
+      <button class="btn btn-primary btn-block" type="button" (click)="clear()">Reset</button>
+    </div>
+  </div>
 </div>

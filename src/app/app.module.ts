@@ -40,6 +40,7 @@ import { CharityFormProfileComponent } from './components/charity-form-profile/c
 import { ProfilePaymentComponent } from './components/profile-payment/profile-payment.component';
 import { NG_TABLE_DIRECTIVES } from 'ng2-table/ng2-table';
 import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import { PaginationModule } from 'ng2-bootstrap/ng2-bootstrap';
     AppRoutingModule,
     ToasterModule,
     ChartsModule,
-    PaginationModule
+    PaginationModule,
+    MyDateRangePickerModule
   ],
   declarations: [
     HomePageComponent,

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Opportunity } from '../constants/data-types';
+import { Opportunity, VolunteeringSearchQuery } from '../constants/data-types';
 import { API_URL } from '../constants/config';
 import { Subject } from 'rxjs/Rx';
 
@@ -16,6 +16,12 @@ export class VolunteeringService {
 
   private volunteerSource = new Subject<Opportunity>();
   opportunity$ = this.volunteerSource.asObservable();
+
+  prevQuery:VolunteeringSearchQuery = {
+      term: '',
+      start_date: '',
+      end_date: ''
+  };
 
   private getOptions():RequestOptions {
     let headers:Headers = new Headers();
@@ -40,9 +46,27 @@ export class VolunteeringService {
       .toPromise()
       .then((res:Response) => {
         let opportunity = res.json() as Opportunity;
-        this.volunteerSource.next(opportunity);
+        this.volunteerSource.next(opportunity[0]);
       })
       .catch(this.handleError);
+  }
+
+  search(searchQuery:VolunteeringSearchQuery) {
+      const serverQuery = API_URL + '/volunteering?'
+        + `start_date=${searchQuery.start_date}&`
+        + `end_date=${searchQuery.end_date}`;
+
+      return this.http.get(serverQuery, this.getOptions()).toPromise()
+          .then((res:Response) => {
+              let opportunities = res.json() as Opportunity[];
+              let filtered = opportunities.filter(opportunity =>
+                  opportunity.name.toLowerCase().
+                  includes(searchQuery.term.toLowerCase()) ||
+                  opportunity.charity_name.toLowerCase().
+                  includes(searchQuery.term.toLowerCase()));
+              this.volunteeringSource.next(filtered);
+              this.prevQuery = searchQuery;
+          }).catch(this.handleError);
   }
 
   // Error handliing

@@ -20,7 +20,7 @@ import { isUndefined } from 'util';
 
 export class CharitiesComponent implements OnInit {
   private stepSize:number = null;
-  
+
   charities:Charity[] = null;
   displayCharities:Charity[] = null;
   leftPos:number = null;
@@ -28,16 +28,16 @@ export class CharitiesComponent implements OnInit {
   displayPagination:boolean = false;
   leftLim = true;
   rightLim = false;
-  
+
   private subscription:any;
-  
+
   // To load the types
   searchQuery:CharitySearchQuery = {
     term: '',
     target: DefaultTarget,
     type: DefaultType
   };
-  
+
   constructor(private charityService:CharityService,
               private appStateService:AppStateService,
               private route:ActivatedRoute) {
@@ -50,14 +50,14 @@ export class CharitiesComponent implements OnInit {
         this.checkPos();
       });
   }
-  
+
   private rightPosAdjust():void {
     this.rightPos = this.leftPos + this.stepSize;
     if (this.charities.length < this.rightPos) {
       this.rightPos = this.charities.length;
     }
   }
-  
+
   ngOnInit():void {
     this.route.params.forEach((params:Params) => {
       let type = params['type'];
@@ -72,13 +72,13 @@ export class CharitiesComponent implements OnInit {
         this.charityService.getCharities();
       }
     });
-    
+
     this.leftPos = this.appStateService.leftPos;
     this.rightPos = this.appStateService.rightPos;
     this.stepSize = this.appStateService.stepSize;
-    
+
   }
-  
+
   moveRight():void {
     if (this.leftPos + this.stepSize < this.charities.length) {
       this.leftPos += this.stepSize;
@@ -87,7 +87,7 @@ export class CharitiesComponent implements OnInit {
     }
     this.checkPos();
   }
-  
+
   moveLeft():void {
     if (this.rightPos - this.stepSize > 0) {
       this.leftPos -= this.stepSize;
@@ -96,17 +96,17 @@ export class CharitiesComponent implements OnInit {
     }
     this.checkPos();
   }
-  
+
   checkPos():void {
     this.leftLim = this.leftPos == 0;
     this.rightLim = this.rightPos == this.charities.length;
   }
-  
+
   ngOnDestroy() {
     // Unsubscribe when the component is destroyed
     this.subscription.unsubscribe();
     this.appStateService.leftPos = this.leftPos;
     this.appStateService.rightPos = this.rightPos;
   }
-  
+
 }

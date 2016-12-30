@@ -44,6 +44,7 @@ export class Opportunity {
     start_date:string;
     end_date:string;
     url:string;
+    charity_name:string;
 }
 
 export const Image_Hosting = {
@@ -165,4 +166,9 @@ export class Payment {
   username:string;
 }
 
-
+// For volunteering search
+export class VolunteeringSearchQuery {
+  term:string;
+  start_date:string;
+  end_date:string;
+}
