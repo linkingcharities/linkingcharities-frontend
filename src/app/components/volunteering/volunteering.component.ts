@@ -18,6 +18,8 @@ export class VolunteeringComponent implements OnInit {
   leftPos:number = null;
   rightPos:number = null;
   displayPagination:boolean = false;
+  leftLim = true;
+  rightLim = false;
 
   private subscription:any;
 
@@ -29,6 +31,7 @@ export class VolunteeringComponent implements OnInit {
         this.rightPosAdjust();
         this.displayOpportunities = this.opportunities.slice(this.leftPos, this.rightPos);
         this.displayPagination = this.displayOpportunities.length != 0;
+        this.checkPos();
       });
   }
 
@@ -52,6 +55,7 @@ export class VolunteeringComponent implements OnInit {
       this.rightPosAdjust();
       this.displayOpportunities = this.opportunities.slice(this.leftPos, this.rightPos);
     }
+    this.checkPos();
   }
 
   moveLeft():void {
@@ -60,6 +64,12 @@ export class VolunteeringComponent implements OnInit {
       this.rightPosAdjust();
       this.displayOpportunities = this.opportunities.slice(this.leftPos, this.rightPos);
     }
+    this.checkPos();
+  }
+
+  checkPos():void {
+    this.leftLim = this.leftPos == 0;
+    this.rightLim = this.rightPos == this.opportunities.length;
   }
 
   ngOnDestroy() {
