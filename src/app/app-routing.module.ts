@@ -40,7 +40,7 @@ const routes: Routes = [
   {
     path: 'volunteering-form',
     component: VolunteeringFormComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   { path: 'o_detail/:id', component: VolunteeringDetailComponent },
   { path: '', component: HomePageComponent },
