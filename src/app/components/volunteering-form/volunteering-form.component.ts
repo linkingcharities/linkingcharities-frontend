@@ -8,15 +8,13 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class VolunteeringFormComponent {
-    private range: string = "";
     name:string;
     description:string;
     start_date:string;
     end_date:string;
     url:string;
 
-    constructor() {
-
+    constructor(private authService:AuthService) {
     }
 
     ngOnInit(): void{
@@ -26,12 +24,14 @@ export class VolunteeringFormComponent {
     onSubmit(): void {
         let data = {
             name: this.name,
+            charity: localStorage.getItem("charityID"),
             description: this.description,
             start_date: this.start_date,
             end_date: this.end_date,
             url: this.url
         };
-        //this.authService.registerOpportunity(data);
+        console.log(data);
+        this.authService.registerOpportunity(data);
     }
 
     private myDateRangePickerOptions = {
@@ -53,10 +53,10 @@ export class VolunteeringFormComponent {
     };
 
     onDateRangeChanged(event: any): void {
-        this.range = event.formatted.split(" - ");
-        if (this.range.length == 2) {
-            this.start_date = this.range[0];
-            this.end_date = this.range[1];
+        let range = event.formatted.split(" - ");
+        if (range.length == 2) {
+            this.start_date = range[0];
+            this.end_date = range[1];
         }
     }
 
