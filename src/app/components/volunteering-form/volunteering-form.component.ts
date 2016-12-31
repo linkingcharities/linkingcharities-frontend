@@ -8,6 +8,7 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class VolunteeringFormComponent {
+    private range: string = "";
     name:string;
     description:string;
     start_date:string;
@@ -32,4 +33,31 @@ export class VolunteeringFormComponent {
         };
         //this.authService.registerOpportunity(data);
     }
+
+    private myDateRangePickerOptions = {
+      clearBtnTxt: 'Clear Dates',
+      beginDateBtnTxt: 'Begin Date',
+      endDateBtnTxt: 'End Date',
+      acceptBtnTxt: 'OK',
+      dateFormat: 'yyyy-mm-dd',
+      firstDayOfWeek: 'mo',
+      sunHighlight: true,
+      height: '34px',
+      width: '100%',
+      inline: false,
+      selectionTxtFontSize: '15px',
+      alignSelectorRight: false,
+      indicateInvalidDateRange: true,
+      showDateRangeFormatPlaceholder: false,
+      showClearBtn: false
+    };
+
+    onDateRangeChanged(event: any): void {
+        this.range = event.formatted.split(" - ");
+        if (this.range.length == 2) {
+            this.start_date = this.range[0];
+            this.end_date = this.range[1];
+        }
+    }
+
 }

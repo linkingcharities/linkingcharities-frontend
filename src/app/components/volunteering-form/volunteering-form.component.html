@@ -1,1 +1,37 @@
-
+<div class="col-md-8 col-md-offset-2">
+    <h2 class="text-center">Volunteering Creation</h2>
+    <form class="form-horizontal" (submit)="onSubmit()">
+        <fieldset>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <input type="text" class="form-control" id="name" required
+                     [(ngModel)]="name"
+                     name="name" placeholder="Name of the volunteering opportunity">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <textarea class="form-control" id="description" required
+                    [(ngModel)]="description" name="description" placeholder="Enter a description of the opportunity"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <my-date-range-picker [options]="myDateRangePickerOptions"
+                             (dateRangeChanged)="onDateRangeChanged($event)"
+                             ></my-date-range-picker>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <input type="text" class="form-control" id="url"
+                     [(ngModel)]="url"
+                     name="url" placeholder="A link to find out more about this opportunity">
+                </div>
+            </div>
+        </fieldset>
+        <div class="text-center">
+            <button type="submit" class="btn btn-primary text-center">Create Volunteering Opportunity</button>
+        </div>
+    </form>
+</div>
