@@ -30,7 +30,6 @@ export class VolunteeringFormComponent {
             end_date: this.end_date,
             url: this.url
         };
-        console.log(data);
         this.authService.registerOpportunity(data);
     }
 
