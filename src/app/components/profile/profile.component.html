@@ -1,5 +1,5 @@
 <div class="col-md-10 col-md-offset-1 col-xs-12" protected>
-    
+
     <div class="banner-area">
         <div class="col-xs-6 col-xs-offset-2">
             <div class="banner-text">
@@ -9,38 +9,41 @@
     </div>
 
     <div class="info-container">
-    <div class="col-md-6 col-xs-12">
-        <div *ngIf="isCharity">
-            <h2>Charity information</h2>
-            <charity-form-profile [username]="username"></charity-form-profile>
-        </div>
+        <div class="col-md-6 col-xs-12">
+            <div *ngIf="isCharity">
+                <h2>Charity information</h2>
+                <charity-form-profile [username]="username"></charity-form-profile>
+            </div>
 
-        <!-- Should combine with isDonor -->
-        <div *ngIf="isFb">
-            Facebook linked account
-        </div>
+            <!-- Should combine with isDonor -->
+            <div *ngIf="isFb">
+                Facebook linked account
+            </div>
 
-        <div *ngIf="isDonor">
-            <h2>Payment history</h2>
-            <profile-payment *ngIf="payments" [data]="payments"></profile-payment>
+            <div *ngIf="isDonor">
+                <h2>Payment history</h2>
+                <profile-payment *ngIf="payments" [data]="payments"></profile-payment>
+            </div>
         </div>
-    </div>
-    <div class="col-md-6 col-xs-12">
-        <div *ngIf="isCharity">
-            <h2>Other information</h2>
-            Other information for charity
-        </div>
+        <div class="col-md-6 col-xs-12">
+            <div *ngIf="isCharity">
+                <h2>Other information</h2>
+                Other information for charity
+                <button class="btn btn-primary btn-block" type="button" (click)="goToVolunteeringForm()">Create new
+                    Volunteering Opportunity
+                </button>
+            </div>
 
-        <!-- Should combine with isDonor -->
-        <div *ngIf="isFb">
-            Other information for FB login
-        </div>
+            <!-- Should combine with isDonor -->
+            <div *ngIf="isFb">
+                Other information for FB login
+            </div>
 
-        <div *ngIf="isDonor">
-            <h2>Other information</h2>
-            Other information for donor
-        </div>
+            <div *ngIf="isDonor">
+                <h2>Other information</h2>
+                Other information for donor
+            </div>
 
-    </div>
+        </div>
     </div>
 </div>

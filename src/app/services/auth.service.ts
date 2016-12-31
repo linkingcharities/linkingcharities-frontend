@@ -19,31 +19,31 @@ export class AuthService {
   private headers = new Headers({'Content-Type': 'application/json'});
   redirectUrl:string;
   checkLogin:boolean = false;
-  
+
   // To communicate a login to components
   private loginSource = new Subject<boolean>();
   login$ = this.loginSource.asObservable();
-  
+
   // To communicate account type to components
   private accountSource = new Subject<string>();
   accountType$ = this.accountSource.asObservable();
-  
+
   // To communicate username to components
   private usernameSource = new Subject<string>();
   userName$ = this.usernameSource.asObservable();
-  
+
   // To communication payment info to components
   private paymentsSource = new Subject<Payment[]>();
   payments$ = this.paymentsSource.asObservable();
-  
+
   // Info about the user
   payments:Payment[] = null;
-  
+
   constructor(private http:Http,
               private router:Router,
               private toasterService:ToasterService) {
   }
-  
+
   isLoggedIn() {
     var username = localStorage.getItem("username");
     var userID = localStorage.getItem("userID");
@@ -53,7 +53,7 @@ export class AuthService {
       this.usernameSource.next(username);
     }
   }
-  
+
   userLogin(username:String, password:String) {
     this.http.post(API_URL + '/login'
       , {username: username, password: password})
@@ -65,17 +65,17 @@ export class AuthService {
         localStorage.setItem("userID", resp_json.id);
         this.toasterService.pop('success', '', 'Login successful');
         this.isLoggedIn();
-        
+
         // Load additional user information
         this.loadUserInfo(resp_json.id);
-        
+
         // Redirect the user
         this.router.navigate(['/home']);
       }).catch((err:Error) => {
       this.toasterService.pop('error', '', 'Login failed');
     });
   }
-  
+
   loadUserInfo(userID:String) {
     this.http.get(API_URL + `/account_info/?account_id=${userID}`)
       .toPromise()
@@ -89,22 +89,22 @@ export class AuthService {
         this.paymentsSource.next(this.payments);
       })
   }
-  
+
   registerUser(username:String, password:String) {
     this.http.post(API_URL + '/donor/register',
       {account: {username: username, password: password}})
       .toPromise()
       .then((res:Response) => {
-        
+
         this.toasterService.pop('success', '', 'Donor signup successful');
         localStorage.setItem("username", username.toString());
         this.isLoggedIn();
-        
+
         // Get the redirect URL from our auth service
         // If no redirect has been set, use the default
         let redirect = this.redirectUrl ? this.redirectUrl : '/home';
         redirect = this.router.url != '/signup' ? this.router.url : redirect;
-        
+
         // Redirect the user
         console.log(redirect);
         this.router.navigate([redirect]);
@@ -113,7 +113,7 @@ export class AuthService {
       this.isLoggedIn()
     });
   }
-  
+
   registerCharity(data:any) {
     this.http.post(API_URL + '/charity/register',
       {
@@ -139,7 +139,7 @@ export class AuthService {
             localStorage.setItem("user", data['username'].toString());
             this.toasterService.pop('success', '', 'Charity signup successful');
             this.isLoggedIn();
-            
+
             this.router.navigate(['/home']);
           }).catch((err:Error) => {
           //May be customise the error info in the future?
@@ -149,17 +149,32 @@ export class AuthService {
       this.toasterService.pop('error', '', 'Charity register failed.');
     });
   }
-  
+
   isCharity() {
     if (localStorage.getItem("charity") === 'true') {
       this.accountSource.next('charity')
     }
   }
-  
+
+  registerOpportunity(data:any) {
+      this.http.post(API_URL + '/volunteering', {
+          name: data['name'],
+          charity: data['charity'],
+          description: data['description'],
+          start_date: data['start_date'],
+          end_date: data['end_date'],
+          url: data['url']
+      }).toPromise().then((res:Response) => {
+          this.toasterService.pop('success', '', 'Opportunity Registered!');
+      }).catch((err:Error) => {
+          this.toasterService.pop('error', '', 'Opportunity Registration Failed');
+      });
+  }
+
   getCharityID() {
     return localStorage.getItem("charityID");
   }
-  
+
   getPayments() {
     if (this.payments !== null) {
       this.paymentsSource.next(this.payments);
@@ -167,7 +182,7 @@ export class AuthService {
     }
     this.loadUserInfo(localStorage.getItem("userID"));
   }
-  
+
   accountType() {
     // It could be argued that FB is just an alternative auth method but we ignore for now
     if (localStorage.getItem("charity") === 'true') {
@@ -178,7 +193,7 @@ export class AuthService {
       this.accountSource.next('donor');
     }
   }
-  
+
   logout() {
     // Clearing localStorage
     localStorage.removeItem("username");
@@ -187,16 +202,16 @@ export class AuthService {
     localStorage.removeItem("fb");
     localStorage.removeItem("userID");
     localStorage.removeItem("charityID");
-    
+
     this.loginSource.next(false);
     this.accountSource.next('none');
     this.checkLogin = false;
     this.payments = null;
     this.toasterService.pop('success', '', 'Logout successful');
   }
-  
+
   /* FB Auth Service */
-  
+
   initFb() {
     FB.init({
       appId: '132163687254327',
@@ -206,13 +221,13 @@ export class AuthService {
       version: 'v2.8'
     });
   }
-  
+
   setLoginAttributesFb(userID:string) {
     localStorage.setItem("userID", userID);
     localStorage.setItem("fb", 'true');
     this.isLoggedIn();
   }
-  
+
   logoutViaFb() {
     //call getLoginStatus to ensure that fb API is fully ready after Init
     FB.getLoginStatus(function (response:any) {
@@ -227,7 +242,7 @@ export class AuthService {
       }
     });
   }
-  
+
   loginViaFb() {
     FB.getLoginStatus((resp:any) => {
       if (resp.status != 'connected') {
@@ -240,36 +255,36 @@ export class AuthService {
       }
     });
   }
-  
+
   statusChangeFb(resp:any) {
     if (resp.status === 'connected') {
       // connect here with your server for facebook login by passing access token given by facebook
-      
+
       this.setLoginAttributesFb(resp.authResponse.userID);
       this.toasterService.pop('success', '', 'Login successful');
-      
+
       // Get username
       this.getUsernameFb();
-      
+
       // Get the redirect URL from our auth service
       // If no redirect has been set, use the default
       let redirect = this.redirectUrl ? this.redirectUrl : '/home';
       redirect = this.router.url != '/login' ? this.router.url : redirect;
-      
+
       // Redirect the user
       this.router.navigate([redirect]);
     } else if (resp.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
       this.toasterService.pop('error', '', 'Login not authorised');
       console.log("The person is not authorized to login.");
-      
+
     } else {
       // The person is not logged into Facebook, so we're not sure if
       // they are logged into this app or not.
       console.log("The person is not logged into Facebook.");
     }
   }
-  
+
   shareOnFb(amount:string, business:string) {
     this.initFb();
     FB.ui({
@@ -280,7 +295,7 @@ export class AuthService {
     }, function (response:any) {
     });
   }
-  
+
   getUsernameFb() {
     FB.api('/me', {fields: 'first_name'}, (resp:any) => {
       let name = resp.first_name.split(' ')[0];
@@ -288,8 +303,8 @@ export class AuthService {
       this.usernameSource.next(name);
     });
   }
-  
-  
+
+
   // Error handliing - required for HTTP
   // private handleError(error:any):Promise<any> {
   //   console.error('An error occurred', error); // for demo purposes only

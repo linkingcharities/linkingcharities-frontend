@@ -11,20 +11,21 @@ import { CharityDetailComponent } from './components/charity-detail/charity-deta
 import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { VolunteeringComponent } from './components/volunteering/volunteering.component';
 import { VolunteeringDetailComponent } from './components/volunteering-detail/volunteering-detail.component';
+import { VolunteeringFormComponent } from './components/volunteering-form/volunteering-form.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
 
-const routes:Routes = [
-  {path: 'home', component: HomePageComponent},
-  {path: 'login', component: LoginComponent},
-  {path: 'signup', component: SignupComponent},
-  {path: 'about', component: AboutPageComponent},
-  {path: 'detail/:id', component: CharityDetailComponent},
-  {path: 'charities/:type', component: CharitiesComponent},
-  {path: 'charities', component: CharitiesComponent},
-  {path: 'charity-form', component: CharityFormComponent},
-  {path: 'thank-you/:id', component: ThankYouComponent},
+const routes: Routes = [
+  { path: 'home', component: HomePageComponent },
+  { path: 'login', component: LoginComponent },
+  { path: 'signup', component: SignupComponent },
+  { path: 'about', component: AboutPageComponent },
+  { path: 'detail/:id', component: CharityDetailComponent },
+  { path: 'charities/:type', component: CharitiesComponent },
+  { path: 'charities', component: CharitiesComponent },
+  { path: 'charity-form', component: CharityFormComponent },
+  { path: 'thank-you/:id', component: ThankYouComponent },
   {
     path: 'profile',
     component: ProfileComponent,
@@ -35,10 +36,15 @@ const routes:Routes = [
     component: QuizPageComponent
     // ,canActivate: [AuthGuard]
   },
-  {path: 'volunteering', component: VolunteeringComponent},
-  {path: 'o_detail/:id', component: VolunteeringDetailComponent},
-  {path: '', component: HomePageComponent},
-  {path: '**', component: PageNotFoundComponent}
+  { path: 'volunteering', component: VolunteeringComponent },
+  {
+    path: 'volunteering-form',
+    component: VolunteeringFormComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: 'o_detail/:id', component: VolunteeringDetailComponent },
+  { path: '', component: HomePageComponent },
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

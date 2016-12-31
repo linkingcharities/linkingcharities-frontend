@@ -75,3 +75,6 @@ dist/*
 # Don't put in deploy key
 deploy_key
 deploy-key
+
+# Ignore test_accounts.txt (used to store some fake account details)
+test_accounts.txt
