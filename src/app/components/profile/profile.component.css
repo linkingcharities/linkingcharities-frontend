@@ -1,0 +1,29 @@
+.banner-area {
+    background: url('profile-banner.jpg') repeat scroll center center;
+    padding: 128px 0;
+    transition: all 0.3s ease 0s;
+}
+
+.banner-text > h1 {
+    color: #000000;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+.info-container {
+    padding: 0 5% 0;
+}
+
+.col-md-10 {
+    padding: 0;
+}
+
+@media (min-width: 992px) {
+    .col-md-offset-1 {
+        margin-left: 0;
+    }
+
+    .col-md-10 {
+        width: 100%;
+    }
+}

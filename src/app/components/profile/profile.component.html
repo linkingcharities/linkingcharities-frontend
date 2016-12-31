@@ -1,5 +1,14 @@
 <div class="col-md-10 col-md-offset-1 col-xs-12" protected>
-    <h1>{{username}}</h1>
+    
+    <div class="banner-area">
+        <div class="col-xs-6 col-xs-offset-2">
+            <div class="banner-text">
+                <h1>{{username}}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-container">
     <div class="col-md-6 col-xs-12">
         <div *ngIf="isCharity">
             <h2>Charity information</h2>
@@ -32,5 +41,6 @@
             Other information for donor
         </div>
 
+    </div>
     </div>
 </div>
