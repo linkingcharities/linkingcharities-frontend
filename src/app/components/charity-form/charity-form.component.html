@@ -67,6 +67,32 @@
             </div>
             <div class="form-group">
                 <div class="col-md-8 col-md-offset-2">
+                    <input type="text" class="form-control" id="charitableActivity" required
+                           [(ngModel)]="activity"
+                           name="charitableActivity" 
+                           placeholder="% spent on charitable activity">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <input type="text" class="form-control" id="fundraising"
+                           required
+                           [(ngModel)]="fundraising"
+                           name="fundraising" 
+                           placeholder="% spent on fundraising">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
+                    <input type="text" class="form-control" 
+                           id="admin" required
+                           [(ngModel)]="admin"
+                           name="register_id" 
+                           placeholder="% spent on admin">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8 col-md-offset-2">
                     <textarea class="form-control" id="description" required
                               [(ngModel)]="description"
                               name="description" placeholder="Enter a short description of your charity"></textarea>

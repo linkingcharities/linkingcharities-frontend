@@ -27,6 +27,9 @@ export class CharityFormComponent {
   target:CharityTarget = DefaultTarget;
   paypal:string = null;
   description:string = null;
+  activity:number = null;
+  fundraising:number = null;
+  admin:number = null;
   isCharity:boolean = false;
   
   charityTargets:CharityTarget[] = CharityTargets;
@@ -54,7 +57,10 @@ export class CharityFormComponent {
       type: this.type.short,
       target: this.target.short,
       paypal: this.paypal,
-      total_income: 1
+      total_income: 1,
+      charitableActivity: this.activity,
+      fundraising: this.fundraising,
+      admin: this.admin
     };
     
     this.authService.registerCharity(data);

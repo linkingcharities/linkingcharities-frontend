@@ -15,6 +15,9 @@ export class Charity {
   type:string;
   target:string;
   area_served:string;
+  charitableActivity:number;
+  fundraising:number;
+  admin:number;
 }
 
 export class Option {
