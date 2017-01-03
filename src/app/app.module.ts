@@ -24,6 +24,7 @@ import { VolunteeringService } from './services/volunteering.service';
 import { VolunteeringGridComponent } from './components/volunteering-grid/volunteering-grid.component';
 import { VolunteeringSearchComponent } from './components/volunteering-search/volunteering-search.component';
 import { VolunteeringFormComponent } from './components/volunteering-form/volunteering-form.component';
+import { VolunteeringUpdateFormComponent } from './components/volunteering-update-form/volunteering-update-form.component';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { AuthService } from './services/auth.service';
 import { ToasterModule, ToasterService } from 'angular2-toaster/angular2-toaster';
@@ -73,6 +74,7 @@ import { MyDateRangePickerModule } from 'mydaterangepicker';
     VolunteeringGridComponent,
     VolunteeringSearchComponent,
     VolunteeringFormComponent,
+    VolunteeringUpdateFormComponent,
     CarouselComponent,
     FacebookLoginComponent,
     CharitySearchComponent,

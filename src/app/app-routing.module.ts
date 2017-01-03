@@ -12,6 +12,7 @@ import { ThankYouComponent } from './components/thank-you/thank-you.component';
 import { VolunteeringComponent } from './components/volunteering/volunteering.component';
 import { VolunteeringDetailComponent } from './components/volunteering-detail/volunteering-detail.component';
 import { VolunteeringFormComponent } from './components/volunteering-form/volunteering-form.component';
+import { VolunteeringUpdateFormComponent } from './components/volunteering-update-form/volunteering-update-form.component';
 import { AuthGuard } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ProfileComponent } from './components/profile/profile.component';
@@ -41,6 +42,10 @@ const routes: Routes = [
     path: 'volunteering-form',
     component: VolunteeringFormComponent,
     // canActivate: [AuthGuard]
+  },
+  {
+    path: 'volunteering-update-form',
+    component: VolunteeringUpdateFormComponent
   },
   { path: 'o_detail/:id', component: VolunteeringDetailComponent },
   { path: '', component: HomePageComponent },
