@@ -123,6 +123,8 @@ export class AuthService {
       .toPromise()
       .then((res:Response) => {
         console.log(data['type']);
+        console.log(data['admin']);
+        console.log(data['fundraising']);
         this.http.post(API_URL + '/charities',
           {
             username: data['username'],
@@ -132,7 +134,10 @@ export class AuthService {
             type: data['type'],
             paypal: data['paypal'],
             description: data['description'],
-            total_income: data['total_income']
+            total_income: data['total_income'],
+            charitableActivity: data['activity'],
+            fundraising: data['fundraising'],
+            admin: data['admin']     
           })
           .toPromise()
           .then((res:Response) => {
