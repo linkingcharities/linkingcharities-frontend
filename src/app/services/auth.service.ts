@@ -156,22 +156,6 @@ export class AuthService {
     }
   }
 
-  registerOpportunity(data:any) {
-      this.http.post(API_URL + '/volunteering', {
-          name: data['name'],
-          charity: data['charity'],
-          description: data['description'],
-          start_date: data['start_date'],
-          end_date: data['end_date'],
-          url: data['url']
-      }).toPromise().then((res:Response) => {
-          this.toasterService.pop('success', '', 'Opportunity Registered!');
-          this.router.navigate(['/home']);
-      }).catch((err:Error) => {
-          this.toasterService.pop('error', '', 'Opportunity Registration Failed');
-      });
-  }
-
   getCharityID() {
     return localStorage.getItem("charityID");
   }

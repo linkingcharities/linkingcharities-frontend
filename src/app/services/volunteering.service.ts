@@ -5,11 +5,14 @@ import { Opportunity, VolunteeringSearchQuery } from '../constants/data-types';
 import { API_URL } from '../constants/config';
 import { Subject } from 'rxjs/Rx';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class VolunteeringService {
 
-  constructor(private http: Http, private toasterService:ToasterService) {
+  constructor(private http: Http,
+              private toasterService: ToasterService,
+              private router:Router) {
   }
 
   private volunteeringSource = new Subject<Opportunity[]>();
@@ -42,23 +45,45 @@ export class VolunteeringService {
       .catch(this.handleError);
   }
 
-  getOpportunity(id: number) {
+  getOpportunity(id: number, view_only: boolean) {
     this.http.get(API_URL + `/volunteering?id=${id}`, this.getOptions())
       .toPromise()
       .then((res: Response) => {
       let opportunity = res.json() as Opportunity;
-      this.volunteerSource.next(opportunity[0]);
+      if (parseInt(localStorage.getItem("charityID")) !== opportunity[0]['charity'] && !view_only) {
+          this.toasterService.pop('error','', 'Trying to access opportunity not created by you!');
+          this.router.navigateByUrl('/update-volunteering');
+      } else {
+          this.volunteerSource.next(opportunity[0]);
+      }
     })
       .catch(this.handleError);
   }
 
-  getOpportunitiesForCharity(charity_id:number) {
-      this.http.get(API_URL + `/volunteering?charity=${charity_id}`, this.getOptions())
+  getOpportunitiesForCharity(charity_id: number) {
+    this.http.get(API_URL + `/volunteering?charity=${charity_id}`, this.getOptions())
       .toPromise()
-      .then((res:Response) => {
-          let opportunities = res.json() as Opportunity[];
-          this.volunteeringSource.next(opportunities);
-      }).catch(this.handleError);
+      .then((res: Response) => {
+      let opportunities = res.json() as Opportunity[];
+      this.volunteeringSource.next(opportunities);
+    }).catch(this.handleError);
+  }
+
+
+  registerOpportunity(data: any) {
+    this.http.post(API_URL + '/volunteering', {
+      name: data['name'],
+      charity: data['charity'],
+      description: data['description'],
+      start_date: data['start_date'],
+      end_date: data['end_date'],
+      url: data['url']
+    }).toPromise().then((res: Response) => {
+      this.toasterService.pop('success', '', 'Opportunity Registered!');
+      this.router.navigate(['/home']);
+    }).catch((err: Error) => {
+      this.toasterService.pop('error', '', 'Opportunity Registration Failed');
+    });
   }
 
   updateOpportunity(opportunity: Opportunity, id: number) {
@@ -73,21 +98,21 @@ export class VolunteeringService {
       .toPromise()
       .then((res: Response) => {
       console.log(res);
-      this.toasterService.pop('Success', '', 'Volunteering Update Successful');
+      this.toasterService.pop('success', '', 'Volunteering Update Successful');
     }).catch((err: Error) => {
-      this.toasterService.pop('Error', '', 'Volunteering Update Failed');
+      this.toasterService.pop('error', '', 'Volunteering Update Failed');
     });
   }
 
-  deleteOpportunity(id:number) {
-      this.http.delete(API_URL + `/volunteering/${id}`, this.getOptions())
-        .toPromise()
-        .then((res:Response) => {
-            console.log(res);
-            this.toasterService.pop('Success', '', `Delete of ${id} successful`);
-        }).catch((err:Error) => {
-            this.toasterService.pop('Failure', '', `Delete of ${id} unsuccessful`);
-        });
+  deleteOpportunity(id: number) {
+    this.http.delete(API_URL + `/volunteering/${id}`, this.getOptions())
+      .toPromise()
+      .then((res: Response) => {
+      console.log(res);
+      this.toasterService.pop('success', '', `Delete of ${id} successful`);
+    }).catch((err: Error) => {
+      this.toasterService.pop('error', '', `Delete of ${id} unsuccessful`);
+    });
   }
 
   search(searchQuery: VolunteeringSearchQuery) {
