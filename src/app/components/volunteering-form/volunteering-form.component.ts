@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VolunteeringService } from '../../services/volunteering.service';
 import { Router } from '@angular/router';
+import { isUndefined } from 'util';
 
 @Component({
   selector: 'volunteering-form',
@@ -15,11 +16,14 @@ export class VolunteeringFormComponent {
   end_date:string;
   url:string;
 
-  constructor(private volunteeringService:VolunteeringService) {
+  constructor(private volunteeringService:VolunteeringService,
+              private router:Router) {
   }
 
   ngOnInit():void {
-
+      if (!localStorage.getItem("charity")) {
+          this.router.navigate(['/home']);
+      }
   }
 
   onSubmit():void {

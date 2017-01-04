@@ -1,7 +1,7 @@
 import { Component} from '@angular/core';
 import { VolunteeringService } from '../../services/volunteering.service';
 import { Opportunity } from '../../constants/data-types';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'volunteering-update-form',
@@ -15,7 +15,8 @@ export class VolunteeringUpdateFormComponent {
   private subscription: any;
 
   constructor(private volunteeringService: VolunteeringService,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private router: Router) {
     this.subscription = this.volunteeringService.opportunity$
       .subscribe(opportunity => {
       this.opportunity = opportunity;
@@ -23,10 +24,14 @@ export class VolunteeringUpdateFormComponent {
   }
 
   ngOnInit() {
-    this.route.params.forEach((params: Params) => {
-      let id = params['id'];
-      this.volunteeringService.getOpportunity(id, false);
-    });
+    if (!localStorage.getItem("charity")) {
+      this.router.navigate(['/home']);
+    } else {
+      this.route.params.forEach((params: Params) => {
+        let id = params['id'];
+        this.volunteeringService.getOpportunity(id, false);
+      });
+    }
   }
 
   onSubmit(): void {

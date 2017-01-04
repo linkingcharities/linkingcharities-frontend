@@ -12,35 +12,39 @@ import { Router } from '@angular/router';
 
 export class VolunteeringUpdateListComponent {
 
-    opportunities:Opportunity[] = null;
+  opportunities: Opportunity[] = null;
 
-    private subscription:any;
+  private subscription: any;
 
-    constructor(private volunteeringService:VolunteeringService,
-                private router:Router) {
-        this.subscription = this.volunteeringService.opportunities$
-          .subscribe(opportunities => {
-              this.opportunities = opportunities;
-         });
+  constructor(private volunteeringService: VolunteeringService,
+    private router: Router) {
+    this.subscription = this.volunteeringService.opportunities$
+      .subscribe(opportunities => {
+      this.opportunities = opportunities;
+    });
+  }
+
+  ngOnInit() {
+    if (!localStorage.getItem("charity")) {
+      this.router.navigate(['/home']);
+    } else {
+      this.volunteeringService.getOpportunitiesForCharity(parseInt(localStorage.getItem("charityID")));
     }
+  }
 
-    ngOnInit() {
-        this.volunteeringService.getOpportunitiesForCharity(parseInt(localStorage.getItem("charityID")));
-    }
+  onEdit(id: number): void {
+    this.router.navigate(['/edit-opportunity', id]);
+  }
 
-    onEdit(id:number):void {
-        this.router.navigate(['/edit-opportunity', id]);
+  onDelete(id: number): void {
+    if (confirm("Are you sure you wish to delete this?")) {
+      this.volunteeringService.deleteOpportunity(id);
     }
+  }
 
-    onDelete(id:number):void {
-        if (confirm("Are you sure you wish to delete this?")) {
-            this.volunteeringService.deleteOpportunity(id);
-        }
-    }
-
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-    }
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 
 
 }
