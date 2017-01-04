@@ -17,7 +17,8 @@ export class VolunteeringUpdateFormComponent {
 
   constructor(private volunteeringService: VolunteeringService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private location: Location) {
     this.subscription = this.volunteeringService.opportunity$
       .subscribe(opportunity => {
       this.opportunity = opportunity;
@@ -64,5 +65,9 @@ export class VolunteeringUpdateFormComponent {
       this.opportunity.start_date = range[0];
       this.opportunity.end_date = range[1];
     }
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

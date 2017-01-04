@@ -8,25 +8,25 @@
 <div class="container">
     <div *ngIf="opportunities">
         <div class="row">
-            <div class="col-md-5">
+            <div class="col-md-5 col-xs-3">
                 <h4>Opportunity Name</h4>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-xs-2">
                 <h4>Start Date</h4>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-2 col-xs-2">
                 <h4>End Date</h4>
             </div>
 
         </div>
         <div *ngFor="let opportunity of opportunities" class="row">
-            <div id="o_name" class="col-md-5 col-xs-8">
+            <div id="o_name" class="col-md-5 col-xs-2">
                 <h5>{{ opportunity.name }}</h5>
             </div>
-            <div id="start_date" class="col-md-2 col-xs-8">
+            <div id="start_date" class="col-md-2 col-xs-2">
                 <h5>{{ opportunity.start_date }}</h5>
             </div>
-            <div id="end_date" class="col-md-2 col-xs-8">
+            <div id="end_date" class="col-md-2 col-xs-2">
                 <h5>{{ opportunity.end_date }}</h5>
             </div>
             <button id="edit" (click)="onEdit(opportunity.id)" class="btn btn-primary col-md-1 col-xs-2">
@@ -35,6 +35,9 @@
             <button id="delete" (click)="onDelete(opportunity.id)" class="btn btn-danger col-md-1 col-xs-2">
                 Delete
             </button>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-warning" (click)="goBack()">Go Back</button>
         </div>
     </div>
 </div>

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { VolunteeringService } from '../../services/volunteering.service';
 import { Router } from '@angular/router';
 import { isUndefined } from 'util';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'volunteering-form',
@@ -17,7 +18,8 @@ export class VolunteeringFormComponent {
   url:string;
 
   constructor(private volunteeringService:VolunteeringService,
-              private router:Router) {
+              private router:Router,
+              private location:Location) {
   }
 
   ngOnInit():void {
@@ -36,6 +38,7 @@ export class VolunteeringFormComponent {
       url: this.url
     };
     this.volunteeringService.registerOpportunity(data);
+    console.log("called");
   }
 
   private myDateRangePickerOptions = {
@@ -64,5 +67,8 @@ export class VolunteeringFormComponent {
     }
   }
 
+  goBack():void {
+      this.router.navigateByUrl('/home');
+  }
 
 }

@@ -99,7 +99,6 @@ export class VolunteeringService {
     this.http.patch(API_URL + `/volunteering/${id}`, data, this.getOptions())
       .toPromise()
       .then((res: Response) => {
-      console.log(res);
       this.toasterService.pop('success', '', 'Volunteering Update Successful');
     }).catch((err: Error) => {
       this.toasterService.pop('error', '', 'Volunteering Update Failed');

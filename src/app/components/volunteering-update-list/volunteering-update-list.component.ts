@@ -42,6 +42,10 @@ export class VolunteeringUpdateListComponent {
     }
   }
 
+  goBack():void {
+      this.router.navigate(['/home']);
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
