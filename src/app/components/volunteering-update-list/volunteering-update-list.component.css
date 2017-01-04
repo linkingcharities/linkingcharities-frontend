@@ -13,6 +13,6 @@
     text-shadow: 3px 3px 0px #000;
 }
 
-#edit, #delete, #name, #start_date, #end_date {
+#edit, #delete, #o_name, #start_date, #end_date {
     margin: 5px;
 }

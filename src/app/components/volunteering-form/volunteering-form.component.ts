@@ -6,7 +6,7 @@ import { isUndefined } from 'util';
 @Component({
   selector: 'volunteering-form',
   templateUrl: './volunteering-form.component.html',
-  styleUrls: ['./volunteering-form.component.css']
+  styleUrls: ['../volunteering-update-list/volunteering-update-list.component.css']
 })
 
 export class VolunteeringFormComponent {

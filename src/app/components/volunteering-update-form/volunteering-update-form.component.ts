@@ -2,11 +2,12 @@ import { Component} from '@angular/core';
 import { VolunteeringService } from '../../services/volunteering.service';
 import { Opportunity } from '../../constants/data-types';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'volunteering-update-form',
   templateUrl: './volunteering-update-form.component.html',
-  styleUrls: ['./volunteering-update-form.component.css']
+  styleUrls: ['../volunteering-update-list/volunteering-update-list.component.css']
 })
 
 export class VolunteeringUpdateFormComponent {
@@ -36,7 +37,7 @@ export class VolunteeringUpdateFormComponent {
 
   onSubmit(): void {
     this.volunteeringService.updateOpportunity(this.opportunity, this.opportunity.id);
-
+    this.router.navigateByUrl('update-volunteering');
   }
 
   private myDateRangePickerOptions = {
@@ -60,8 +61,8 @@ export class VolunteeringUpdateFormComponent {
   onDateRangeChanged(event: any): void {
     let range = event.formatted.split(" - ");
     if (range.length == 2) {
-      //this.start_date = range[0];
-      //this.end_date = range[1];
+      this.opportunity.start_date = range[0];
+      this.opportunity.end_date = range[1];
     }
   }
 }
