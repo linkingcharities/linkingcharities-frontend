@@ -28,10 +28,13 @@
         <div class="col-md-6 col-xs-12">
             <div *ngIf="isCharity">
                 <h2>Other information</h2>
-                Other information for charity
-                <button class="btn btn-primary btn-block" type="button" (click)="goToVolunteeringForm()">Create new
+                <div class="col-md-12">
+                    Other information for charity
+                </div>
+                <button class="btn btn-primary col-md-6" type="button" (click)="goToVolunteeringForm()">Create new
                     Volunteering Opportunity
                 </button>
+                <button class="btn btn-primary col-md-6" type="button" (click)="goToVolunteeringList()">Modify/Delete your Volunteering Opportunities</button>
             </div>
 
             <!-- Should combine with isDonor -->

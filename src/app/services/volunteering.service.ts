@@ -43,13 +43,22 @@ export class VolunteeringService {
   }
 
   getOpportunity(id: number) {
-    this.http.get(API_URL + '/volunteering?id=' + id, this.getOptions())
+    this.http.get(API_URL + `/volunteering?id=${id}`, this.getOptions())
       .toPromise()
       .then((res: Response) => {
       let opportunity = res.json() as Opportunity;
       this.volunteerSource.next(opportunity[0]);
     })
       .catch(this.handleError);
+  }
+
+  getOpportunitiesForCharity(charity_id:number) {
+      this.http.get(API_URL + `/volunteering?charity=${charity_id}`, this.getOptions())
+      .toPromise()
+      .then((res:Response) => {
+          let opportunities = res.json() as Opportunity[];
+          this.volunteeringSource.next(opportunities);
+      }).catch(this.handleError);
   }
 
   updateOpportunity(opportunity: Opportunity, id: number) {
@@ -68,6 +77,17 @@ export class VolunteeringService {
     }).catch((err: Error) => {
       this.toasterService.pop('Error', '', 'Volunteering Update Failed');
     });
+  }
+
+  deleteOpportunity(id:number) {
+      this.http.delete(API_URL + `/volunteering/${id}`, this.getOptions())
+        .toPromise()
+        .then((res:Response) => {
+            console.log(res);
+            this.toasterService.pop('Success', '', `Delete of ${id} successful`);
+        }).catch((err:Error) => {
+            this.toasterService.pop('Failure', '', `Delete of ${id} unsuccessful`);
+        });
   }
 
   search(searchQuery: VolunteeringSearchQuery) {
