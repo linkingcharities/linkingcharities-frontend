@@ -105,12 +105,13 @@ export class VolunteeringService {
     });
   }
 
-  deleteOpportunity(id: number) {
+  deleteOpportunity(id: number, charity_id: number) {
     this.http.delete(API_URL + `/volunteering/${id}`, this.getOptions())
       .toPromise()
       .then((res: Response) => {
       console.log(res);
       this.toasterService.pop('success', '', `Delete of ${id} successful`);
+      this.getOpportunitiesForCharity(charity_id);
     }).catch((err: Error) => {
       this.toasterService.pop('error', '', `Delete of ${id} unsuccessful`);
     });

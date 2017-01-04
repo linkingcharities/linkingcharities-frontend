@@ -36,9 +36,9 @@ export class VolunteeringUpdateListComponent {
     this.router.navigate(['/edit-opportunity', id]);
   }
 
-  onDelete(id: number): void {
+  onDelete(id: number, charity_id: number): void {
     if (confirm("Are you sure you wish to delete this?")) {
-      this.volunteeringService.deleteOpportunity(id);
+      this.volunteeringService.deleteOpportunity(id, charity_id);
     }
   }
 
