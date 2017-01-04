@@ -166,6 +166,7 @@ export class AuthService {
           url: data['url']
       }).toPromise().then((res:Response) => {
           this.toasterService.pop('success', '', 'Opportunity Registered!');
+          this.router.navigate(['/home']);
       }).catch((err:Error) => {
           this.toasterService.pop('error', '', 'Opportunity Registration Failed');
       });
