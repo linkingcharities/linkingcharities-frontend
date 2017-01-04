@@ -1,18 +1,18 @@
-<div class="col-md-8 col-md-offset-2" protected>
+<div class="col-md-8 col-md-offset-2" *ngIf="opportunity" protected>
     <h2 class="text-center">Volunteering Update</h2>
     <form class="form-horizontal" (submit)="onSubmit()">
         <fieldset>
             <div class="form-group">
                 <div class="col-md-8 col-md-offset-2">
                     <input type="text" class="form-control" id="name" required
-                     [(ngModel)]="name"
+                     [(ngModel)]="opportunity.name"
                      name="name" placeholder="Name of the volunteering opportunity">
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-8 col-md-offset-2">
                     <textarea class="form-control" id="description" required
-                    [(ngModel)]="description" name="description" placeholder="Enter a description of the opportunity"></textarea>
+                    [(ngModel)]="opportunity.description" name="description" placeholder="Enter a description of the opportunity"></textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -25,7 +25,7 @@
             <div class="form-group">
                 <div class="col-md-8 col-md-offset-2">
                     <input type="text" class="form-control" id="url"
-                     [(ngModel)]="url"
+                     [(ngModel)]="opportunity.url"
                      name="url" placeholder="A link to find out more about this opportunity">
                 </div>
             </div>

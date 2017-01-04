@@ -28,7 +28,7 @@ export class VolunteeringDetailComponent implements OnInit {
     ngOnInit():void {
         this.route.params.forEach((params:Params) => {
             let id = +params['id'];
-            this.volunteeringService.getOpportunity(id);
+            this.volunteeringService.getOpportunity(id, true);
         });
     }
 

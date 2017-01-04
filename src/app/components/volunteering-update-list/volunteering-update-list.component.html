@@ -29,7 +29,7 @@
             <div id="end_date" class="col-md-2 col-xs-8">
                 <h5>{{ opportunity.end_date }}</h5>
             </div>
-            <button id="edit" class="btn btn-primary col-md-1 col-xs-2">
+            <button id="edit" (click)="onEdit(opportunity.id)" class="btn btn-primary col-md-1 col-xs-2">
                 Edit
             </button>
             <button id="delete" (click)="onDelete(opportunity.id)" class="btn btn-danger col-md-1 col-xs-2">

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
+import { VolunteeringService } from '../../services/volunteering.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -14,14 +14,14 @@ export class VolunteeringFormComponent {
   start_date:string;
   end_date:string;
   url:string;
-  
-  constructor(private authService:AuthService) {
+
+  constructor(private volunteeringService:VolunteeringService) {
   }
-  
+
   ngOnInit():void {
-    
+
   }
-  
+
   onSubmit():void {
     let data = {
       name: this.name,
@@ -31,9 +31,9 @@ export class VolunteeringFormComponent {
       end_date: this.end_date,
       url: this.url
     };
-    this.authService.registerOpportunity(data);
+    this.volunteeringService.registerOpportunity(data);
   }
-  
+
   private myDateRangePickerOptions = {
     clearBtnTxt: 'Clear Dates',
     beginDateBtnTxt: 'Begin Date',
@@ -51,7 +51,7 @@ export class VolunteeringFormComponent {
     showDateRangeFormatPlaceholder: false,
     showClearBtn: false
   };
-  
+
   onDateRangeChanged(event:any):void {
     let range = event.formatted.split(" - ");
     if (range.length == 2) {
@@ -59,5 +59,6 @@ export class VolunteeringFormComponent {
       this.end_date = range[1];
     }
   }
-  
+
+
 }

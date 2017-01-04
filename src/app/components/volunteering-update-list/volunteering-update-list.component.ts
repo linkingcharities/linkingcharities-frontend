@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { VolunteeringService } from '../../services/volunteering.service';
 import { Opportunity } from '../../constants/data-types';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,8 @@ export class VolunteeringUpdateListComponent {
 
     private subscription:any;
 
-    constructor(private volunteeringService:VolunteeringService) {
+    constructor(private volunteeringService:VolunteeringService,
+                private router:Router) {
         this.subscription = this.volunteeringService.opportunities$
           .subscribe(opportunities => {
               this.opportunities = opportunities;
@@ -26,10 +28,18 @@ export class VolunteeringUpdateListComponent {
         this.volunteeringService.getOpportunitiesForCharity(parseInt(localStorage.getItem("charityID")));
     }
 
+    onEdit(id:number):void {
+        this.router.navigate(['/edit-opportunity', id]);
+    }
+
     onDelete(id:number):void {
         if (confirm("Are you sure you wish to delete this?")) {
             this.volunteeringService.deleteOpportunity(id);
         }
+    }
+
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
 

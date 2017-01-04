@@ -18,7 +18,7 @@ export class VolunteeringGridComponent implements OnInit {
   }
 
   goToDetail(opportunity:Opportunity):void {
-    let link = ['/o_detail', opportunity.id];
+    let link = ['/o-detail', opportunity.id];
     this.router.navigate(link);
   }
 }

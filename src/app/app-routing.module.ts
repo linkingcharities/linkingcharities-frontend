@@ -49,10 +49,10 @@ const routes: Routes = [
       component: VolunteeringUpdateListComponent
   },
   {
-    path: 'volunteering-update-form',
+    path: 'edit-opportunity/:id',
     component: VolunteeringUpdateFormComponent
   },
-  { path: 'o_detail/:id', component: VolunteeringDetailComponent },
+  { path: 'o-detail/:id', component: VolunteeringDetailComponent },
   { path: '', component: HomePageComponent },
   { path: '**', component: PageNotFoundComponent }
 ];
