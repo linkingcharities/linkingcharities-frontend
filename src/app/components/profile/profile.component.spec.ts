@@ -3,6 +3,7 @@ import { ProfileComponent } from './profile.component';
 import { AuthService } from '../../services/auth.service';
 import { Subject } from 'rxjs/Rx';
 import { Payment } from '../../constants/data-types';
+import { Router } from '@angular/router';
 
 class AuthServiceStub {
   accountTypeSource = new Subject<string>();
@@ -15,11 +16,18 @@ class AuthServiceStub {
   payments$ = this.paymentSource.asObservable();
 }
 
+class RouterStub {
+  navigate(link:string[]) {
+    return link;
+  }
+}
+
 describe('Profile', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         {provide: AuthService, useClass: AuthServiceStub},
+        {provide: Router, useClass: RouterStub},
         ProfileComponent
       ]
     });
