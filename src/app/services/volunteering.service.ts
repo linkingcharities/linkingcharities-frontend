@@ -45,16 +45,18 @@ export class VolunteeringService {
       .catch(this.handleError);
   }
 
+  // View_only is true iff you only want to display opportunities
+  // and not modify them
   getOpportunity(id: number, view_only: boolean) {
-    this.http.get(API_URL + `/volunteering?id=${id}`, this.getOptions())
+    this.http.get(API_URL + `/volunteering/${id}`, this.getOptions())
       .toPromise()
       .then((res: Response) => {
       let opportunity = res.json() as Opportunity;
-      if (parseInt(localStorage.getItem("charityID")) !== opportunity[0]['charity'] && !view_only) {
+      if (parseInt(localStorage.getItem("charityID")) !== opportunity['charity'] && !view_only) {
           this.toasterService.pop('error','', 'Trying to access opportunity not created by you!');
           this.router.navigateByUrl('/update-volunteering');
       } else {
-          this.volunteerSource.next(opportunity[0]);
+          this.volunteerSource.next(opportunity);
       }
     })
       .catch(this.handleError);
