@@ -43,7 +43,7 @@ export class VolunteeringUpdateListComponent {
   }
 
   goBack():void {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/profile']);
   }
 
   ngOnDestroy() {

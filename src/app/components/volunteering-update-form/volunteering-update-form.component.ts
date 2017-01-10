@@ -68,6 +68,6 @@ export class VolunteeringUpdateFormComponent {
   }
 
   goBack(): void {
-    this.location.back();
+    this.router.navigate(['/update-volunteering']);
   }
 }

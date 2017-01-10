@@ -5,20 +5,17 @@
                 <div class="col-md-3 col-sm-12 menu-logo-area">
                     <div class="menu-logo-pos">
                         <a routerLink="/home">
-                            <img src="logo.png" width="191px" height="80px">
+                            <img src="logo.png" width="98px" height="80px">
                         </a>
                     </div>
                 </div>
                 <div class="col-md-9 main-menu-area">
                     <div class="main-menu-pos">
-                        <div class="main-menu">
+                        <div class="main-menu col-md-8">
                             <nav>
                                 <ul class="nav navbar-nav">
                                     <li class="main-menu-button">
                                         <a routerLink="/home">Home</a>
-                                    </li>
-                                    <li class="main-menu-button">
-                                        <a routerLink="/about">About</a>
                                     </li>
                                     <li class="main-menu-button">
                                         <a routerLink="/quiz">Quiz</a>
@@ -32,7 +29,7 @@
                                 </ul>
                             </nav>
                         </div>
-                        <div class="login-register">
+                        <div class="login-register col-md-4">
                             <nav>
                                 <ul class="nav navbar-nav">
                                     <li routerLinkActive="active" *ngIf="!isLoggedIn">
