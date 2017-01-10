@@ -135,7 +135,7 @@ export class AuthService {
             paypal: data['paypal'],
             description: data['description'],
             total_income: data['total_income'],
-            charitableActivity: data['activity'],
+            charitableActivity: data['charitableActivity'],
             fundraising: data['fundraising'],
             admin: data['admin']     
           })
