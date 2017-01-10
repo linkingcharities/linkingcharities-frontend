@@ -20,6 +20,7 @@ export class ProtectedDirective implements OnDestroy {
         if (!isLoggedIn) {
           this.router.navigate(['/login']);
         } else {
+          console.log("WE ARE HERE", this.router.url);
           this.router.navigateByUrl(this.router.url);
         }
       }

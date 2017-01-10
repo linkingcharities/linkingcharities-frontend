@@ -141,7 +141,7 @@ export class AuthService {
           })
           .toPromise()
           .then((res:Response) => {
-            localStorage.setItem("user", data['username'].toString());
+            localStorage.setItem("username", data['username'].toString());
             this.toasterService.pop('success', '', 'Charity signup successful');
             this.isLoggedIn();
 

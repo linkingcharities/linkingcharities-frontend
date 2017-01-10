@@ -40,7 +40,7 @@ export class NavigationComponent implements OnInit {
   logout():void {
     this.authService.logoutViaFb();
     this.authService.logout();
-    // this.router.navigate(['/home']);
+    this.router.navigate(['/home']);
   }
 
   profile():void {

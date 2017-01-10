@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { VolunteeringService } from '../../services/volunteering.service';
 import { Router } from '@angular/router';
-import { isUndefined } from 'util';
 import { Location } from '@angular/common';
 
 @Component({
@@ -11,24 +10,24 @@ import { Location } from '@angular/common';
 })
 
 export class VolunteeringFormComponent {
-  name:string;
-  description:string;
-  start_date:string;
-  end_date:string;
-  url:string;
-
-  constructor(private volunteeringService:VolunteeringService,
-              private router:Router,
-              private location:Location) {
+  name: string;
+  description: string;
+  start_date: string;
+  end_date: string;
+  url: string;
+  
+  constructor(private volunteeringService: VolunteeringService,
+              private router: Router,
+              private location: Location) {
   }
-
-  ngOnInit():void {
-      if (!localStorage.getItem("charity")) {
-          this.router.navigate(['/home']);
-      }
+  
+  ngOnInit(): void {
+    if (!localStorage.getItem("charity")) {
+      this.router.navigate(['/home']);
+    }
   }
-
-  onSubmit():void {
+  
+  onSubmit(): void {
     let data = {
       name: this.name,
       charity: localStorage.getItem("charityID"),
@@ -40,7 +39,7 @@ export class VolunteeringFormComponent {
     this.volunteeringService.registerOpportunity(data);
     console.log("called");
   }
-
+  
   private myDateRangePickerOptions = {
     clearBtnTxt: 'Clear Dates',
     beginDateBtnTxt: 'Begin Date',
@@ -58,17 +57,17 @@ export class VolunteeringFormComponent {
     showDateRangeFormatPlaceholder: false,
     showClearBtn: false
   };
-
-  onDateRangeChanged(event:any):void {
+  
+  onDateRangeChanged(event: any): void {
     let range = event.formatted.split(" - ");
     if (range.length == 2) {
       this.start_date = range[0];
       this.end_date = range[1];
     }
   }
-
-  goBack():void {
-      this.router.navigateByUrl('/home');
+  
+  goBack(): void {
+    this.router.navigate(['/profile']);
   }
-
+  
 }
