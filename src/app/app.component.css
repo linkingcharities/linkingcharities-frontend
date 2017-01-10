@@ -8,6 +8,14 @@ body {
     overflow-y: scroll;
 }
 
+.app {
+    min-height: 96%;
+}
+
+footer {
+    height: 30px;
+}
+
 #main-body {
     padding: 80px 0 0;
 }
