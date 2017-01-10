@@ -89,19 +89,19 @@ export const Charity_Target = {
 
 export const Charity_Type = {
   'G': 'General Charitable Purposes',
-  'E': 'Education/Training',
-  'H': 'Advancement of Health/Saving Lives',
+  'E': 'Education / Training',
+  'H': 'Advancement of Health / Saving Lives',
   'D': 'Disability',
   'P': 'Prevention or Relief of Poverty',
-  'O': 'Overseas Aid/Famine Relief',
+  'O': 'Overseas Aid / Famine Relief',
   'R': 'Religious Activities',
-  'C': 'Arts/Culture/Heritage/Science',
+  'C': 'Arts / Culture / Heritage / Science',
   'S': 'Amateur Sport',
   'AN': 'Animals',
   'EN': 'Environment',
-  'EC': 'Economic/Community Development/Employment',
+  'EC': 'Economic / Community Development / Employment',
   'A': 'Armed Forces',
-  'HR': 'Human Rights/Equality',
+  'HR': 'Human Rights / Equality',
   'RE': 'Recreation',
   'OT': 'Other'
 };

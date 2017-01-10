@@ -1,7 +1,8 @@
+///<reference path="../../constants/data-types.ts"/>
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { Charity } from '../../constants/data-types';
+import { Charity, Charity_Target, Charity_Type } from '../../constants/data-types';
 import { CharityService } from '../../services/charity.service';
 import { Http } from '@angular/http';
 import { AuthService } from '../../services/auth.service';
@@ -17,7 +18,8 @@ export class CharityDetailComponent implements OnInit {
   amount:number = 1.00;
   currency_code:string = 'USD';
   isLoggedIn = false;
-  
+  type:string = null;
+  target:string = null;
   
   // Sample chart data
   // Alternatively this formatting could be shifted inside the chart
@@ -38,7 +40,9 @@ export class CharityDetailComponent implements OnInit {
     this.subscription = this.charityService.charity$
       .subscribe(charity => {
         // At this point, additional information about the charity should be loaded
-        this.charity = charity
+        this.charity = charity;
+        this.type = Charity_Type[charity.type];
+        this.target = Charity_Target[charity.target];
       });
     this.subscription2 = this.authService.login$
       .subscribe(isLoggedIn => {
