@@ -97,17 +97,9 @@ export class AuthService {
       .then((res:Response) => {
 
         this.toasterService.pop('success', '', 'Donor signup successful');
-        localStorage.setItem("username", username.toString());
-        this.isLoggedIn();
-
-        // Get the redirect URL from our auth service
-        // If no redirect has been set, use the default
-        let redirect = this.redirectUrl ? this.redirectUrl : '/home';
-        redirect = this.router.url != '/signup' ? this.router.url : redirect;
-
-        // Redirect the user
-        console.log(redirect);
-        this.router.navigate([redirect]);
+        
+        // Log the user in immediately
+        this.userLogin(username, password);
       }).catch((err:Error) => {
       this.toasterService.pop('error', '', 'Registration failed');
       this.isLoggedIn()
@@ -141,11 +133,8 @@ export class AuthService {
           })
           .toPromise()
           .then((res:Response) => {
-            localStorage.setItem("username", data['username'].toString());
             this.toasterService.pop('success', '', 'Charity signup successful');
-            this.isLoggedIn();
-
-            this.router.navigate(['/home']);
+            this.userLogin(data['username'], data['password'])
           }).catch((err:Error) => {
           //May be customise the error info in the future?
           this.toasterService.pop('error', '', 'Charity register failed.')
