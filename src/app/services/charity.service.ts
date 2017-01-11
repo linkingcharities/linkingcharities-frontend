@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Headers, Http, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
-import { Charity, CharitySearchQuery, DefaultType, DefaultTarget } from '../constants/data-types';
+import { Charity, CharitySearchQuery, DefaultType, DefaultTarget, Payment_Record } from '../constants/data-types';
 import { API_URL } from '../constants/config';
 import { Subject } from 'rxjs/Rx';
 import { ToasterService } from 'angular2-toaster/angular2-toaster';
@@ -74,6 +74,16 @@ export class CharityService {
       .post(API_URL + '/charities', data, this.getOptions())
       .toPromise()
       .then(res => res.json().data)
+      .catch(this.handleError);
+  }
+  
+  getPayments(charity_id:number):Promise<Payment_Record[]> {
+    const serverQuery = API_URL + `/show_payments?`
+    + `account_id=${charity_id}&charity=true`;
+    return this.http
+      .get(serverQuery, this.getOptions())
+      .toPromise()
+      .then(res => res.json() as Payment_Record[])
       .catch(this.handleError);
   }
 

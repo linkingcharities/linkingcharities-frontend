@@ -57,12 +57,12 @@
                 </fieldset>
             </form>
             <!-- Hidden for now -->
-            <!--<div class="chart-area">-->
-                <!--<bar-chart [chartLabels]="chartLabels"-->
-                           <!--[chartData]="chartData"-->
-                           <!--[chartTitle]="chartTitle">-->
-                <!--</bar-chart>-->
-            <!--</div>-->
+            <div class="chart-area" *ngIf="chartData">
+                <bar-chart [chartLabels]="chartLabels"
+                           [chartData]="chartData"
+                           [chartTitle]="chartTitle">
+                </bar-chart>
+            </div>
         </div>
 
         <div class="text-center">
