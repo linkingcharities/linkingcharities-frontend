@@ -18,6 +18,10 @@
     padding: 0;
 }
 
+.btn {
+  width: 300px;
+}
+
 @media (min-width: 992px) {
     .col-md-offset-1 {
         margin-left: 0;
