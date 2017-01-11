@@ -2,7 +2,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from '@angular/common';
-import { Charity, Charity_Target, Charity_Type } from '../../constants/data-types';
+import { Charity, Charity_Target, Charity_Type, Payment_Record } from '../../constants/data-types';
 import { CharityService } from '../../services/charity.service';
 import { Http } from '@angular/http';
 import { AuthService } from '../../services/auth.service';
@@ -14,32 +14,31 @@ import { AuthService } from '../../services/auth.service';
 })
 
 export class CharityDetailComponent implements OnInit {
-  charity:Charity;
-  amount:number = 1.00;
-  currency_code:string = 'USD';
+  charity: Charity;
+  amount: number = 1.00;
+  currency_code: string = 'USD';
   isLoggedIn = false;
-  type:string = null;
-  target:string = null;
+  type: string = null;
+  target: string = null;
+  payments: Payment_Record[] = null;
+  hasDonations = false;
   
   // Sample chart data
   // Alternatively this formatting could be shifted inside the chart
-  chartLabels:string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
-  chartData:any[] = [
-    {data: [1, 2, 3, 4, 5, 6, 7], label: 'Donations per year (dollars)'}
-  ];
-  chartTitle:string = "Donation history";
+  chartLabels: string[] = null;
+  chartData: any[] = null;
+  chartTitle: string = "Donation history";
   
-  private subscription:any;
-  private subscription2:any;
+  private subscription: any;
+  private subscription2: any;
   
-  constructor(private charityService:CharityService,
-              private route:ActivatedRoute,
-              private http:Http,
-              private location:Location,
-              private authService:AuthService) {
+  constructor(private charityService: CharityService,
+              private route: ActivatedRoute,
+              private http: Http,
+              private location: Location,
+              private authService: AuthService) {
     this.subscription = this.charityService.charity$
       .subscribe(charity => {
-        // At this point, additional information about the charity should be loaded
         this.charity = charity;
         this.type = Charity_Type[charity.type];
         this.target = Charity_Target[charity.target];
@@ -50,17 +49,50 @@ export class CharityDetailComponent implements OnInit {
       });
   }
   
-  ngOnInit():void {
-    this.route.params.forEach((params:Params) => {
+  ngOnInit(): void {
+    this.route.params.forEach((params: Params) => {
       let id = +params['id'];
       this.charityService.getCharity(id);
+      this.charityService.getPayments(id)
+        .then(payments => {
+          this.payments = payments;
+          let payment_map = {};
+          
+          // Put data into correct form
+          for (let i in payments) {
+            let d = new Date(payments[i].date);
+            let year = d.getFullYear();
+            console.log(year, payments[i].amount);
+            if (payment_map.hasOwnProperty(year)) {
+              payment_map[year] += payments[i].amount
+            } else {
+              payment_map[year] = payments[i].amount;
+            }
+          }
+          
+          // Initialise the chart
+          let sorted_keys = Object.keys(payment_map).sort();
+          console.log(payment_map, sorted_keys);
+          this.chartLabels = sorted_keys;
+          
+          let amount_per_year: number[] = [];
+          for (let i in sorted_keys) {
+            amount_per_year.push(payment_map[sorted_keys[i]])
+          }
+          this.chartData = [
+            {data: amount_per_year, label: 'Donations per year (dollars)'}
+          ];
+          
+          this.hasDonations = this.payments.length > 0;
+        });
+      
     });
   }
   
-  onSubmit():void {
-    let userID= localStorage.getItem("userID");
+  onSubmit(): void {
+    let userID = localStorage.getItem("userID");
     if (!userID) {
-      userID= "donation";
+      userID = "donation";
     }
     console.log(this.isLoggedIn);
     console.log(window.location.hostname);
@@ -76,7 +108,7 @@ export class CharityDetailComponent implements OnInit {
       '&showHostedThankyouPage=false');
   }
   
-  goBack():void {
+  goBack(): void {
     this.location.back();
   }
   

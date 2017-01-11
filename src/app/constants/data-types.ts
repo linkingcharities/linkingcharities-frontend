@@ -1,80 +1,80 @@
 export class User {
-  constructor(public email:string,
-              public password:string,
-              public charity:string) {
+  constructor(public email: string,
+              public password: string,
+              public charity: string) {
   }
 }
 
 // For the charities
 export class Charity {
-  id:number;
-  register_id:number;
-  name:string;
-  description:string;
-  paypal:string;
-  type:string;
-  target:string;
-  area_served:string;
-  charitableActivity:number;
-  fundraising:number;
-  admin:number;
+  id: number;
+  register_id: number;
+  name: string;
+  description: string;
+  paypal: string;
+  type: string;
+  target: string;
+  area_served: string;
+  charitableActivity: number;
+  fundraising: number;
+  admin: number;
 }
 
 export class Option {
-  o:string;
-  a:string;
+  o: string;
+  a: string;
 }
 
 export class Result {
-  title:string;
-  picture_link:string;
-  description:string;
-  links:string[];
-  link_types:string[];
+  title: string;
+  picture_link: string;
+  description: string;
+  links: string[];
+  link_types: string[];
 }
 
 export class Question {
-  no:number;
-  question:string;
-  options:Option[];
+  no: number;
+  question: string;
+  options: Option[];
 }
 
 export class Opportunity {
-    id:number;
-    name:string;
-    charity:number;
-    description:string;
-    start_date:string;
-    end_date:string;
-    url:string;
-    charity_name:string;
+  id: number;
+  name: string;
+  charity: number;
+  description: string;
+  start_date: string;
+  end_date: string;
+  url: string;
+  charity_name: string;
 }
 
 export const Image_Hosting = {
-  'a0' : '/a0.jpg',
-  'a1' : '/a1.jpg',
-  'a2' : '/a2.jpg',
-  'a3' : '/a3.jpg',
-  'a4' : '/a4.jpg',
-  'a5' : '/a5.jpg',
-  'a6' : '/a6.jpg'
+  'a0': '/a0.jpg',
+  'a1': '/a1.jpg',
+  'a2': '/a2.jpg',
+  'a3': '/a3.jpg',
+  'a4': '/a4.jpg',
+  'a5': '/a5.jpg',
+  'a6': '/a6.jpg'
 };
 
 export const Quiz_Description = {
-  'a0' : 'These types of charities help preserve artistic and cultural heritage \
+  'a0': 'These types of charities help preserve artistic and cultural heritage \
           as well as celebrate the arts and our history.',
-  'a1' : 'Education charities serve students from every age group, \
+  'a1': 'Education charities serve students from every age group, \
           pre-school to graduate school and beyond.  Some serve as the \
           educational institutions while focus on making education more accessible and effective.',
-  'a2' : 'Health charities cover everything from supporting and treating the sick and disabled, \
+  'a2': 'Health charities cover everything from supporting and treating the sick and disabled, \
           working on cures for deseases, and promoting public awareness of specific health risks.',
-  'a3' : 'Community development is the practice of developing the social well- being of local, \
+  'a3': 'Community development is the practice of developing the social well- being of local, \
           regional and, sometimes, national communities.',
-  'a4' : 'These organizations feed the hungry, provide emergency response during natural disasters, \
+  'a4': 'These organizations feed the hungry, provide emergency response during natural disasters, \
           and offer shelter to those in need.',
-  'a5' : 'Animal & Environmental Charities focus on ways to promote preservation, \
+  'a5': 'Animal & Environmental Charities focus on ways to promote preservation, \
           appreciation, and sustainable development for the environment and its habitants. ',
-  'a6' : 'You got a heart of gold and you prefer charities advocating faith, religion or perhaps\
+  'a6': 'You got a heart of gold and you prefer charities advocating faith, religion or perhaps\
           aiding the tough veterans at war.'
 };
 
@@ -107,15 +107,15 @@ export const Charity_Type = {
 };
 
 export class CharityTarget {
-  constructor(public short:string,
-              public full:string) {
+  constructor(public short: string,
+              public full: string) {
   }
 }
 
 export const DefaultTarget
   = new CharityTarget('', 'Target');
 
-export const CharityTargets:CharityTarget[] = [
+export const CharityTargets: CharityTarget[] = [
   new CharityTarget('C', 'Children / Young People'),
   new CharityTarget('E', 'Elderly / Old People'),
   new CharityTarget('P', 'General public'),
@@ -125,8 +125,8 @@ export const CharityTargets:CharityTarget[] = [
 ];
 
 export class CharityType {
-  constructor(public short:string,
-              public full:string) {
+  constructor(public short: string,
+              public full: string) {
   }
 }
 
@@ -134,7 +134,7 @@ export const DefaultType
   = new CharityTarget('', 'Type');
 
 
-export const CharityTypes:CharityType[] = [
+export const CharityTypes: CharityType[] = [
   new CharityType('H', 'Advancement of Health/Saving Lives'),
   new CharityType('S', 'Amateur Sport'),
   new CharityType('AN', 'Animals'),
@@ -155,23 +155,33 @@ export const CharityTypes:CharityType[] = [
 
 // For search
 export class CharitySearchQuery {
-  term:string;
-  target:CharityTarget;
-  type:CharityType;
+  term: string;
+  target: CharityTarget;
+  type: CharityType;
 }
 
 // Payments
 export class Payment {
-  amount:number;
-  charity:string;
-  currency:string;
-  date:string;
-  username:string;
+  amount: number;
+  charity: string;
+  currency: string;
+  date: string;
+  username: string;
+}
+
+// Payment records
+export class Payment_Record {
+  account_id: number;
+  charity_id: number;
+  date: string;
+  amount: string;
+  currency: string;
+  paypal: string;
 }
 
 // For volunteering search
 export class VolunteeringSearchQuery {
-  term:string;
-  start_date:string;
-  end_date:string;
+  term: string;
+  start_date: string;
+  end_date: string;
 }
