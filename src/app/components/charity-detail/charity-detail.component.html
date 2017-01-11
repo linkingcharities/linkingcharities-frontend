@@ -56,8 +56,7 @@
                     </div>
                 </fieldset>
             </form>
-            <!-- Hidden for now -->
-            <div class="chart-area" *ngIf="chartData">
+            <div class="chart-area" *ngIf="hasDonations">
                 <bar-chart [chartLabels]="chartLabels"
                            [chartData]="chartData"
                            [chartTitle]="chartTitle">

@@ -21,6 +21,7 @@ export class CharityDetailComponent implements OnInit {
   type: string = null;
   target: string = null;
   payments: Payment_Record[] = null;
+  hasDonations = false;
   
   // Sample chart data
   // Alternatively this formatting could be shifted inside the chart
@@ -81,6 +82,8 @@ export class CharityDetailComponent implements OnInit {
           this.chartData = [
             {data: amount_per_year, label: 'Donations per year (dollars)'}
           ];
+          
+          this.hasDonations = this.payments.length > 0;
         });
       
     });
