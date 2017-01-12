@@ -37,7 +37,6 @@ export class VolunteeringFormComponent {
       url: this.url
     };
     this.volunteeringService.registerOpportunity(data);
-    console.log("called");
   }
   
   private myDateRangePickerOptions = {

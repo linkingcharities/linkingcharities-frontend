@@ -1,16 +1,23 @@
-<div class="container-fluid col-md-8 col-md-offset-2 col-xs-offset-4 text-center">
+<div class="banner-area">
+    <div class="col-xs-6 col-xs-offset-2">
+        <div class="banner-text">
+            <h3>Login</h3>
+        </div>
+    </div>
+</div>
+<div class="container-fluid col-md-8 col-md-offset-2 col-xs-12 text-center">
     <i class="material-icons">account_circle</i>
     <form class="form-horizontal" (submit)="onSubmit()">
         <fieldset>
             <div class="form-group">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-4 col-md-offset-4 col-xs-12">
                     <input type="text" class="form-control" id="username" required
                            [(ngModel)]="username"
                            name="username" placeholder="User name">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-md-4 col-md-offset-4">
+                <div class="col-md-4 col-md-offset-4 col-xs-12">
                     <input type="password" class="form-control" id="password" required
                            [(ngModel)]="password"
                            name="password" placeholder="Password">
@@ -19,4 +26,5 @@
         </fieldset>
         <button type="submit" class="btn btn-primary">Login</button>
     </form>
+    <facebook-login></facebook-login>
 </div>

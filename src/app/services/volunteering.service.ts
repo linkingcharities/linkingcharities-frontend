@@ -82,7 +82,7 @@ export class VolunteeringService {
       url: data['url']
     }).toPromise().then((res: Response) => {
       this.toasterService.pop('success', '', 'Opportunity Registered!');
-      this.router.navigate(['/home']);
+      this.router.navigate(['/profile']);
     }).catch((err: Error) => {
       this.toasterService.pop('error', '', 'Opportunity Registration Failed');
     });

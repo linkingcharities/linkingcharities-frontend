@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -9,18 +9,18 @@ import { Router } from '@angular/router';
 })
 
 export class NavigationComponent implements OnInit {
-  isLoggedIn:boolean = false;
-  menuOpen:boolean = false;
-  fixedHeader:boolean = false;
-  username:string;
+  isLoggedIn: boolean = false;
+  menuOpen: boolean = false;
+  fixedHeader: boolean = false;
+  username: string;
   
   // @HostListener('window:scroll', ['$event'])
   // fixHeader(event:any) {
   //   //this.fixedHeader = (document.body.scrollTop > 0);
   // }
   
-  constructor(private router:Router,
-              private authService:AuthService) {
+  constructor(private router: Router,
+              private authService: AuthService) {
     authService.login$.subscribe(
       isLoggedIn => this.isLoggedIn = isLoggedIn
     );
@@ -29,22 +29,22 @@ export class NavigationComponent implements OnInit {
     );
   }
   
-  toggleMenu():void {
+  toggleMenu(): void {
     this.menuOpen = !this.menuOpen;
   }
   
-  ngOnInit():void {
+  ngOnInit(): void {
     this.authService.isLoggedIn();
   }
   
-  logout():void {
+  logout(): void {
     this.authService.logoutViaFb();
     this.authService.logout();
     this.router.navigate(['/home']);
   }
-
-  profile():void {
-    this.router.navigate(['/profile']);
+  
+  goTo(url: string) {
+    this.router.navigate([url]);
   }
   
 }

@@ -44,7 +44,9 @@
                                             Login
                                         </a>
                                         <ul class="dropdown-menu dropdown">
-                                            <facebook-login></facebook-login>
+                                            <div class="text-center">
+                                                <facebook-login></facebook-login>
+                                            </div>
                                             <login-small></login-small>
                                         </ul>
                                     </li>
@@ -76,7 +78,6 @@
                             data-target="#navbar-collapse-1">
                         <i class="material-icons">menu</i>
                     </button>
-
                 </div>
             </div>
             <div class="collapse navbar-collapse mobile-menu" id="navbar-collapse-1">
@@ -84,19 +85,33 @@
                     <nav class="mean-nav">
                         <ul>
                             <li>
-                                <a routerLink="/home">Home</a>
+                                <a (click)="goTo('/home')" data-toggle="collapse"
+                                   data-target="#navbar-collapse-1">Home</a>
                             </li>
                             <li>
-                                <a routerLink="/about">About</a>
+                                <a (click)="goTo('/quiz')" data-toggle="collapse"
+                                   data-target="#navbar-collapse-1">Quiz</a>
                             </li>
                             <li>
-                                <a routerLink="/quiz">Quiz</a>
+                                <a (click)="goTo('/charities')" data-toggle="collapse"
+                                   data-target="#navbar-collapse-1">Charities</a>
                             </li>
                             <li>
-                                <a routerLink="/charities">Charities</a>
+                                <a (click)="goTo('/volunteering')" data-toggle="collapse"
+                                   data-target="#navbar-collapse-1">Volunteering</a>
                             </li>
-                            <li>
-                                <a routerLink="/volunteering">Volunteering</a>
+                            <!-- To do, make this a proper toggle -->
+                            <li *ngIf="!isLoggedIn">
+                                <a (click)="goTo('/login')" data-toggle="collapse"
+                                   data-target="#navbar-collapse-1">Login</a>
+                            </li>
+                            <li *ngIf="isLoggedIn">
+                                <a (click)="goTo('/profile')" data-toggle="collapse"
+                                   data-target="#navbar-collapse-1">Profile - {{ username }}</a>
+                            </li>
+                            <li *ngIf="isLoggedIn">
+                                <a (click)="logout()" data-toggle="collapse"
+                                   data-target="#navbar-collapse-1">Logout</a>
                             </li>
                         </ul>
                     </nav>
