@@ -51,7 +51,7 @@
                                         </ul>
                                     </li>
                                     <li *ngIf="isLoggedIn">
-                                        <a (click)="profile()">{{ username }}</a>
+                                        <a (click)="goTo('/profile')">{{ username }}</a>
                                     </li>
                                     <li *ngIf="isLoggedIn">
                                         <a (click)="logout()">Logout</a>
